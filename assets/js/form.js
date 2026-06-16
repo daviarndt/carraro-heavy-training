@@ -25,6 +25,7 @@ const LABELS = {
   email: "E-mail",
   whatsapp: "WhatsApp",
   pais: "País",
+  estado: "Estado",
   cidade: "Cidade",
   objetivo: "Objetivo",
   modalidade: "Modalidade",
@@ -68,8 +69,9 @@ function validateStep(step) {
   let valid = true;
   let firstInvalid = null;
 
-  // Required text/number/email/textarea/select inputs
+  // Required text/number/email/textarea/select inputs (skip disabled — e.g. hidden location fields)
   step.querySelectorAll("input[required], textarea[required], select[required]").forEach((el) => {
+    if (el.disabled) return;
     if (!el.value.trim()) {
       el.closest(".field").classList.add("has-error");
       valid = false;
@@ -130,9 +132,16 @@ function buildMessage() {
   const data = new FormData(form);
   const get = (k) => (data.get(k) || "").toString().trim();
 
+  // Estado/Cidade come from whichever control is active for the chosen country
+  const isBrasil = paisSelect.value === "Brasil";
+  const overrides = {
+    estado: isBrasil ? estadoSelect.value : "",
+    cidade: isBrasil ? cidadeSelect.value : cidadeExInput.value.trim(),
+  };
+
   let lines = ["*Nova avaliação — Carraro Heavy Training*", ""];
   for (const key of Object.keys(LABELS)) {
-    let val = get(key);
+    let val = key in overrides ? overrides[key] : get(key);
     if (!val) val = "—";
     lines.push(`*${LABELS[key]}:* ${val}`);
   }
@@ -162,10 +171,16 @@ form.addEventListener("submit", (e) => {
   window.open(url, "_blank", "noopener");
 });
 
-/* ---------- País / Cidade ---------- */
+/* ---------- País / Estado / Cidade ---------- */
 const paisSelect = document.getElementById("pais");
-const cidadeInput = document.getElementById("cidade");
-const cidadesDatalist = document.getElementById("cidades-br");
+const estadoSelect = document.getElementById("estado");
+const cidadeSelect = document.getElementById("cidade");
+const cidadeExInput = document.getElementById("cidadeEx");
+const fieldEstado = document.getElementById("fieldEstado");
+const fieldCidadeBr = document.getElementById("fieldCidadeBr");
+const fieldCidadeEx = document.getElementById("fieldCidadeEx");
+
+let cidadesPorEstado = null;
 
 // Populate country dropdown
 fetch("assets/data/paises.json")
@@ -181,43 +196,71 @@ fetch("assets/data/paises.json")
     paisSelect.appendChild(frag);
   })
   .catch(() => {
-    // Fallback: at least let people type if the list fails to load
+    // Fallback so the form still works if the list fails to load
     paisSelect.insertAdjacentHTML("beforeend", '<option value="Brasil">Brasil</option><option value="Outro">Outro</option>');
   });
 
-// Lazy-load Brazilian cities the first time Brazil is selected
-let cidadesLoaded = false;
-function loadCidadesBr() {
-  if (cidadesLoaded) return;
-  cidadesLoaded = true;
-  fetch("assets/data/cidades-brasil.json")
-    .then((r) => r.json())
-    .then((cidades) => {
+// Lazy-load Brazilian states + cities the first time Brazil is selected
+let brDataLoaded = false;
+function loadBrData() {
+  if (brDataLoaded) return;
+  brDataLoaded = true;
+  Promise.all([
+    fetch("assets/data/estados.json").then((r) => r.json()),
+    fetch("assets/data/cidades-por-estado.json").then((r) => r.json()),
+  ])
+    .then(([estados, cidades]) => {
+      cidadesPorEstado = cidades;
       const frag = document.createDocumentFragment();
-      cidades.forEach((nome) => {
+      estados.forEach((e) => {
         const opt = document.createElement("option");
-        opt.value = nome;
+        opt.value = e.uf;
+        opt.textContent = `${e.nome} (${e.uf})`;
         frag.appendChild(opt);
       });
-      cidadesDatalist.appendChild(frag);
+      estadoSelect.appendChild(frag);
     })
-    .catch(() => { cidadesLoaded = false; });
+    .catch(() => { brDataLoaded = false; });
 }
 
-// Switch the city field behaviour based on the chosen country
-function updateCidadeMode() {
+// Fill the city dropdown with the cities of the selected state
+function populateCidades(uf) {
+  cidadeSelect.innerHTML = '<option value="" selected disabled>Selecione…</option>';
+  const lista = (cidadesPorEstado && cidadesPorEstado[uf]) || [];
+  const frag = document.createDocumentFragment();
+  lista.forEach((nome) => {
+    const opt = document.createElement("option");
+    opt.value = nome;
+    opt.textContent = nome;
+    frag.appendChild(opt);
+  });
+  cidadeSelect.appendChild(frag);
+  cidadeSelect.disabled = lista.length === 0;
+}
+
+estadoSelect.addEventListener("change", () => populateCidades(estadoSelect.value));
+
+// Show Brazilian state/city dropdowns vs. free-text city for other countries.
+// Disabled controls are skipped by validation and excluded from submission.
+function updateLocationMode() {
   const isBrasil = paisSelect.value === "Brasil";
+  fieldEstado.style.display = isBrasil ? "" : "none";
+  fieldCidadeBr.style.display = isBrasil ? "" : "none";
+  fieldCidadeEx.style.display = isBrasil ? "none" : "";
+
   if (isBrasil) {
-    loadCidadesBr();
-    cidadeInput.setAttribute("list", "cidades-br");
-    cidadeInput.placeholder = "Comece a digitar sua cidade…";
+    loadBrData();
+    estadoSelect.disabled = false;
+    cidadeSelect.disabled = !estadoSelect.value; // enabled once a state is chosen
+    cidadeExInput.disabled = true;
   } else {
-    cidadeInput.removeAttribute("list");
-    cidadeInput.placeholder = "Digite sua cidade";
+    estadoSelect.disabled = true;
+    cidadeSelect.disabled = true;
+    cidadeExInput.disabled = false;
   }
 }
-paisSelect.addEventListener("change", updateCidadeMode);
+paisSelect.addEventListener("change", updateLocationMode);
 
 // Init
-updateCidadeMode();
+updateLocationMode();
 showStep(0);

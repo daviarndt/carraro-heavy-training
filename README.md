@@ -15,8 +15,8 @@ hospedagem. As respostas do formulário são entregues direto no **WhatsApp** do
 - **Landing page** enxuta, focada na conversão (preenchimento da avaliação).
 - **Formulário de avaliação (anamnese)** em múltiplas etapas, com barra de progresso e validação.
 - **Entrega via WhatsApp:** ao concluir, abre o WhatsApp do treinador com todas as respostas já formatadas.
-- **País e cidade inteligentes:** dropdown com os 5.570+ municípios do Brasil (fonte IBGE) e
-  suporte a alunas que moram no exterior (país + cidade livre).
+- **País / estado / cidade inteligentes:** ao escolher Brasil, seleciona-se o estado e a
+  cidade é filtrada por UF (municípios do IBGE); para alunas no exterior, cidade em texto livre.
 - **Validação** de campos obrigatórios e de e-mail.
 - Identidade visual da marca: tipografia *Anybody* e paleta bordô.
 - Responsivo (desktop e mobile) e acessível (foco de teclado, `prefers-reduced-motion`).
@@ -35,8 +35,9 @@ hospedagem. As respostas do formulário são entregues direto no **WhatsApp** do
 │   │   ├── main.js         # Interações da landing
 │   │   └── form.js         # Lógica do formulário + WhatsApp
 │   ├── data/
-│   │   ├── paises.json     # Lista de países (pt-BR)
-│   │   └── cidades-brasil.json  # Municípios do Brasil (IBGE)
+│   │   ├── paises.json              # Lista de países (pt-BR)
+│   │   ├── estados.json             # Estados do Brasil (UF + nome)
+│   │   └── cidades-por-estado.json  # Municípios do Brasil por UF (IBGE)
 │   ├── fonts/              # Família Anybody (.ttf)
 │   └── img/                # Logos / imagens
 └── README.md

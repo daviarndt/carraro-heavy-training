@@ -59,10 +59,23 @@
             </select>
             <span class="field-error">Selecione seu país.</span>
           </div>
-          <div class="field">
+          <div class="field" id="fieldEstado">
+            <label for="estado">Estado</label>
+            <select class="input" id="estado" name="estado" required>
+              <option value="" selected disabled>Selecione…</option>
+            </select>
+            <span class="field-error">Selecione seu estado.</span>
+          </div>
+          <div class="field" id="fieldCidadeBr">
             <label for="cidade">Cidade</label>
-            <input class="input" type="text" id="cidade" name="cidade" list="cidades-br" placeholder="Comece a digitar sua cidade…" autocomplete="off" required />
-            <datalist id="cidades-br"></datalist>
+            <select class="input" id="cidade" name="cidade" required disabled>
+              <option value="" selected disabled>Selecione o estado primeiro…</option>
+            </select>
+            <span class="field-error">Selecione sua cidade.</span>
+          </div>
+          <div class="field" id="fieldCidadeEx" style="display:none">
+            <label for="cidadeEx">Cidade</label>
+            <input class="input" type="text" id="cidadeEx" name="cidadeEx" placeholder="Digite sua cidade" required disabled />
             <span class="field-error">Informe sua cidade.</span>
           </div>
         </section>
