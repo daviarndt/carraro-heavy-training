@@ -43,13 +43,26 @@
             <span class="field-error">Informe sua idade.</span>
           </div>
           <div class="field">
+            <label for="email">E-mail</label>
+            <input class="input" type="email" id="email" name="email" placeholder="Ex.: maria@email.com" autocomplete="email" required />
+            <span class="field-error">Informe um e-mail válido.</span>
+          </div>
+          <div class="field">
             <label for="whatsapp">WhatsApp (com DDD)</label>
             <input class="input" type="tel" id="whatsapp" name="whatsapp" placeholder="Ex.: (51) 99999-9999" required />
             <span class="field-error">Informe um número de contato.</span>
           </div>
           <div class="field">
+            <label for="pais">País onde mora</label>
+            <select class="input" id="pais" name="pais" required>
+              <option value="" selected disabled>Selecione…</option>
+            </select>
+            <span class="field-error">Selecione seu país.</span>
+          </div>
+          <div class="field">
             <label for="cidade">Cidade</label>
-            <input class="input" type="text" id="cidade" name="cidade" placeholder="Ex.: Porto Alegre" required />
+            <input class="input" type="text" id="cidade" name="cidade" list="cidades-br" placeholder="Comece a digitar sua cidade…" autocomplete="off" required />
+            <datalist id="cidades-br"></datalist>
             <span class="field-error">Informe sua cidade.</span>
           </div>
         </section>
@@ -78,7 +91,7 @@
           <div class="field">
             <div class="options" data-required data-error="Selecione uma modalidade.">
               <label class="option"><input type="radio" name="modalidade" value="Presencial" /><span class="option__mark"></span><span class="option__label">Presencial</span></label>
-              <label class="option"><input type="radio" name="modalidade" value="Online" /><span class="option__mark"></span><span class="option__label">Online (acompanhamento à distância)</span></label>
+              <label class="option"><input type="radio" name="modalidade" value="Consultoria online" /><span class="option__mark"></span><span class="option__label">Consultoria online (acompanhamento à distância)</span></label>
               <label class="option"><input type="radio" name="modalidade" value="Tanto faz" /><span class="option__mark"></span><span class="option__label">Tanto faz / quero entender as opções</span></label>
             </div>
             <span class="field-error">Selecione uma modalidade.</span>

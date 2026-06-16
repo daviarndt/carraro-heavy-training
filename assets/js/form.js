@@ -22,7 +22,9 @@ let current = 0;
 const LABELS = {
   nome: "Nome",
   idade: "Idade",
+  email: "E-mail",
   whatsapp: "WhatsApp",
+  pais: "País",
   cidade: "Cidade",
   objetivo: "Objetivo",
   modalidade: "Modalidade",
@@ -50,6 +52,12 @@ function showStep(i) {
   if (firstInput) firstInput.focus({ preventScroll: true });
 }
 
+/* ---------- Email ---------- */
+function isValidEmail(value) {
+  // Pragmatic check: something@something.tld
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+}
+
 /* ---------- Validation ---------- */
 function clearErrors(step) {
   step.querySelectorAll(".has-error").forEach((f) => f.classList.remove("has-error"));
@@ -60,14 +68,23 @@ function validateStep(step) {
   let valid = true;
   let firstInvalid = null;
 
-  // Required text/number/textarea inputs
-  step.querySelectorAll("input[required], textarea[required]").forEach((el) => {
+  // Required text/number/email/textarea/select inputs
+  step.querySelectorAll("input[required], textarea[required], select[required]").forEach((el) => {
     if (!el.value.trim()) {
       el.closest(".field").classList.add("has-error");
       valid = false;
       firstInvalid = firstInvalid || el;
     }
   });
+
+  // Email format
+  const email = step.querySelector('input[type="email"]');
+  if (email && email.value.trim() && !isValidEmail(email.value.trim())) {
+    const field = email.closest(".field");
+    if (!field.classList.contains("has-error")) field.classList.add("has-error");
+    valid = false;
+    firstInvalid = firstInvalid || email;
+  }
 
   // Required radio/checkbox groups
   step.querySelectorAll(".options[data-required]").forEach((group) => {
@@ -145,5 +162,62 @@ form.addEventListener("submit", (e) => {
   window.open(url, "_blank", "noopener");
 });
 
+/* ---------- País / Cidade ---------- */
+const paisSelect = document.getElementById("pais");
+const cidadeInput = document.getElementById("cidade");
+const cidadesDatalist = document.getElementById("cidades-br");
+
+// Populate country dropdown
+fetch("assets/data/paises.json")
+  .then((r) => r.json())
+  .then((paises) => {
+    const frag = document.createDocumentFragment();
+    paises.forEach((nome) => {
+      const opt = document.createElement("option");
+      opt.value = nome;
+      opt.textContent = nome;
+      frag.appendChild(opt);
+    });
+    paisSelect.appendChild(frag);
+  })
+  .catch(() => {
+    // Fallback: at least let people type if the list fails to load
+    paisSelect.insertAdjacentHTML("beforeend", '<option value="Brasil">Brasil</option><option value="Outro">Outro</option>');
+  });
+
+// Lazy-load Brazilian cities the first time Brazil is selected
+let cidadesLoaded = false;
+function loadCidadesBr() {
+  if (cidadesLoaded) return;
+  cidadesLoaded = true;
+  fetch("assets/data/cidades-brasil.json")
+    .then((r) => r.json())
+    .then((cidades) => {
+      const frag = document.createDocumentFragment();
+      cidades.forEach((nome) => {
+        const opt = document.createElement("option");
+        opt.value = nome;
+        frag.appendChild(opt);
+      });
+      cidadesDatalist.appendChild(frag);
+    })
+    .catch(() => { cidadesLoaded = false; });
+}
+
+// Switch the city field behaviour based on the chosen country
+function updateCidadeMode() {
+  const isBrasil = paisSelect.value === "Brasil";
+  if (isBrasil) {
+    loadCidadesBr();
+    cidadeInput.setAttribute("list", "cidades-br");
+    cidadeInput.placeholder = "Comece a digitar sua cidade…";
+  } else {
+    cidadeInput.removeAttribute("list");
+    cidadeInput.placeholder = "Digite sua cidade";
+  }
+}
+paisSelect.addEventListener("change", updateCidadeMode);
+
 // Init
+updateCidadeMode();
 showStep(0);
