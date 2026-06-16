@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliação — Carraro Heavy Training</title>
+  <meta name="description" content="Preencha sua avaliação para o Renan montar seu treino personalizado." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="assets/img/logo-carraro-black.png" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/form.css" />
+</head>
+<body>
+  <main class="form-page">
+
+    <div class="form-top">
+      <a href="index.html" class="logo" aria-label="Carraro Heavy Training">
+        <span class="logo__name">Carraro</span>
+        <span class="logo__tag">Heavy Training</span>
+      </a>
+      <a href="index.html" class="form-top__back">← Voltar</a>
+    </div>
+
+    <div class="progress"><div class="progress__bar" id="progressBar"></div></div>
+
+    <div class="form-shell">
+      <form class="form-card" id="evalForm" novalidate>
+
+        <!-- STEP 1 — Contato -->
+        <section class="step-screen is-active" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Vamos nos conhecer</h2>
+          <p class="step-hint">Pra eu poder entrar em contato com você depois.</p>
+
+          <div class="field">
+            <label for="nome">Seu nome completo</label>
+            <input class="input" type="text" id="nome" name="nome" placeholder="Ex.: Maria Silva" required />
+            <span class="field-error">Por favor, preencha seu nome.</span>
+          </div>
+          <div class="field">
+            <label for="idade">Idade</label>
+            <input class="input" type="number" id="idade" name="idade" min="12" max="99" placeholder="Ex.: 28" required />
+            <span class="field-error">Informe sua idade.</span>
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp (com DDD)</label>
+            <input class="input" type="tel" id="whatsapp" name="whatsapp" placeholder="Ex.: (51) 99999-9999" required />
+            <span class="field-error">Informe um número de contato.</span>
+          </div>
+          <div class="field">
+            <label for="cidade">Cidade</label>
+            <input class="input" type="text" id="cidade" name="cidade" placeholder="Ex.: Porto Alegre" required />
+            <span class="field-error">Informe sua cidade.</span>
+          </div>
+        </section>
+
+        <!-- STEP 2 — Objetivo -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Qual seu objetivo principal?</h2>
+          <p class="step-hint">Escolha o que mais te representa hoje.</p>
+          <div class="field">
+            <div class="options" data-required data-error="Selecione um objetivo.">
+              <label class="option"><input type="radio" name="objetivo" value="Emagrecimento / perder gordura" /><span class="option__mark"></span><span class="option__label">Emagrecimento / perder gordura</span></label>
+              <label class="option"><input type="radio" name="objetivo" value="Hipertrofia / ganhar músculo" /><span class="option__mark"></span><span class="option__label">Hipertrofia / ganhar músculo</span></label>
+              <label class="option"><input type="radio" name="objetivo" value="Tonificar / definição" /><span class="option__mark"></span><span class="option__label">Tonificar / definição</span></label>
+              <label class="option"><input type="radio" name="objetivo" value="Condicionamento / saúde" /><span class="option__mark"></span><span class="option__label">Condicionamento físico / saúde</span></label>
+            </div>
+            <span class="field-error">Selecione um objetivo.</span>
+          </div>
+        </section>
+
+        <!-- STEP 3 — Modalidade -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Como você quer treinar?</h2>
+          <p class="step-hint">Atendo presencial e online.</p>
+          <div class="field">
+            <div class="options" data-required data-error="Selecione uma modalidade.">
+              <label class="option"><input type="radio" name="modalidade" value="Presencial" /><span class="option__mark"></span><span class="option__label">Presencial</span></label>
+              <label class="option"><input type="radio" name="modalidade" value="Online" /><span class="option__mark"></span><span class="option__label">Online (acompanhamento à distância)</span></label>
+              <label class="option"><input type="radio" name="modalidade" value="Tanto faz" /><span class="option__mark"></span><span class="option__label">Tanto faz / quero entender as opções</span></label>
+            </div>
+            <span class="field-error">Selecione uma modalidade.</span>
+          </div>
+        </section>
+
+        <!-- STEP 4 — Histórico -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Sua experiência com treino</h2>
+          <p class="step-hint">Pra eu calibrar a intensidade certa pra você.</p>
+          <div class="field">
+            <div class="options" data-required data-error="Selecione uma opção.">
+              <label class="option"><input type="radio" name="experiencia" value="Nunca treinei" /><span class="option__mark"></span><span class="option__label">Nunca treinei</span></label>
+              <label class="option"><input type="radio" name="experiencia" value="Já treinei, mas estou parada" /><span class="option__mark"></span><span class="option__label">Já treinei, mas estou parada</span></label>
+              <label class="option"><input type="radio" name="experiencia" value="Treino atualmente" /><span class="option__mark"></span><span class="option__label">Treino atualmente</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
+          </div>
+        </section>
+
+        <!-- STEP 5 — Frequência -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Quantos dias por semana?</h2>
+          <p class="step-hint">Quantos dias você consegue treinar de verdade.</p>
+          <div class="field">
+            <div class="options" data-required data-error="Selecione a frequência.">
+              <label class="option"><input type="radio" name="frequencia" value="2x por semana" /><span class="option__mark"></span><span class="option__label">2x por semana</span></label>
+              <label class="option"><input type="radio" name="frequencia" value="3x por semana" /><span class="option__mark"></span><span class="option__label">3x por semana</span></label>
+              <label class="option"><input type="radio" name="frequencia" value="4x por semana" /><span class="option__mark"></span><span class="option__label">4x por semana</span></label>
+              <label class="option"><input type="radio" name="frequencia" value="5x ou mais" /><span class="option__mark"></span><span class="option__label">5x ou mais</span></label>
+            </div>
+            <span class="field-error">Selecione a frequência.</span>
+          </div>
+        </section>
+
+        <!-- STEP 6 — Saúde -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Sua saúde</h2>
+          <p class="step-hint">Importante pra montar um treino seguro. Se não houver, escreva "não".</p>
+          <div class="field">
+            <label for="lesoes">Tem alguma lesão ou limitação física?</label>
+            <textarea class="textarea" id="lesoes" name="lesoes" placeholder="Ex.: dor no joelho direito, hérnia de disco..."></textarea>
+          </div>
+          <div class="field">
+            <label for="condicoes">Alguma condição de saúde ou usa medicamento contínuo?</label>
+            <textarea class="textarea" id="condicoes" name="condicoes" placeholder="Ex.: hipotireoidismo, pressão alta, anticoncepcional..."></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 7 — Rotina + objetivo em uma frase -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Sua rotina e seu sonho</h2>
+          <p class="step-hint">Pra eu encaixar o treino na sua vida real.</p>
+          <div class="field">
+            <label for="rotina">Como é sua rotina? (trabalho, sono, alimentação)</label>
+            <textarea class="textarea" id="rotina" name="rotina" placeholder="Conte um pouco do seu dia a dia..."></textarea>
+          </div>
+          <div class="field">
+            <label for="meta">Se desse tudo certo, qual resultado você quer alcançar?</label>
+            <textarea class="textarea" id="meta" name="meta" placeholder="Descreva em uma ou duas frases..." required></textarea>
+            <span class="field-error">Conta pra mim o que você quer alcançar.</span>
+          </div>
+        </section>
+
+        <!-- NAV -->
+        <div class="form-nav">
+          <button type="button" class="btn btn--ghost" id="btnPrev">Voltar</button>
+          <button type="button" class="btn btn--primary" id="btnNext">Próximo</button>
+          <button type="submit" class="btn btn--wine" id="btnSubmit" style="display:none">Enviar no WhatsApp</button>
+        </div>
+
+        <!-- SUCCESS -->
+        <section class="step-screen done" data-done>
+          <div class="done__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h2 class="done__title">Tudo certo!</h2>
+          <p class="done__txt">Suas respostas foram preparadas. Toque no botão abaixo pra enviar pro Renan no WhatsApp e finalizar.</p>
+          <a href="#" class="btn btn--wine btn--lg" id="waLink" target="_blank" rel="noopener">Abrir WhatsApp</a>
+          <p class="done__hint">Se o WhatsApp não abrir sozinho, use o botão acima.</p>
+        </section>
+
+      </form>
+    </div>
+  </main>
+
+  <script src="assets/js/form.js"></script>
+</body>
+</html>
