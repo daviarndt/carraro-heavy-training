@@ -320,7 +320,7 @@ function sendLeadEmail(payload) {
 /* ---------- Mensagem do WhatsApp (curta — a lead quer falar com a equipe) ---------- */
 function buildWaMessage() {
   const nome = readValue("nome");
-  const saudacao = nome ? `Oi, aqui é a ${nome}! ` : "Oi! ";
+  const saudacao = nome ? `Oi, meu nome é ${nome}! ` : "Oi! ";
   return (
     saudacao +
     "Acabei de fazer o diagnóstico no site e quero conhecer mais sobre os planos de consultoria e acompanhamento com o Renan."
