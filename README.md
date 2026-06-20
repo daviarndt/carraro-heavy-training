@@ -12,12 +12,19 @@ hospedagem. As respostas do formulário são entregues direto no **WhatsApp** do
 
 ## ✨ Funcionalidades
 
-- **Landing page** enxuta, focada na conversão (preenchimento da avaliação).
-- **Formulário de avaliação (anamnese)** em múltiplas etapas, com barra de progresso e validação.
-- **Entrega via WhatsApp:** ao concluir, abre o WhatsApp do treinador com todas as respostas já formatadas.
+- **Landing page** enxuta, focada na conversão (fazer o diagnóstico).
+- **Formulário de diagnóstico inteligente** em múltiplas etapas (contato + 11 perguntas),
+  com barra de progresso e validação.
+- **Diagnóstico automático:** as respostas geram uma pontuação por perfil e a lead recebe,
+  na hora, o diagnóstico de maior prioridade (Baixa constância → Estímulo insuficiente →
+  Treina, mas não evolui) com uma recomendação prática.
+- **Entrega via WhatsApp:** o CTA final abre o WhatsApp do treinador com o diagnóstico
+  identificado + contato + todas as respostas já formatados.
 - **País / estado / cidade inteligentes:** ao escolher Brasil, seleciona-se o estado e a
   cidade é filtrada por UF (municípios do IBGE); para alunas no exterior, cidade em texto livre.
 - **Validação** de campos obrigatórios e de e-mail.
+
+> A lógica de pontuação dos diagnósticos fica em `assets/js/form.js` (`computeDiagnosis` + objeto `DIAGNOSES`).
 - Identidade visual da marca: tipografia *Anybody* e paleta bordô.
 - Responsivo (desktop e mobile) e acessível (foco de teclado, `prefers-reduced-motion`).
 

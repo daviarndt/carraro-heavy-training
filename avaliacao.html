@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Avaliação — Carraro Heavy Training</title>
-  <meta name="description" content="Preencha sua avaliação para o Renan montar seu treino personalizado." />
+  <title>Diagnóstico Inteligente — Carraro Heavy Training</title>
+  <meta name="description" content="Responda algumas perguntas e receba um diagnóstico personalizado do seu treino." />
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/png" href="assets/img/logo-carraro-black.png" />
   <link rel="stylesheet" href="assets/css/styles.css" />
@@ -26,11 +26,11 @@
     <div class="form-shell">
       <form class="form-card" id="evalForm" novalidate>
 
-        <!-- STEP 1 — Contato -->
+        <!-- ETAPA 1 — Contato -->
         <section class="step-screen is-active" data-step>
           <p class="step-count"></p>
           <h2 class="step-q">Vamos nos conhecer</h2>
-          <p class="step-hint">Pra eu poder entrar em contato com você depois.</p>
+          <p class="step-hint">Pra eu poder te enviar o diagnóstico e a análise personalizada.</p>
 
           <div class="field">
             <label for="nome">Seu nome completo</label>
@@ -80,96 +80,167 @@
           </div>
         </section>
 
-        <!-- STEP 2 — Objetivo -->
+        <!-- P1 — Objetivo -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Qual seu objetivo principal?</h2>
-          <p class="step-hint">Escolha o que mais te representa hoje.</p>
+          <h2 class="step-q">Qual é o seu principal objetivo?</h2>
           <div class="field">
-            <div class="options" data-required data-error="Selecione um objetivo.">
-              <label class="option"><input type="radio" name="objetivo" value="Emagrecimento / perder gordura" /><span class="option__mark"></span><span class="option__label">Emagrecimento / perder gordura</span></label>
-              <label class="option"><input type="radio" name="objetivo" value="Hipertrofia / ganhar músculo" /><span class="option__mark"></span><span class="option__label">Hipertrofia / ganhar músculo</span></label>
-              <label class="option"><input type="radio" name="objetivo" value="Tonificar / definição" /><span class="option__mark"></span><span class="option__label">Tonificar / definição</span></label>
-              <label class="option"><input type="radio" name="objetivo" value="Condicionamento / saúde" /><span class="option__mark"></span><span class="option__label">Condicionamento físico / saúde</span></label>
-            </div>
-            <span class="field-error">Selecione um objetivo.</span>
-          </div>
-        </section>
-
-        <!-- STEP 3 — Modalidade -->
-        <section class="step-screen" data-step>
-          <p class="step-count"></p>
-          <h2 class="step-q">Como você quer treinar?</h2>
-          <p class="step-hint">Atendo presencial e online.</p>
-          <div class="field">
-            <div class="options" data-required data-error="Selecione uma modalidade.">
-              <label class="option"><input type="radio" name="modalidade" value="Presencial" /><span class="option__mark"></span><span class="option__label">Presencial</span></label>
-              <label class="option"><input type="radio" name="modalidade" value="Consultoria online" /><span class="option__mark"></span><span class="option__label">Consultoria online (acompanhamento à distância)</span></label>
-              <label class="option"><input type="radio" name="modalidade" value="Tanto faz" /><span class="option__mark"></span><span class="option__label">Tanto faz / quero entender as opções</span></label>
-            </div>
-            <span class="field-error">Selecione uma modalidade.</span>
-          </div>
-        </section>
-
-        <!-- STEP 4 — Histórico -->
-        <section class="step-screen" data-step>
-          <p class="step-count"></p>
-          <h2 class="step-q">Sua experiência com treino</h2>
-          <p class="step-hint">Pra eu calibrar a intensidade certa pra você.</p>
-          <div class="field">
-            <div class="options" data-required data-error="Selecione uma opção.">
-              <label class="option"><input type="radio" name="experiencia" value="Nunca treinei" /><span class="option__mark"></span><span class="option__label">Nunca treinei</span></label>
-              <label class="option"><input type="radio" name="experiencia" value="Já treinei, mas estou parada" /><span class="option__mark"></span><span class="option__label">Já treinei, mas estou parada</span></label>
-              <label class="option"><input type="radio" name="experiencia" value="Treino atualmente" /><span class="option__mark"></span><span class="option__label">Treino atualmente</span></label>
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="objetivo" value="Ganhar massa muscular" /><span class="option__mark"></span><span class="option__label">Ganhar massa muscular</span></label>
+              <label class="option"><input type="radio" name="objetivo" value="Emagrecimento" /><span class="option__mark"></span><span class="option__label">Emagrecimento</span></label>
+              <label class="option"><input type="radio" name="objetivo" value="Definição" /><span class="option__mark"></span><span class="option__label">Definição</span></label>
             </div>
             <span class="field-error">Selecione uma opção.</span>
           </div>
         </section>
 
-        <!-- STEP 5 — Frequência -->
+        <!-- P2 — Dias por semana -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Quantos dias por semana?</h2>
-          <p class="step-hint">Quantos dias você consegue treinar de verdade.</p>
+          <h2 class="step-q">Quantos dias por semana você treina atualmente?</h2>
           <div class="field">
-            <div class="options" data-required data-error="Selecione a frequência.">
-              <label class="option"><input type="radio" name="frequencia" value="2x por semana" /><span class="option__mark"></span><span class="option__label">2x por semana</span></label>
-              <label class="option"><input type="radio" name="frequencia" value="3x por semana" /><span class="option__mark"></span><span class="option__label">3x por semana</span></label>
-              <label class="option"><input type="radio" name="frequencia" value="4x por semana" /><span class="option__mark"></span><span class="option__label">4x por semana</span></label>
-              <label class="option"><input type="radio" name="frequencia" value="5x ou mais" /><span class="option__mark"></span><span class="option__label">5x ou mais</span></label>
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="dias" value="3 dias" /><span class="option__mark"></span><span class="option__label">3 dias</span></label>
+              <label class="option"><input type="radio" name="dias" value="4 dias" /><span class="option__mark"></span><span class="option__label">4 dias</span></label>
+              <label class="option"><input type="radio" name="dias" value="5 dias" /><span class="option__mark"></span><span class="option__label">5 dias</span></label>
+              <label class="option"><input type="radio" name="dias" value="6 dias" /><span class="option__mark"></span><span class="option__label">6 dias</span></label>
+              <label class="option"><input type="radio" name="dias" value="7 dias" /><span class="option__mark"></span><span class="option__label">7 dias</span></label>
             </div>
-            <span class="field-error">Selecione a frequência.</span>
+            <span class="field-error">Selecione uma opção.</span>
           </div>
         </section>
 
-        <!-- STEP 6 — Saúde -->
+        <!-- P3 — Tempo de treino -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Sua saúde</h2>
-          <p class="step-hint">Importante pra montar um treino seguro. Se não houver, escreva "não".</p>
+          <h2 class="step-q">Há quanto tempo você treina regularmente?</h2>
           <div class="field">
-            <label for="lesoes">Tem alguma lesão ou limitação física?</label>
-            <textarea class="textarea" id="lesoes" name="lesoes" placeholder="Ex.: dor no joelho direito, hérnia de disco..."></textarea>
-          </div>
-          <div class="field">
-            <label for="condicoes">Alguma condição de saúde ou usa medicamento contínuo?</label>
-            <textarea class="textarea" id="condicoes" name="condicoes" placeholder="Ex.: hipotireoidismo, pressão alta, anticoncepcional..."></textarea>
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="tempo" value="Menos de 6 meses" /><span class="option__mark"></span><span class="option__label">Menos de 6 meses</span></label>
+              <label class="option"><input type="radio" name="tempo" value="6 a 12 meses" /><span class="option__mark"></span><span class="option__label">6 a 12 meses</span></label>
+              <label class="option"><input type="radio" name="tempo" value="1 a 2 anos" /><span class="option__mark"></span><span class="option__label">1 a 2 anos</span></label>
+              <label class="option"><input type="radio" name="tempo" value="Mais de 2 anos" /><span class="option__mark"></span><span class="option__label">Mais de 2 anos</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
           </div>
         </section>
 
-        <!-- STEP 7 — Rotina + objetivo em uma frase -->
+        <!-- P4 — Interrupções -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Sua rotina e seu sonho</h2>
-          <p class="step-hint">Pra eu encaixar o treino na sua vida real.</p>
+          <h2 class="step-q">Nos últimos 3 meses, quantas vezes você interrompeu seus treinos por mais de duas semanas?</h2>
           <div class="field">
-            <label for="rotina">Como é sua rotina? (trabalho, sono, alimentação)</label>
-            <textarea class="textarea" id="rotina" name="rotina" placeholder="Conte um pouco do seu dia a dia..."></textarea>
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="interrupcoes" value="Nenhuma" /><span class="option__mark"></span><span class="option__label">Nenhuma</span></label>
+              <label class="option"><input type="radio" name="interrupcoes" value="1 vez" /><span class="option__mark"></span><span class="option__label">1 vez</span></label>
+              <label class="option"><input type="radio" name="interrupcoes" value="2 vezes" /><span class="option__mark"></span><span class="option__label">2 vezes</span></label>
+              <label class="option"><input type="radio" name="interrupcoes" value="3 vezes ou mais" /><span class="option__mark"></span><span class="option__label">3 vezes ou mais</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
           </div>
+        </section>
+
+        <!-- P5 — Dificuldade -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Qual é o principal motivo que dificulta sua rotina de treinos?</h2>
           <div class="field">
-            <label for="meta">Se desse tudo certo, qual resultado você quer alcançar?</label>
-            <textarea class="textarea" id="meta" name="meta" placeholder="Descreva em uma ou duas frases..." required></textarea>
-            <span class="field-error">Conta pra mim o que você quer alcançar.</span>
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="dificuldade" value="Falta de tempo" /><span class="option__mark"></span><span class="option__label">Falta de tempo</span></label>
+              <label class="option"><input type="radio" name="dificuldade" value="Trabalho" /><span class="option__mark"></span><span class="option__label">Trabalho</span></label>
+              <label class="option"><input type="radio" name="dificuldade" value="Filhos/família" /><span class="option__mark"></span><span class="option__label">Filhos/família</span></label>
+              <label class="option"><input type="radio" name="dificuldade" value="Falta de motivação" /><span class="option__mark"></span><span class="option__label">Falta de motivação</span></label>
+              <label class="option"><input type="radio" name="dificuldade" value="Não sei como organizar meu treino" /><span class="option__mark"></span><span class="option__label">Não sei como organizar meu treino</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
+          </div>
+        </section>
+
+        <!-- P6 — Treino estruturado -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Você segue um treino estruturado?</h2>
+          <div class="field">
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="estruturado" value="Sim, com acompanhamento profissional" /><span class="option__mark"></span><span class="option__label">Sim, com acompanhamento profissional</span></label>
+              <label class="option"><input type="radio" name="estruturado" value="Sim, mas monto sozinha" /><span class="option__mark"></span><span class="option__label">Sim, mas monto sozinha</span></label>
+              <label class="option"><input type="radio" name="estruturado" value="Uso treinos prontos da internet" /><span class="option__mark"></span><span class="option__label">Uso treinos prontos da internet</span></label>
+              <label class="option"><input type="radio" name="estruturado" value="Não tenho planejamento" /><span class="option__mark"></span><span class="option__label">Não tenho planejamento</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
+          </div>
+        </section>
+
+        <!-- P7 — Registro de cargas -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Você registra suas cargas e repetições?</h2>
+          <div class="field">
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="registro" value="Sempre" /><span class="option__mark"></span><span class="option__label">Sempre</span></label>
+              <label class="option"><input type="radio" name="registro" value="Às vezes" /><span class="option__mark"></span><span class="option__label">Às vezes</span></label>
+              <label class="option"><input type="radio" name="registro" value="Nunca" /><span class="option__mark"></span><span class="option__label">Nunca</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
+          </div>
+        </section>
+
+        <!-- P8 — Progressão -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Com que frequência você aumenta cargas ou repetições?</h2>
+          <div class="field">
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="progressao" value="Toda semana" /><span class="option__mark"></span><span class="option__label">Toda semana</span></label>
+              <label class="option"><input type="radio" name="progressao" value="Algumas vezes por mês" /><span class="option__mark"></span><span class="option__label">Algumas vezes por mês</span></label>
+              <label class="option"><input type="radio" name="progressao" value="Raramente" /><span class="option__mark"></span><span class="option__label">Raramente</span></label>
+              <label class="option"><input type="radio" name="progressao" value="Nunca" /><span class="option__mark"></span><span class="option__label">Nunca</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
+          </div>
+        </section>
+
+        <!-- P9 — Aeróbico -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Quantos minutos de atividade aeróbica você faz por semana?</h2>
+          <div class="field">
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="aerobico" value="Nenhum" /><span class="option__mark"></span><span class="option__label">Nenhum</span></label>
+              <label class="option"><input type="radio" name="aerobico" value="Menos de 60 minutos" /><span class="option__mark"></span><span class="option__label">Menos de 60 minutos</span></label>
+              <label class="option"><input type="radio" name="aerobico" value="Entre 60 e 120 minutos" /><span class="option__mark"></span><span class="option__label">Entre 60 e 120 minutos</span></label>
+              <label class="option"><input type="radio" name="aerobico" value="Mais de 120 minutos" /><span class="option__mark"></span><span class="option__label">Mais de 120 minutos</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
+          </div>
+        </section>
+
+        <!-- P10 — Satisfação -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Você está satisfeita com seus resultados atuais?</h2>
+          <div class="field">
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="satisfacao" value="Muito satisfeita" /><span class="option__mark"></span><span class="option__label">Muito satisfeita</span></label>
+              <label class="option"><input type="radio" name="satisfacao" value="Parcialmente satisfeita" /><span class="option__mark"></span><span class="option__label">Parcialmente satisfeita</span></label>
+              <label class="option"><input type="radio" name="satisfacao" value="Insatisfeita" /><span class="option__mark"></span><span class="option__label">Insatisfeita</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
+          </div>
+        </section>
+
+        <!-- P11 — Estagnação -->
+        <section class="step-screen" data-step>
+          <p class="step-count"></p>
+          <h2 class="step-q">Há quanto tempo você sente que está sem evoluir?</h2>
+          <div class="field">
+            <div class="options" data-required>
+              <label class="option"><input type="radio" name="estagnacao" value="Não me sinto estagnada" /><span class="option__mark"></span><span class="option__label">Não me sinto estagnada</span></label>
+              <label class="option"><input type="radio" name="estagnacao" value="Menos de 3 meses" /><span class="option__mark"></span><span class="option__label">Menos de 3 meses</span></label>
+              <label class="option"><input type="radio" name="estagnacao" value="Entre 3 e 6 meses" /><span class="option__mark"></span><span class="option__label">Entre 3 e 6 meses</span></label>
+              <label class="option"><input type="radio" name="estagnacao" value="Mais de 6 meses" /><span class="option__mark"></span><span class="option__label">Mais de 6 meses</span></label>
+            </div>
+            <span class="field-error">Selecione uma opção.</span>
           </div>
         </section>
 
@@ -177,18 +248,28 @@
         <div class="form-nav">
           <button type="button" class="btn btn--ghost" id="btnPrev">Voltar</button>
           <button type="button" class="btn btn--primary" id="btnNext">Próximo</button>
-          <button type="submit" class="btn btn--wine" id="btnSubmit" style="display:none">Enviar no WhatsApp</button>
+          <button type="submit" class="btn btn--wine" id="btnSubmit" style="display:none">Ver meu diagnóstico</button>
         </div>
 
-        <!-- SUCCESS -->
-        <section class="step-screen done" data-done>
-          <div class="done__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <!-- RESULTADO / DIAGNÓSTICO -->
+        <section class="step-screen diag" data-done>
+          <p class="diag__kicker">Seu diagnóstico</p>
+          <h2 class="diag__title" id="diagTitle"></h2>
+          <p class="diag__profile" id="diagProfile"></p>
+          <div class="diag__rec" id="diagRec"></div>
+
+          <div class="diag__cta">
+            <p class="diag__cta-text">
+              Essas recomendações servem como um ponto de partida. O ideal é que seu treino
+              seja ajustado à sua rotina, experiência e objetivos específicos.
+            </p>
+            <p class="diag__cta-text">
+              Clique abaixo para receber uma <strong>análise personalizada</strong> da nossa equipe
+              e descobrir quais ajustes podem acelerar seus resultados.
+            </p>
+            <a href="#" class="btn btn--wine btn--lg" id="waLink" target="_blank" rel="noopener">Receber análise personalizada</a>
+            <p class="done__hint">Se o WhatsApp não abrir sozinho, use o botão acima.</p>
           </div>
-          <h2 class="done__title">Tudo certo!</h2>
-          <p class="done__txt">Suas respostas foram preparadas. Toque no botão abaixo pra enviar pro Renan no WhatsApp e finalizar.</p>
-          <a href="#" class="btn btn--wine btn--lg" id="waLink" target="_blank" rel="noopener">Abrir WhatsApp</a>
-          <p class="done__hint">Se o WhatsApp não abrir sozinho, use o botão acima.</p>
         </section>
 
       </form>

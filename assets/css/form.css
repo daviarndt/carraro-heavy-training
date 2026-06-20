@@ -105,6 +105,57 @@
 .done__txt { color: var(--cream-dim); font-weight: 300; margin-bottom: 32px; }
 .done__hint { font-size: 0.85rem; color: var(--cream-dim); margin-top: 22px; }
 
+/* ---------- Diagnóstico (resultado) ---------- */
+.diag__kicker {
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.24em;
+  font-size: 0.78rem; color: var(--wine-bright); margin-bottom: 14px;
+}
+.diag__title {
+  font-family: var(--font-display); font-weight: 900; text-transform: uppercase;
+  font-size: clamp(2rem, 6vw, 3rem); line-height: 1; margin-bottom: 16px;
+}
+.diag__profile {
+  font-size: 1.15rem; font-weight: 300; color: var(--cream-dim);
+  line-height: 1.55; margin-bottom: 32px;
+}
+
+.diag__rec {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: rgba(244,241,236,0.03); padding: 28px 28px 24px;
+}
+.diag__rec-lead { font-weight: 700; font-size: 1.1rem; margin-bottom: 18px; }
+.diag__rec h4 {
+  font-family: var(--font-display); font-weight: 900; text-transform: uppercase;
+  font-size: 1.25rem; letter-spacing: 0.01em; margin: 20px 0 8px;
+}
+.diag__rec-sub {
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: 0.78rem; color: var(--wine-bright); margin: 20px 0 10px;
+}
+.diag__rec p { color: var(--cream-dim); font-weight: 300; }
+.diag__rec ul { list-style: none; display: grid; gap: 8px; margin: 4px 0 4px; }
+.diag__rec li {
+  position: relative; padding-left: 22px; color: var(--cream);
+  font-weight: 400; font-size: 0.98rem;
+}
+.diag__rec li::before {
+  content: ""; position: absolute; left: 4px; top: 0.6em;
+  width: 7px; height: 7px; border-radius: 2px; background: var(--wine-bright);
+}
+.diag__rec-foot { margin-top: 18px; }
+.diag__rec-foot strong { color: var(--cream); font-weight: 700; }
+
+.diag__cta {
+  margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--line);
+  text-align: center;
+}
+.diag__cta-text {
+  color: var(--cream-dim); font-weight: 300; line-height: 1.55;
+  max-width: 520px; margin: 0 auto 14px;
+}
+.diag__cta-text strong { color: var(--cream); font-weight: 700; }
+.diag__cta .btn { margin-top: 18px; }
+
 @media (max-width: 640px) {
   .form-nav .btn { flex: 1; padding-left: 18px; padding-right: 18px; }
 }
