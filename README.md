@@ -17,23 +17,28 @@ hospedagem. As respostas do formulário são entregues direto no **WhatsApp** do
   com barra de progresso e validação.
 - **Diagnóstico automático:** as respostas geram uma pontuação por perfil e a lead recebe,
   na hora, o diagnóstico de maior prioridade (Baixa constância → Estímulo insuficiente →
-  Treina, mas não evolui) com uma recomendação prática.
-- **Entrega via WhatsApp:** o CTA final abre o WhatsApp do treinador com o diagnóstico
-  identificado + contato + todas as respostas já formatados.
+  Treina, mas não evolui) com perfil, recomendação prática e foto de uma aluna.
+- **WhatsApp (CTA "Fale com a nossa equipe"):** o botão final abre o WhatsApp da closer com uma
+  mensagem curta de interesse (sem as respostas) — a lead que quer acompanhamento profissional.
+- **E-mail (Renan + closer):** ao concluir, as perguntas/respostas + dados pessoais são enviados
+  por e-mail. *Pendente de configuração* — ver `LEAD_EMAIL_ENDPOINT` em `assets/js/form.js`.
 - **País / estado / cidade inteligentes:** ao escolher Brasil, seleciona-se o estado e a
   cidade é filtrada por UF (municípios do IBGE); para alunas no exterior, cidade em texto livre.
 - **Validação** de campos obrigatórios e de e-mail.
-
-> A lógica de pontuação dos diagnósticos fica em `assets/js/form.js` (`computeDiagnosis` + objeto `DIAGNOSES`).
+- **Rastreabilidade:** cada resposta e o diagnóstico final são logados no console do navegador.
 - Identidade visual da marca: tipografia *Anybody* e paleta bordô.
 - Responsivo (desktop e mobile) e acessível (foco de teclado, `prefers-reduced-motion`).
+
+> A lógica de pontuação dos diagnósticos fica em `assets/js/form.js` (`computeDiagnosis` + objeto `DIAGNOSES`).
+> As fotos das alunas vão em `assets/img/aluna-constancia.jpg`, `aluna-estimulo.jpg` e `aluna-evolucao.jpg`
+> (enquanto não existirem, aparece um placeholder "Foto da aluna").
 
 ## 🗂️ Estrutura do projeto
 
 ```
 .
 ├── index.html              # Landing page
-├── avaliacao.html          # Formulário de avaliação (anamnese)
+├── avaliacao.html          # Formulário de diagnóstico (contato + 11 perguntas)
 ├── assets/
 │   ├── css/
 │   │   ├── styles.css      # Estilos base, tokens e landing

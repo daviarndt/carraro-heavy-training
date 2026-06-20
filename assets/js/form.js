@@ -2,8 +2,8 @@
    CARRARO — Diagnóstico Inteligente (multi-step → score → WhatsApp)
    ============================================================ */
 
-// Renan's WhatsApp number (international format, digits only — no +, spaces or dashes).
-// Test number for now; swap for Renan's before going live.
+// WhatsApp da closer do Renan (a responsável por vendas) — formato internacional, só dígitos.
+// Por enquanto é um número de TESTE; trocar pelo número real da closer antes de publicar.
 const WHATSAPP_NUMBER = "4915259100748";
 
 const form = document.getElementById("evalForm");
@@ -24,6 +24,7 @@ const CONTACT_LABELS = {
   idade: "Idade",
   email: "E-mail",
   whatsapp: "WhatsApp",
+  instagram: "Instagram",
   pais: "País",
   estado: "Estado",
   cidade: "Cidade",
@@ -50,6 +51,7 @@ const QUESTION_LABELS = {
 const DIAGNOSES = {
   constancia: {
     title: "Baixa constância",
+    photo: "assets/img/aluna-constancia.jpg",
     profile:
       "Seu principal desafio não é o treino — é manter uma rotina sustentável.",
     rec: `
@@ -77,6 +79,7 @@ const DIAGNOSES = {
   },
   estimulo: {
     title: "Estímulo insuficiente para hipertrofia",
+    photo: "assets/img/aluna-estimulo.jpg",
     profile:
       "Você treina regularmente, mas o estímulo total atual pode estar abaixo do necessário para o seu objetivo.",
     rec: `
@@ -99,6 +102,7 @@ const DIAGNOSES = {
   },
   evolucao: {
     title: "Treina, mas não evolui",
+    photo: "assets/img/aluna-evolucao.jpg",
     profile:
       "Você já construiu uma boa rotina de treinos. Agora, seu próximo nível de resultado depende de ajustes mais estratégicos.",
     rec: `
@@ -138,7 +142,7 @@ function computeDiagnosis(v) {
   if (v("estruturado") === "Não tenho planejamento") s1 += 2;
 
   let s2 = 0; // Estímulo insuficiente para hipertrofia
-  if (v("objetivo") === "Ganhar massa muscular") s2 += 2;
+  if (v("objetivo") === "Ganhar massa muscular (hipertrofia)") s2 += 2;
   if (v("dias") === "3 dias") s2 += 3;
   if (v("dias") === "4 dias") s2 += 1;
   if (v("satisfacao") === "Insatisfeita") s2 += 2;
@@ -269,61 +273,101 @@ form.addEventListener("keydown", (e) => {
 });
 
 /* ============================================================
-   Mensagem do WhatsApp (diagnóstico + contato + respostas)
+   Coleta de dados (para log e e-mail)
    ============================================================ */
-function buildMessage(diagKey) {
+// Lê o valor de um campo; Estado/Cidade vêm do controle ativo conforme o país.
+function readValue(k) {
   const data = new FormData(form);
-  const get = (k) => (data.get(k) || "").toString().trim();
-
-  // Estado/Cidade come from whichever control is active for the chosen country
   const isBrasil = paisSelect.value === "Brasil";
-  const overrides = {
-    estado: isBrasil ? estadoSelect.value : "",
-    cidade: isBrasil ? cidadeSelect.value : cidadeExInput.value.trim(),
-  };
-  const val = (k) => (k in overrides ? overrides[k] : get(k)) || "—";
+  if (k === "estado") return isBrasil ? estadoSelect.value : "";
+  if (k === "cidade") return isBrasil ? cidadeSelect.value : cidadeExInput.value.trim();
+  return (data.get(k) || "").toString().trim();
+}
 
-  const lines = [
-    "*Novo diagnóstico — Carraro Heavy Training*",
-    "",
-    `*🩺 Diagnóstico:* ${DIAGNOSES[diagKey].title}`,
-    "",
-    "*— Contato —*",
-  ];
-  for (const key of Object.keys(CONTACT_LABELS)) {
-    lines.push(`*${CONTACT_LABELS[key]}:* ${val(key)}`);
+function collectData(diagKey, scores) {
+  const pessoa = {};
+  for (const key of Object.keys(CONTACT_LABELS)) pessoa[CONTACT_LABELS[key]] = readValue(key) || "—";
+  const respostas = {};
+  for (const key of Object.keys(QUESTION_LABELS)) respostas[QUESTION_LABELS[key]] = readValue(key) || "—";
+  return { diagnostico: DIAGNOSES[diagKey].title, scores, pessoa, respostas };
+}
+
+/* ---------- Rastreabilidade no console ---------- */
+function logLead(payload) {
+  console.groupCollapsed("%c[Carraro] Diagnóstico concluído", "color:#9B1B30;font-weight:bold");
+  console.log("Diagnóstico:", payload.diagnostico);
+  console.log("Scores (constância / estímulo / evolução):", payload.scores);
+  console.log("Dados pessoais:");
+  console.table(payload.pessoa);
+  console.log("Respostas do diagnóstico:");
+  console.table(payload.respostas);
+  console.groupEnd();
+}
+
+/* ---------- Envio de e-mail (Renan + closer) ----------
+   PENDENTE DE CONFIGURAÇÃO: definir Google Apps Script OU EmailJS/Web3Forms.
+   Quando escolhido, preencher LEAD_EMAIL_ENDPOINT (e recipientes/chave) e a integração. */
+const LEAD_EMAIL_ENDPOINT = ""; // TODO: URL do Apps Script ou config do provedor de e-mail
+function sendLeadEmail(payload) {
+  if (!LEAD_EMAIL_ENDPOINT) {
+    console.warn("[Carraro] Envio de e-mail ainda não configurado — payload abaixo (não enviado):");
+    console.log(payload);
+    return;
   }
-  lines.push("", "*— Respostas —*");
-  for (const key of Object.keys(QUESTION_LABELS)) {
-    lines.push(`*${QUESTION_LABELS[key]}:* ${val(key)}`);
-  }
-  return lines.join("\n");
+  // Integração ligada após a escolha do provedor (Apps Script / EmailJS / Web3Forms).
+}
+
+/* ---------- Mensagem do WhatsApp (curta — a lead quer falar com a equipe) ---------- */
+function buildWaMessage() {
+  const nome = readValue("nome");
+  const saudacao = nome ? `Oi, aqui é a ${nome}! ` : "Oi! ";
+  return (
+    saudacao +
+    "Acabei de fazer o diagnóstico no site e quero conhecer mais sobre os planos de consultoria e acompanhamento com o Renan."
+  );
 }
 
 /* ============================================================
-   Submit → calcula diagnóstico, renderiza resultado e monta WhatsApp
+   Resultado / diagnóstico
    ============================================================ */
 function renderResult(diagKey) {
   const d = DIAGNOSES[diagKey];
   document.getElementById("diagTitle").textContent = d.title;
   document.getElementById("diagProfile").textContent = d.profile;
-  document.getElementById("diagRec").innerHTML = d.rec;
+  document.getElementById("diagRec").innerHTML = `
+    <div class="diag__rec-grid">
+      <div class="diag__rec-body">${d.rec}</div>
+      <aside class="diag__rec-aside">
+        <figure class="diag__photo">
+          <img src="${d.photo}" alt="Aluna do Renan Carraro"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <figcaption class="diag__photo-fallback">Foto da aluna</figcaption>
+        </figure>
+      </aside>
+    </div>`;
 }
 
+/* ============================================================
+   Submit → calcula diagnóstico, registra, envia e-mail, mostra resultado
+   ============================================================ */
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!validateStep(steps[current])) return;
 
   const data = new FormData(form);
   const v = (k) => (data.get(k) || "").toString().trim();
-  const { key } = computeDiagnosis(v);
+  const { key, scores } = computeDiagnosis(v);
+
+  const payload = collectData(key, scores);
+  logLead(payload);        // rastreabilidade no console
+  sendLeadEmail(payload);  // e-mail pro Renan + closer (pendente de config)
 
   renderResult(key);
 
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage(key))}`;
-  waLink.href = url;
+  // WhatsApp leva apenas uma mensagem curta de interesse (sem as respostas)
+  waLink.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWaMessage())}`;
 
-  // Show result screen
+  // Mostra a tela de resultado
   steps.forEach((s) => s.classList.remove("is-active"));
   formNav.style.display = "none";
   progressBar.style.width = "100%";
@@ -422,6 +466,13 @@ function updateLocationMode() {
   }
 }
 paisSelect.addEventListener("change", updateLocationMode);
+
+// Rastreabilidade: loga cada escolha de resposta no console
+form.querySelectorAll('input[type="radio"]').forEach((r) => {
+  r.addEventListener("change", () => {
+    if (r.checked) console.debug(`[Carraro] ${r.name} = "${r.value}"`);
+  });
+});
 
 // Init
 updateLocationMode();

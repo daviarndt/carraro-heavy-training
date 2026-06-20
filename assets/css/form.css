@@ -123,6 +123,50 @@
   border: 1px solid var(--line); border-radius: var(--radius);
   background: rgba(244,241,236,0.03); padding: 28px 28px 24px;
 }
+.diag__rec-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 28px; align-items: start; }
+.diag__rec-aside { position: sticky; top: 24px; }
+@media (max-width: 680px) {
+  .diag__rec-grid { grid-template-columns: 1fr; }
+  .diag__rec-aside { order: -1; width: 280px; max-width: 100%; justify-self: center; margin-bottom: 4px; }
+}
+
+/* Foto da aluna — quadrada, P&B, com efeito "liquid glass" */
+.diag__photo {
+  position: relative; aspect-ratio: 1 / 1; margin: 0;
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(244,241,236,0.16);
+  background: linear-gradient(160deg, rgba(110,13,31,0.55), rgba(14,14,14,0.7));
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+.diag__photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1) contrast(1.06) brightness(0.96);
+}
+/* brilho/vidro por cima */
+.diag__photo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 38%),
+    linear-gradient(0deg, rgba(110,13,31,0.28), rgba(0,0,0,0) 55%);
+}
+/* faixa de vidro fosco na base */
+.diag__photo::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 34%;
+  pointer-events: none; z-index: 1;
+  background: linear-gradient(0deg, rgba(255,255,255,0.10), rgba(255,255,255,0));
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  -webkit-mask-image: linear-gradient(0deg, #000 0%, transparent 100%);
+  mask-image: linear-gradient(0deg, #000 0%, transparent 100%);
+}
+.diag__photo-fallback {
+  position: absolute; inset: 0; display: none;
+  align-items: center; justify-content: center; text-align: center;
+  color: var(--cream-dim); font-size: 0.78rem; letter-spacing: 0.18em;
+  text-transform: uppercase; padding: 16px;
+}
 .diag__rec-lead { font-weight: 700; font-size: 1.1rem; margin-bottom: 18px; }
 .diag__rec h4 {
   font-family: var(--font-display); font-weight: 900; text-transform: uppercase;
@@ -148,6 +192,10 @@
 .diag__cta {
   margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--line);
   text-align: center;
+}
+.diag__cta-title {
+  font-family: var(--font-display); font-weight: 900; text-transform: uppercase;
+  font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1; margin-bottom: 14px;
 }
 .diag__cta-text {
   color: var(--cream-dim); font-weight: 300; line-height: 1.55;
