@@ -312,13 +312,13 @@ const EMAILJS_PUBLIC_KEY = "scWfk5MKjN7Td35Rw";
 const EMAILJS_SERVICE_ID = "service_sadmvso";
 const EMAILJS_TEMPLATE_ID = "template_g2v75xm";
 
+const EMAIL_MAX_RETRIES = 3;       // tentativas por envio
+const PENDING_KEY = "carraro_pending_leads"; // fila local p/ leads que falharam
+
 if (window.emailjs) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
-function sendLeadEmail(payload) {
-  if (!window.emailjs) {
-    console.warn("[Carraro] EmailJS não carregou — e-mail não enviado.");
-    return;
-  }
+// Monta os parâmetros do template a partir do payload coletado
+function emailParams(payload) {
   const conteudo = [
     `Diagnóstico: ${payload.diagnostico}`,
     "",
@@ -328,8 +328,7 @@ function sendLeadEmail(payload) {
     "— Respostas do diagnóstico —",
     ...Object.entries(payload.respostas).map(([k, v]) => `${k}: ${v}`),
   ].join("\n");
-
-  const params = {
+  return {
     nome: payload.pessoa["Nome"],
     idade: payload.pessoa["Idade"],
     email: payload.pessoa["E-mail"],
@@ -341,11 +340,63 @@ function sendLeadEmail(payload) {
     diagnostico: payload.diagnostico,
     conteudo,
   };
+}
 
-  emailjs
+// Envia com retry/backoff. Resolve true (enviado) ou false (falhou após N tentativas).
+function trySend(params, attempt = 1) {
+  return emailjs
     .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
-    .then(() => console.info("[Carraro] E-mail do lead enviado ✓"))
-    .catch((err) => console.error("[Carraro] Falha ao enviar e-mail:", err));
+    .then(() => {
+      console.info("[Carraro] E-mail do lead enviado ✓");
+      return true;
+    })
+    .catch((err) => {
+      console.error(`[Carraro] Falha no e-mail (tentativa ${attempt}/${EMAIL_MAX_RETRIES}):`, err);
+      if (attempt < EMAIL_MAX_RETRIES) {
+        return new Promise((r) => setTimeout(r, attempt * 1500)).then(() => trySend(params, attempt + 1));
+      }
+      return false;
+    });
+}
+
+/* ---------- Fila local de segurança (reenvio em visita futura) ---------- */
+function readPending() {
+  try { return JSON.parse(localStorage.getItem(PENDING_KEY) || "[]"); } catch (e) { return []; }
+}
+function writePending(list) {
+  try { localStorage.setItem(PENDING_KEY, JSON.stringify(list)); } catch (e) {}
+}
+function queuePending(params) {
+  const list = readPending();
+  list.push({ params, ts: Date.now() });
+  writePending(list);
+  console.warn("[Carraro] Lead salvo localmente — será reenviado numa próxima visita.");
+}
+// Tenta reenviar leads que ficaram pendentes em sessões anteriores
+function flushPending() {
+  if (!window.emailjs) return;
+  const list = readPending();
+  if (!list.length) return;
+  console.info(`[Carraro] Reenviando ${list.length} lead(s) pendente(s)...`);
+  (async () => {
+    const remaining = [];
+    for (const item of list) {
+      const ok = await trySend(item.params);
+      if (!ok) remaining.push(item);
+    }
+    writePending(remaining);
+    if (!remaining.length) console.info("[Carraro] Pendências reenviadas ✓");
+  })();
+}
+
+function sendLeadEmail(payload) {
+  const params = emailParams(payload);
+  if (!window.emailjs) {
+    console.warn("[Carraro] EmailJS não carregou — lead salvo localmente.");
+    queuePending(params);
+    return;
+  }
+  trySend(params).then((ok) => { if (!ok) queuePending(params); });
 }
 
 /* ---------- Mensagem do WhatsApp (curta — a lead quer falar com a equipe) ---------- */
@@ -508,3 +559,4 @@ form.querySelectorAll('input[type="radio"]').forEach((r) => {
 // Init
 updateLocationMode();
 showStep(0);
+flushPending(); // reenvia leads que ficaram pendentes em visitas anteriores
