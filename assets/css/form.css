@@ -81,6 +81,24 @@
 .option:has(input:checked) { border-color: var(--wine-bright); background: rgba(110,13,31,0.18); }
 .option__label { font-size: 1.02rem; }
 
+/* ---------- Consentimento (LGPD) ---------- */
+.consent { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+.consent input { position: absolute; opacity: 0; pointer-events: none; }
+.consent__box {
+  flex: 0 0 22px; width: 22px; height: 22px; margin-top: 1px;
+  border: 2px solid var(--cream-dim); border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.consent__box::after {
+  content: ""; width: 10px; height: 10px; border-radius: 2px;
+  background: var(--cream); transform: scale(0); transition: transform .15s ease;
+}
+.consent input:checked ~ .consent__box { border-color: var(--wine-bright); background: var(--wine); }
+.consent input:checked ~ .consent__box::after { transform: scale(1); }
+.consent__text { font-size: 0.9rem; color: var(--cream-dim); font-weight: 300; line-height: 1.5; }
+.field.has-error .consent__box { border-color: #ff8b9a; }
+
 /* ---------- Validation ---------- */
 .field-error { color: #ff8b9a; font-size: 0.85rem; margin-top: 8px; display: none; }
 .field.has-error .input,

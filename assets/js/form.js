@@ -218,7 +218,8 @@ function validateStep(step) {
   // Required text/number/email/textarea/select inputs (skip disabled — e.g. hidden location fields)
   step.querySelectorAll("input[required], textarea[required], select[required]").forEach((el) => {
     if (el.disabled) return;
-    if (!el.value.trim()) {
+    const empty = el.type === "checkbox" ? !el.checked : !el.value.trim();
+    if (empty) {
       el.closest(".field").classList.add("has-error");
       valid = false;
       firstInvalid = firstInvalid || el;
@@ -304,17 +305,47 @@ function logLead(payload) {
   console.groupEnd();
 }
 
-/* ---------- Envio de e-mail (Renan + closer) ----------
-   PENDENTE DE CONFIGURAÇÃO: definir Google Apps Script OU EmailJS/Web3Forms.
-   Quando escolhido, preencher LEAD_EMAIL_ENDPOINT (e recipientes/chave) e a integração. */
-const LEAD_EMAIL_ENDPOINT = ""; // TODO: URL do Apps Script ou config do provedor de e-mail
+/* ---------- Envio de e-mail (Renan + closer) via EmailJS ----------
+   Os destinatários (To = closer, Cc = Renan) são FIXOS no template do EmailJS,
+   não passam pelo cliente. Aqui só vão os dados do lead. */
+const EMAILJS_PUBLIC_KEY = "scWfk5MKjN7Td35Rw";
+const EMAILJS_SERVICE_ID = "service_sadmvso";
+const EMAILJS_TEMPLATE_ID = "template_g2v75xm";
+
+if (window.emailjs) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
 function sendLeadEmail(payload) {
-  if (!LEAD_EMAIL_ENDPOINT) {
-    console.warn("[Carraro] Envio de e-mail ainda não configurado — payload abaixo (não enviado):");
-    console.log(payload);
+  if (!window.emailjs) {
+    console.warn("[Carraro] EmailJS não carregou — e-mail não enviado.");
     return;
   }
-  // Integração ligada após a escolha do provedor (Apps Script / EmailJS / Web3Forms).
+  const conteudo = [
+    `Diagnóstico: ${payload.diagnostico}`,
+    "",
+    "— Dados pessoais —",
+    ...Object.entries(payload.pessoa).map(([k, v]) => `${k}: ${v}`),
+    "",
+    "— Respostas do diagnóstico —",
+    ...Object.entries(payload.respostas).map(([k, v]) => `${k}: ${v}`),
+  ].join("\n");
+
+  const params = {
+    nome: payload.pessoa["Nome"],
+    idade: payload.pessoa["Idade"],
+    email: payload.pessoa["E-mail"],
+    whatsapp: payload.pessoa["WhatsApp"],
+    instagram: payload.pessoa["Instagram"],
+    pais: payload.pessoa["País"],
+    estado: payload.pessoa["Estado"],
+    cidade: payload.pessoa["Cidade"],
+    diagnostico: payload.diagnostico,
+    conteudo,
+  };
+
+  emailjs
+    .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+    .then(() => console.info("[Carraro] E-mail do lead enviado ✓"))
+    .catch((err) => console.error("[Carraro] Falha ao enviar e-mail:", err));
 }
 
 /* ---------- Mensagem do WhatsApp (curta — a lead quer falar com a equipe) ---------- */

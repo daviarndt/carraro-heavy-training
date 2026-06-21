@@ -9,6 +9,8 @@
   <link rel="icon" type="image/png" href="assets/img/logo-carraro-black.png" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="assets/css/form.css" />
+  <!-- EmailJS SDK (envio do lead por e-mail para Renan + closer) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
   <main class="form-page">
@@ -81,6 +83,14 @@
             <label for="cidadeEx">Cidade</label>
             <input class="input" type="text" id="cidadeEx" name="cidadeEx" placeholder="Digite sua cidade" required disabled />
             <span class="field-error">Informe sua cidade.</span>
+          </div>
+          <div class="field">
+            <label class="consent">
+              <input type="checkbox" id="consent" name="consent" required />
+              <span class="consent__box"></span>
+              <span class="consent__text">Concordo em compartilhar meus dados para receber meu diagnóstico e ser contatada pela equipe do Renan Carraro.</span>
+            </label>
+            <span class="field-error">É preciso aceitar para continuar.</span>
           </div>
         </section>
 
