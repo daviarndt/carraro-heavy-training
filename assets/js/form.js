@@ -52,8 +52,8 @@ const DIAGNOSES = {
   constancia: {
     title: "Baixa constância",
     photos: [
-      "assets/img/photos_diagnosticos/emagrecimento_full_body_3x_semana.jpg",
-      "assets/img/photos_diagnosticos/emagrecimento_full_body_3x_semana_2.jpg",
+      "assets/img/photos_diagnosticos/baixa_constancia.jpg",
+      "assets/img/photos_diagnosticos/baixa_constancia_2.jpg",
     ],
     profile:
       "Seu principal desafio não é o treino — é manter uma rotina sustentável.",
