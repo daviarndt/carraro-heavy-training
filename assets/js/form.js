@@ -51,7 +51,10 @@ const QUESTION_LABELS = {
 const DIAGNOSES = {
   constancia: {
     title: "Baixa constância",
-    photo: "assets/img/aluna-constancia.jpg",
+    photos: [
+      "assets/img/photos_diagnosticos/emagrecimento_full_body_3x_semana.jpg",
+      "assets/img/photos_diagnosticos/emagrecimento_full_body_3x_semana_2.jpg",
+    ],
     profile:
       "Seu principal desafio não é o treino — é manter uma rotina sustentável.",
     rec: `
@@ -79,7 +82,7 @@ const DIAGNOSES = {
   },
   estimulo: {
     title: "Estímulo insuficiente para hipertrofia",
-    photo: "assets/img/aluna-estimulo.jpg",
+    photos: ["assets/img/photos_diagnosticos/estimulo_insuficiente.jpeg"],
     profile:
       "Você treina regularmente, mas o estímulo total atual pode estar abaixo do necessário para o seu objetivo.",
     rec: `
@@ -102,7 +105,7 @@ const DIAGNOSES = {
   },
   evolucao: {
     title: "Treina, mas não evolui",
-    photo: "assets/img/aluna-evolucao.jpg",
+    photos: ["assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg"],
     profile:
       "Você já construiu uma boa rotina de treinos. Agora, seu próximo nível de resultado depende de ajustes mais estratégicos.",
     rec: `
@@ -416,17 +419,70 @@ function renderResult(diagKey) {
   const d = DIAGNOSES[diagKey];
   document.getElementById("diagTitle").textContent = d.title;
   document.getElementById("diagProfile").textContent = d.profile;
+
+  const cards = d.photos
+    .map(
+      (src) => `
+        <figure class="diag__photo diag__card">
+          <img src="${src}" alt="Aluna do Renan Carraro"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <figcaption class="diag__photo-fallback">Foto da aluna</figcaption>
+        </figure>`
+    )
+    .join("");
+  const hint = d.photos.length > 1 ? `<p class="diag__deck-hint">Toque para ver mais ↻</p>` : "";
+
   document.getElementById("diagRec").innerHTML = `
     <div class="diag__rec-grid">
       <div class="diag__rec-body">${d.rec}</div>
       <aside class="diag__rec-aside">
-        <figure class="diag__photo">
-          <img src="${d.photo}" alt="Aluna do Renan Carraro"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <figcaption class="diag__photo-fallback">Foto da aluna</figcaption>
-        </figure>
+        <div class="diag__deck" data-count="${d.photos.length}">${cards}</div>
+        ${hint}
       </aside>
     </div>`;
+
+  setupDeck(document.querySelector("#diagRec .diag__deck"));
+}
+
+/* ---------- Baralho de fotos (clique = jogar a foto pra baixo do baralho) ---------- */
+function setupDeck(deckEl) {
+  if (!deckEl) return;
+  const order = Array.from(deckEl.querySelectorAll(".diag__card")); // [topo ... fundo]
+
+  const place = (card, depth, animate) => {
+    card.style.transition = animate ? "" : "none";
+    card.style.zIndex = String(100 - depth);
+    card.style.opacity = String(Math.max(0, 1 - depth * 0.14));
+    card.style.transform =
+      `translate(${depth * 7}px, ${depth * 11}px) scale(${1 - depth * 0.05}) rotate(${depth * 1.6}deg)`;
+    card.style.pointerEvents = depth === 0 ? "auto" : "none";
+    card.style.cursor = depth === 0 ? "pointer" : "default";
+  };
+
+  const layout = (animate = true) => order.forEach((c, depth) => place(c, depth, animate));
+
+  layout(false);
+  if (order.length <= 1) return; // 1 foto: sem baralho/clique
+
+  const THROW_MS = 400;
+  let busy = false;
+  const throwTop = () => {
+    if (busy) return;
+    busy = true;
+    const top = order[0];
+    top.style.transition = `transform ${THROW_MS}ms cubic-bezier(.4,0,.2,1), opacity ${THROW_MS}ms ease`;
+    top.style.transform = "translate(0, 130%) scale(.9) rotate(-5deg)";
+    top.style.opacity = "0";
+    // Conclui por tempo (não depende de transitionend, que não dispara sem animação)
+    setTimeout(() => {
+      order.push(order.shift());            // topo vai pro fundo
+      place(top, order.length - 1, false);  // reposiciona no fundo, ainda invisível
+      void top.offsetWidth;                 // reflow
+      layout(true);                         // anima todos pra cima; a foto reaparece no fundo
+      setTimeout(() => { busy = false; }, THROW_MS + 40);
+    }, THROW_MS);
+  };
+  deckEl.addEventListener("click", throwTop);
 }
 
 /* ============================================================
