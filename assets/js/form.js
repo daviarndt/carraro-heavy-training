@@ -38,17 +38,67 @@ const QUESTION_LABELS = {
   interrupcoes: "Interrupções (últimos 3 meses)",
   dificuldade: "Maior dificuldade",
   estruturado: "Treino estruturado",
-  registro: "Registra cargas/repetições",
-  progressao: "Aumenta cargas/repetições",
+  registro: "Registra cargas/evolução",
   aerobico: "Aeróbico/semana",
   satisfacao: "Satisfação com resultados",
-  estagnacao: "Tempo sem evoluir",
 };
 
 /* ============================================================
    Diagnósticos
    ============================================================ */
 const DIAGNOSES = {
+  /* ---- Objetivo: Hipertrofia e definição ---- */
+  estimulo: {
+    title: "Estímulo insuficiente",
+    photos: ["assets/img/photos_diagnosticos/estimulo_insuficiente.jpeg"],
+    profile:
+      "O principal fator que está limitando sua evolução é que o estímulo atual ainda não é suficiente para o objetivo que você deseja alcançar. Isso pode estar relacionado à frequência semanal, ao planejamento do treino, à progressão das cargas ou até mesmo à dificuldade de manter uma rotina consistente.",
+    rec: `
+      <h4>Estrutura sugerida: Upper / Lower — 4x por semana</h4>
+      <p class="diag__rec-sub">Lower</p>
+      <ul>
+        <li>Cadeira flexora</li>
+        <li>Mesa flexora</li>
+        <li>Leg press</li>
+        <li>Cadeira extensora</li>
+        <li>Hack</li>
+        <li>Elevação pélvica</li>
+      </ul>
+      <p class="diag__rec-sub">Upper</p>
+      <ul>
+        <li>Remada pronada (máquina)</li>
+        <li>Remada supinada</li>
+        <li>Remada baixa (triângulo)</li>
+        <li>Desenvolvimento com halteres</li>
+        <li>Elevação lateral</li>
+        <li>Tríceps na polia</li>
+        <li>Rosca neutra</li>
+      </ul>
+    `,
+  },
+  evolucao_hiper: {
+    title: "Treina, mas não evolui",
+    photos: ["assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg"],
+    profile:
+      "Você já construiu os principais hábitos para evoluir. Agora o próximo passo é melhorar a qualidade do estímulo.",
+    rec: `
+      <p class="diag__rec-lead">Melhore a qualidade do estímulo.</p>
+      <ul>
+        <li>Revisar a dieta</li>
+        <li>Aplicar dupla progressão</li>
+      </ul>
+      <p class="diag__rec-sub">Dupla progressão</p>
+      <ul>
+        <li>Faixa de 8 a 12 repetições</li>
+        <li>Ao atingir 12 repetições, aumentar a carga</li>
+        <li>Treinar próximo da falha</li>
+        <li>Revisar a periodização</li>
+      </ul>
+      <p class="diag__rec-foot">Recomendado: acompanhamento profissional.</p>
+    `,
+  },
+
+  /* ---- Objetivo: Emagrecimento ---- */
   constancia: {
     title: "Baixa constância",
     photos: [
@@ -56,131 +106,189 @@ const DIAGNOSES = {
       "assets/img/photos_diagnosticos/baixa_constancia_2.jpg",
     ],
     profile:
-      "Seu principal desafio não é o treino — é manter uma rotina sustentável.",
+      "O maior desafio hoje não é encontrar o treino perfeito. É conseguir manter uma rotina consistente.",
     rec: `
-      <p class="diag__rec-lead">Priorize consistência antes de aumentar volume.</p>
-      <h4>Estrutura sugerida: Full body 3x por semana</h4>
-      <p>Segunda, quarta e sexta-feira.</p>
-      <p class="diag__rec-sub">Exercícios</p>
+      <h4>Estrutura sugerida: Full Body — 3x por semana</h4>
+      <p class="diag__rec-sub">Cardio: 120 a 180 minutos por semana</p>
       <ul>
-        <li>Cadeira flexora</li>
-        <li>Leg press</li>
-        <li>Abdutora</li>
-        <li>Remada</li>
-        <li>Desenvolvimento</li>
-        <li>Tríceps</li>
-        <li>Abdômen</li>
+        <li>Caminhadas</li>
+        <li>Escadas</li>
+        <li>Parque</li>
       </ul>
-      <p class="diag__rec-sub">Parâmetros</p>
-      <ul>
-        <li>2 a 3 séries por exercício</li>
-        <li>8 a 12 repetições</li>
-        <li>Sessões de 45 a 60 minutos</li>
-      </ul>
-      <p class="diag__rec-foot"><strong>Objetivo:</strong> criar uma rotina sustentável e fácil de manter.</p>
+      <p class="diag__rec-foot"><strong>Objetivo:</strong> manter-se ativa e ganhar aderência à rotina.</p>
     `,
   },
-  estimulo: {
-    title: "Estímulo insuficiente para hipertrofia",
-    photos: ["assets/img/photos_diagnosticos/estimulo_insuficiente.jpeg"],
+  gasto: {
+    title: "Gasto energético insuficiente",
+    // TODO: foto definitiva desta aluna (placeholder mostra "Foto da aluna" até existir o arquivo)
+    photos: ["assets/img/photos_diagnosticos/gasto_energetico_insuficiente.jpg"],
     profile:
-      "Você treina regularmente, mas o estímulo total atual pode estar abaixo do necessário para o seu objetivo.",
+      "Você já possui uma boa rotina de musculação. Agora o principal ajuste é aumentar seu gasto energético semanal.",
     rec: `
-      <p class="diag__rec-lead">Aumente gradualmente a frequência e o volume semanal.</p>
-      <h4>Estrutura sugerida: Upper/Lower</h4>
+      <p class="diag__rec-lead">Aumente seu gasto energético semanal.</p>
       <ul>
-        <li>Segunda: Upper</li>
-        <li>Terça: Lower</li>
-        <li>Quinta: Upper</li>
-        <li>Sexta: Lower</li>
-        <li>Sábado (opcional): foco em glúteos</li>
-      </ul>
-      <p class="diag__rec-sub">Objetivos</p>
-      <ul>
-        <li>4 a 5 treinos por semana</li>
-        <li>10 a 15 séries semanais por grupo muscular</li>
-        <li>Progressão planejada</li>
+        <li>Mais de 180 minutos de cardio por semana</li>
+        <li>Registrar as cargas</li>
+        <li>Treinar pesado</li>
+        <li>Aplicar dupla progressão</li>
+        <li>Treinar próximo da falha</li>
       </ul>
     `,
   },
-  evolucao: {
+  evolucao_emag: {
     title: "Treina, mas não evolui",
     photos: ["assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg"],
     profile:
-      "Você já construiu uma boa rotina de treinos. Agora, seu próximo nível de resultado depende de ajustes mais estratégicos.",
+      "Você já construiu hábitos importantes. Agora sua evolução depende principalmente de ajustes estratégicos.",
     rec: `
-      <p class="diag__rec-lead">Foque menos em quantidade e mais em qualidade.</p>
-      <p class="diag__rec-sub">Priorize</p>
+      <p class="diag__rec-lead">Ajustes estratégicos para destravar a evolução.</p>
+      <h4>Estrutura sugerida: Upper / Lower</h4>
       <ul>
-        <li>Registro de cargas e repetições</li>
-        <li>Progressão semanal</li>
-        <li>Seleção adequada de exercícios</li>
-        <li>Boa execução</li>
-        <li>Proximidade da falha</li>
+        <li>Aplicar progressão</li>
+        <li>Treinar próximo da falha</li>
+        <li>Revisar a dieta</li>
+        <li>Avaliar o sono</li>
+        <li>Avaliar a ingestão de água</li>
       </ul>
-      <p>Escolha entre 5 e 8 exercícios principais e acompanhe:</p>
-      <ul>
-        <li>Carga utilizada</li>
-        <li>Número de repetições</li>
-        <li>Evolução semanal</li>
-      </ul>
-      <p class="diag__rec-foot">Se você treina 6 ou 7 vezes por semana, considere reduzir a
-      frequência e aumentar a qualidade do estímulo.</p>
+      <p class="diag__rec-foot">Recomendado: acompanhamento profissional.</p>
     `,
   },
 };
 
-// Returns the chosen diagnosis key + the computed scores.
-// Priority order (1 = highest): constância > estímulo > evolução.
-// If more than one reaches its minimum score, the highest priority wins.
-// If none reaches the minimum, falls back to the highest score (ties → priority).
+// A Pergunta 1 (objetivo) define o conjunto de diagnósticos avaliado.
+// Cada resposta soma pontos; o maior score vence (empate → ordem de listagem).
 function computeDiagnosis(v) {
-  const inAny = (key, ...vals) => vals.includes(v(key));
+  if (v("objetivo") === "Emagrecimento") return diagnoseEmagrecimento(v);
+  return diagnoseHipertrofia(v);
+}
 
-  let s1 = 0; // Baixa constância
-  if (v("interrupcoes") === "2 vezes") s1 += 3;
-  if (v("interrupcoes") === "3 vezes ou mais") s1 += 4;
-  if (inAny("dificuldade", "Falta de tempo", "Trabalho", "Filhos/família")) s1 += 2;
-  if (v("dificuldade") === "Falta de motivação") s1 += 1;
-  if (v("estruturado") === "Não tenho planejamento") s1 += 2;
+function pickMax(cands, scores) {
+  let best = cands[0];
+  for (const c of cands) if (c.score > best.score) best = c; // empate mantém o 1º (prioridade)
+  return { key: best.key, scores };
+}
 
-  let s2 = 0; // Estímulo insuficiente para hipertrofia
-  if (v("objetivo") === "Ganhar massa muscular (hipertrofia)") s2 += 2;
-  if (v("dias") === "3 dias") s2 += 3;
-  if (v("dias") === "4 dias") s2 += 1;
-  if (v("satisfacao") === "Insatisfeita") s2 += 2;
-  if (inAny("estagnacao", "Entre 3 e 6 meses", "Mais de 6 meses")) s2 += 2;
-  if (v("registro") === "Nunca") s2 += 1;
-  if (inAny("aerobico", "Nenhum", "Menos de 60 minutos", "Entre 60 e 120 minutos")) s2 += 1;
+// Objetivo: Hipertrofia e definição → Estímulo insuficiente (ei) vs. Treina mas não evolui (tne)
+function diagnoseHipertrofia(v) {
+  let ei = 0, tne = 0;
 
-  let s3 = 0; // Treina, mas não evolui
-  if (v("dias") === "5 dias") s3 += 1;
-  if (inAny("dias", "6 dias", "7 dias")) s3 += 3;
-  if (inAny("tempo", "1 a 2 anos", "Mais de 2 anos")) s3 += 2;
-  if (inAny("estagnacao", "Entre 3 e 6 meses", "Mais de 6 meses")) s3 += 2;
-  if (v("registro") === "Às vezes") s3 += 1;
-  if (v("registro") === "Nunca") s3 += 2;
-  if (v("progressao") === "Raramente") s3 += 2;
-  if (v("progressao") === "Nunca") s3 += 3;
-  if (v("estruturado") === "Uso treinos prontos da internet") s3 += 1;
-  if (v("estruturado") === "Não tenho planejamento") s3 += 2;
-  if (v("satisfacao") === "Insatisfeita") s3 += 2;
+  switch (v("dias")) {
+    case "3 dias": ei += 4; break;
+    case "4 dias": ei += 2; tne += 1; break;
+    case "5 dias": tne += 2; break;
+    case "6 dias": tne += 3; break;
+    case "7 dias": tne += 3; break;
+  }
+  switch (v("tempo")) {
+    case "Menos de 6 meses": ei += 2; break;
+    case "Entre 6 meses e 1 ano": ei += 1; break;
+    case "Entre 1 e 2 anos": tne += 1; break;
+    case "Mais de 2 anos": tne += 2; break;
+  }
+  switch (v("interrupcoes")) {
+    case "Nenhuma": tne += 2; break;
+    case "1 vez": ei += 1; break;
+    case "2 vezes": ei += 3; break;
+    case "3 vezes ou mais": ei += 4; break;
+  }
+  switch (v("dificuldade")) {
+    case "Falta de tempo":
+    case "Trabalho":
+    case "Filhos/família":
+    case "Falta de motivação": ei += 2; break;
+    case "Não sei como organizar meu treino": ei += 1; tne += 1; break;
+  }
+  switch (v("estruturado")) {
+    case "Sim, com acompanhamento profissional": tne += 2; break;
+    case "Sim, mas monto sozinha": tne += 1; break;
+    case "Uso treinos prontos da internet": ei += 2; break;
+    case "Não tenho planejamento": ei += 3; break;
+  }
+  switch (v("registro")) {
+    case "Sempre": tne += 3; break;
+    case "Às vezes": tne += 1; ei += 1; break;
+    case "Nunca": ei += 3; break;
+  }
+  switch (v("aerobico")) {
+    case "Nenhum": ei += 1; break;
+    case "Menos de 60 minutos": ei += 1; break;
+    // "Entre 60 e 120 minutos" e "Mais de 120 minutos": 0
+  }
+  switch (v("satisfacao")) {
+    case "Muito satisfeita": tne += 1; break;
+    case "Parcialmente satisfeita": tne += 2; break;
+    case "Insatisfeita": ei += 2; break;
+  }
 
-  const candidates = [
-    { key: "constancia", score: s1, min: 5, prio: 1 },
-    { key: "estimulo", score: s2, min: 7, prio: 2 },
-    { key: "evolucao", score: s3, min: 8, prio: 3 },
-  ];
+  return pickMax(
+    [{ key: "estimulo", score: ei }, { key: "evolucao_hiper", score: tne }],
+    { estimulo: ei, evolucao: tne }
+  );
+}
 
-  const qualified = candidates
-    .filter((c) => c.score >= c.min)
-    .sort((a, b) => a.prio - b.prio);
+// Objetivo: Emagrecimento → Baixa constância (bc) vs. Gasto energético insuf. (gei) vs. Treina mas não evolui (tne)
+// OBS: pesos propostos (o doc do Renan definiu só os "maiores pesos"/drivers,
+// não os números exatos). Revisar/ajustar conforme necessário.
+function diagnoseEmagrecimento(v) {
+  let bc = 0, gei = 0, tne = 0;
 
-  const chosen = qualified.length
-    ? qualified[0]
-    : candidates.slice().sort((a, b) => b.score - a.score || a.prio - b.prio)[0];
+  switch (v("dias")) {
+    case "3 dias": bc += 3; break;
+    case "4 dias": bc += 1; break;
+    case "5 dias": gei += 1; tne += 1; break;
+    case "6 dias": gei += 2; tne += 2; break;
+    case "7 dias": gei += 2; tne += 2; break;
+  }
+  switch (v("tempo")) {
+    case "Menos de 6 meses": bc += 1; break;
+    case "Entre 6 meses e 1 ano": break;
+    case "Entre 1 e 2 anos": tne += 1; break;
+    case "Mais de 2 anos": tne += 2; break;
+  }
+  switch (v("interrupcoes")) {
+    case "Nenhuma": gei += 2; tne += 2; break;
+    case "1 vez": gei += 1; tne += 1; break;
+    case "2 vezes": bc += 3; break;
+    case "3 vezes ou mais": bc += 4; break;
+  }
+  switch (v("dificuldade")) {
+    case "Falta de tempo":
+    case "Trabalho":
+    case "Filhos/família":
+    case "Falta de motivação": bc += 2; break;
+    case "Não sei como organizar meu treino": bc += 1; break;
+  }
+  switch (v("estruturado")) {
+    case "Sim, com acompanhamento profissional": tne += 2; break;
+    case "Sim, mas monto sozinha": tne += 1; break;
+    case "Uso treinos prontos da internet": bc += 1; break;
+    case "Não tenho planejamento": bc += 3; break;
+  }
+  switch (v("registro")) {
+    case "Sempre": tne += 2; break;
+    case "Às vezes": tne += 1; break;
+    case "Nunca": bc += 1; break;
+  }
+  switch (v("aerobico")) {
+    case "Nenhum": gei += 3; break;
+    case "Menos de 60 minutos": gei += 2; break;
+    case "Entre 60 e 120 minutos": gei += 1; break;
+    case "Mais de 120 minutos": tne += 2; break;
+  }
+  switch (v("satisfacao")) {
+    case "Muito satisfeita": break;
+    case "Parcialmente satisfeita": tne += 1; break;
+    case "Insatisfeita": tne += 2; break;
+  }
 
-  return { key: chosen.key, scores: { s1, s2, s3 } };
+  return pickMax(
+    [
+      { key: "constancia", score: bc },
+      { key: "gasto", score: gei },
+      { key: "evolucao_emag", score: tne },
+    ],
+    { constancia: bc, gasto: gei, evolucao: tne }
+  );
 }
 
 /* ============================================================
@@ -300,7 +408,7 @@ function collectData(diagKey, scores) {
 function logLead(payload) {
   console.groupCollapsed("%c[Carraro] Diagnóstico concluído", "color:#9B1B30;font-weight:bold");
   console.log("Diagnóstico:", payload.diagnostico);
-  console.log("Scores (constância / estímulo / evolução):", payload.scores);
+  console.log("Scores:", payload.scores);
   console.log("Dados pessoais:");
   console.table(payload.pessoa);
   console.log("Respostas do diagnóstico:");
