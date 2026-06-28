@@ -142,7 +142,7 @@
   background: rgba(244,241,236,0.03); padding: 28px 28px 24px;
 }
 .diag__rec-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 28px; align-items: start; }
-.diag__rec-aside { position: sticky; top: 24px; }
+.diag__rec-aside { align-self: start; }
 @media (max-width: 680px) {
   .diag__rec-grid { grid-template-columns: 1fr; }
   .diag__rec-aside { order: -1; width: 280px; max-width: 100%; justify-self: center; margin-bottom: 4px; }
