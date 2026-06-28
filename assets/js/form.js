@@ -390,9 +390,12 @@ form.addEventListener("keydown", (e) => {
 // Lê o valor de um campo; Estado/Cidade vêm do controle ativo conforme o país.
 function readValue(k) {
   const data = new FormData(form);
-  const isBrasil = paisSelect.value === "Brasil";
-  if (k === "estado") return isBrasil ? estadoSelect.value : "";
-  if (k === "cidade") return isBrasil ? cidadeSelect.value : cidadeExInput.value.trim();
+  const isBrasil = paisSelect ? paisSelect.value === "Brasil" : false;
+  if (k === "estado") return isBrasil && estadoSelect ? estadoSelect.value : "";
+  if (k === "cidade") {
+    if (isBrasil && cidadeSelect) return cidadeSelect.value;
+    return cidadeExInput ? cidadeExInput.value.trim() : "";
+  }
   return (data.get(k) || "").toString().trim();
 }
 
@@ -419,6 +422,8 @@ function logLead(payload) {
 /* ---------- Envio de e-mail (Renan + closer) via EmailJS ----------
    Os destinatários (To = closer, Cc = Renan) são FIXOS no template do EmailJS,
    não passam pelo cliente. Aqui só vão os dados do lead. */
+// TEMP (fase de testes): envio de e-mail desativado. Voltar para true para reativar.
+const EMAIL_ENABLED = false;
 const EMAILJS_PUBLIC_KEY = "scWfk5MKjN7Td35Rw";
 const EMAILJS_SERVICE_ID = "service_sadmvso";
 const EMAILJS_TEMPLATE_ID = "template_g2v75xm";
@@ -485,6 +490,7 @@ function queuePending(params) {
 }
 // Tenta reenviar leads que ficaram pendentes em sessões anteriores
 function flushPending() {
+  if (!EMAIL_ENABLED) return;
   if (!window.emailjs) return;
   const list = readPending();
   if (!list.length) return;
@@ -501,6 +507,10 @@ function flushPending() {
 }
 
 function sendLeadEmail(payload) {
+  if (!EMAIL_ENABLED) {
+    console.info("[Carraro] Envio de e-mail desativado (fase de testes) — não enviado.");
+    return;
+  }
   const params = emailParams(payload);
   if (!window.emailjs) {
     console.warn("[Carraro] EmailJS não carregou — lead salvo localmente.");
@@ -634,8 +644,8 @@ const fieldCidadeEx = document.getElementById("fieldCidadeEx");
 
 let cidadesPorEstado = null;
 
-// Populate country dropdown
-fetch("assets/data/paises.json")
+// Populate country dropdown (guard: o campo país pode estar desativado na fase de testes)
+if (paisSelect) fetch("assets/data/paises.json")
   .then((r) => r.json())
   .then((paises) => {
     const frag = document.createDocumentFragment();
@@ -690,11 +700,12 @@ function populateCidades(uf) {
   cidadeSelect.disabled = lista.length === 0;
 }
 
-estadoSelect.addEventListener("change", () => populateCidades(estadoSelect.value));
+if (estadoSelect) estadoSelect.addEventListener("change", () => populateCidades(estadoSelect.value));
 
 // Show Brazilian state/city dropdowns vs. free-text city for other countries.
 // Disabled controls are skipped by validation and excluded from submission.
 function updateLocationMode() {
+  if (!paisSelect) return;
   const isBrasil = paisSelect.value === "Brasil";
   fieldEstado.style.display = isBrasil ? "" : "none";
   fieldCidadeBr.style.display = isBrasil ? "" : "none";
@@ -711,7 +722,7 @@ function updateLocationMode() {
     cidadeExInput.disabled = false;
   }
 }
-paisSelect.addEventListener("change", updateLocationMode);
+if (paisSelect) paisSelect.addEventListener("change", updateLocationMode);
 
 // Rastreabilidade: loga cada escolha de resposta no console
 form.querySelectorAll('input[type="radio"]').forEach((r) => {

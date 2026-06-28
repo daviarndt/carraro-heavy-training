@@ -32,13 +32,17 @@
         <section class="step-screen is-active" data-step>
           <p class="step-count"></p>
           <h2 class="step-q">Vamos nos conhecer</h2>
-          <p class="step-hint">Pra eu poder te enviar o diagnóstico e a análise personalizada.</p>
+          <p class="step-hint">Só pra personalizar o seu diagnóstico.</p>
 
           <div class="field">
             <label for="nome">Seu nome completo</label>
             <input class="input" type="text" id="nome" name="nome" placeholder="Ex.: Maria Silva" required />
             <span class="field-error">Por favor, preencha seu nome.</span>
           </div>
+
+          <!-- ===== TEMP (fase de testes): dados pessoais + consentimento desativados.
+               REATIVAR: apagar esta linha de abertura e a linha "FIM TEMP" lá embaixo.
+               (Também voltar EMAIL_ENABLED para true em assets/js/form.js.) =====
           <div class="field">
             <label for="idade">Idade</label>
             <input class="input" type="number" id="idade" name="idade" min="12" max="99" placeholder="Ex.: 28" required />
@@ -92,6 +96,7 @@
             </label>
             <span class="field-error">É preciso aceitar para continuar.</span>
           </div>
+          ===== FIM TEMP ===== -->
         </section>
 
         <!-- P1 — Objetivo -->
