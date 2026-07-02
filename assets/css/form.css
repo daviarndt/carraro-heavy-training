@@ -136,6 +136,8 @@
   font-size: 1.15rem; font-weight: 300; color: var(--cream-dim);
   line-height: 1.55; margin-bottom: 32px;
 }
+.diag__profile p { margin: 0 0 12px; }
+.diag__profile p:last-child { margin-bottom: 0; }
 
 .diag__rec {
   border: 1px solid var(--line); border-radius: var(--radius);

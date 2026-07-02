@@ -51,50 +51,89 @@ const DIAGNOSES = {
   estimulo: {
     title: "Estímulo insuficiente",
     photos: ["assets/img/photos_diagnosticos/estimulo_insuficiente.jpeg"],
-    profile:
-      "O principal fator que está limitando sua evolução é que o estímulo atual ainda não é suficiente para o objetivo que você deseja alcançar. Isso pode estar relacionado à frequência semanal, ao planejamento do treino, à progressão das cargas ou até mesmo à dificuldade de manter uma rotina consistente.",
+    profile: `
+      <p>Seu principal gargalo hoje não é a falta de esforço.</p>
+      <p>O principal fator que está limitando sua evolução é que o estímulo atual ainda não é suficiente para o objetivo que você deseja alcançar.</p>
+      <p>Isso pode estar relacionado à frequência semanal, ao planejamento do treino, à progressão das cargas ou até mesmo à dificuldade de manter uma rotina consistente.</p>
+      <p>Pequenos ajustes nessas variáveis costumam gerar uma grande diferença nos resultados ao longo dos próximos meses.</p>
+    `,
     rec: `
-      <h4>Estrutura sugerida: Upper / Lower — 4x por semana</h4>
-      <p class="diag__rec-sub">Lower</p>
+      <p class="diag__rec-sub">O que recomendamos</p>
+      <p class="diag__rec-lead">Aumente gradualmente a frequência semanal e distribua melhor o volume de treino.</p>
+      <p>Uma excelente estratégia é utilizar uma divisão Upper / Lower, permitindo trabalhar todos os grupos musculares com maior frequência e qualidade.</p>
+      <h4>Estrutura sugerida</h4>
+      <p class="diag__rec-sub">Segunda-feira — Upper</p>
+      <ul>
+        <li>Remada pronada na máquina</li>
+        <li>Remada supinada</li>
+        <li>Remada baixa com triângulo</li>
+        <li>Desenvolvimento com halteres</li>
+        <li>Elevação lateral</li>
+        <li>Tríceps pulley</li>
+        <li>Rosca neutra</li>
+      </ul>
+      <p class="diag__rec-sub">Terça-feira — Lower</p>
       <ul>
         <li>Cadeira flexora</li>
         <li>Mesa flexora</li>
-        <li>Leg press</li>
+        <li>Leg Press</li>
         <li>Cadeira extensora</li>
-        <li>Hack</li>
+        <li>Hack squat</li>
         <li>Elevação pélvica</li>
       </ul>
-      <p class="diag__rec-sub">Upper</p>
-      <ul>
-        <li>Remada pronada (máquina)</li>
-        <li>Remada supinada</li>
-        <li>Remada baixa (triângulo)</li>
-        <li>Desenvolvimento com halteres</li>
-        <li>Elevação lateral</li>
-        <li>Tríceps na polia</li>
-        <li>Rosca neutra</li>
-      </ul>
+      <p class="diag__rec-sub">Quinta-feira</p>
+      <p>Repetir Upper.</p>
+      <p class="diag__rec-sub">Sexta-feira</p>
+      <p>Repetir Lower.</p>
+      <p class="diag__rec-sub">Volume sugerido</p>
+      <p>Procure acumular entre 10 e 15 séries semanais por grupo muscular, distribuídas ao longo da semana.</p>
+      <p class="diag__rec-sub">Como evoluir</p>
+      <p>Comece registrando as cargas dos principais exercícios. Mesmo pequenas evoluções semanais representam um excelente sinal de progresso.</p>
+      <p class="diag__rec-foot">Essa é uma estrutura geral. Dependendo da sua rotina, limitações e experiência, ajustes individualizados podem acelerar significativamente seus resultados.</p>
     `,
   },
   evolucao_hiper: {
     title: "Treina, mas não evolui",
     photos: ["assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg"],
-    profile:
-      "Você já construiu os principais hábitos para evoluir. Agora o próximo passo é melhorar a qualidade do estímulo.",
+    profile: `
+      <p>Você já possui um bom hábito de treino.</p>
+      <p>Seu próximo nível de resultado depende menos de treinar mais e muito mais da qualidade do estímulo que está aplicando.</p>
+    `,
     rec: `
-      <p class="diag__rec-lead">Melhore a qualidade do estímulo.</p>
+      <p class="diag__rec-sub">O que isso significa</p>
+      <p>Quando frequência e consistência já estão estabelecidas, normalmente os resultados passam a depender de detalhes como:</p>
       <ul>
-        <li>Revisar a dieta</li>
-        <li>Aplicar dupla progressão</li>
+        <li>Progressão de carga</li>
+        <li>Intensidade</li>
+        <li>Seleção de exercícios</li>
+        <li>Recuperação</li>
+        <li>Alimentação</li>
       </ul>
-      <p class="diag__rec-sub">Dupla progressão</p>
+      <p class="diag__rec-sub">O que recomendamos</p>
+      <p class="diag__rec-lead">Antes de aumentar ainda mais o volume de treino, procure otimizar o que você já faz.</p>
+      <p class="diag__rec-sub">Como aplicar a dupla progressão</p>
+      <p>Escolha uma faixa de repetições — por exemplo, de 8 a 12 repetições.</p>
+      <p>Exemplo de evolução:</p>
       <ul>
-        <li>Faixa de 8 a 12 repetições</li>
-        <li>Ao atingir 12 repetições, aumentar a carga</li>
-        <li>Treinar próximo da falha</li>
-        <li>Revisar a periodização</li>
+        <li>Semana 1 — 60 kg × 8</li>
+        <li>Semana 2 — 60 kg × 9</li>
+        <li>Semana 3 — 60 kg × 10</li>
+        <li>Semana 4 — 60 kg × 12</li>
+        <li>Semana 5 — 65 kg × 8</li>
       </ul>
-      <p class="diag__rec-foot">Recomendado: acompanhamento profissional.</p>
+      <p>Esse processo permite evoluir continuamente sem perder qualidade.</p>
+      <p class="diag__rec-sub">Intensidade</p>
+      <p>Procure finalizar a maior parte das séries muito próxima da falha muscular, mantendo sempre uma boa execução. Treinar pesado é um dos fatores mais importantes para estimular hipertrofia.</p>
+      <p class="diag__rec-sub">Outros fatores importantes</p>
+      <p>Também vale revisar:</p>
+      <ul>
+        <li>Alimentação</li>
+        <li>Sono</li>
+        <li>Hidratação</li>
+        <li>Recuperação</li>
+      </ul>
+      <p>Esses fatores podem limitar seus resultados mesmo quando o treino está bem estruturado.</p>
+      <p class="diag__rec-foot">Quando a pessoa já faz praticamente tudo certo, normalmente os resultados passam a depender de ajustes individualizados.</p>
     `,
   },
 
@@ -105,52 +144,130 @@ const DIAGNOSES = {
       "assets/img/photos_diagnosticos/baixa_constancia.jpg",
       "assets/img/photos_diagnosticos/baixa_constancia_2.jpg",
     ],
-    profile:
-      "O maior desafio hoje não é encontrar o treino perfeito. É conseguir manter uma rotina consistente.",
+    profile: `
+      <p>Seu principal desafio hoje não é encontrar o treino perfeito.</p>
+      <p>O maior desafio é conseguir manter uma rotina consistente.</p>
+    `,
     rec: `
-      <h4>Estrutura sugerida: Full Body — 3x por semana</h4>
-      <p class="diag__rec-sub">Cardio: 120 a 180 minutos por semana</p>
+      <p class="diag__rec-sub">O que isso significa</p>
+      <p>Antes de pensar em estratégias avançadas, é importante construir uma rotina sustentável. A consistência sempre será mais importante do que um treino perfeito realizado apenas ocasionalmente.</p>
+      <p class="diag__rec-sub">O que recomendamos</p>
+      <p class="diag__rec-lead">Comece simplificando sua rotina.</p>
+      <p>Uma excelente estratégia é utilizar um treino Full Body três vezes por semana.</p>
+      <h4>Estrutura sugerida</h4>
+      <p>Em cada treino, procure incluir os seguintes exercícios:</p>
       <ul>
-        <li>Caminhadas</li>
-        <li>Escadas</li>
-        <li>Parque</li>
+        <li>Cadeira flexora</li>
+        <li>Leg Press</li>
+        <li>Cadeira extensora</li>
+        <li>Abdutora</li>
+        <li>Remada</li>
+        <li>Desenvolvimento</li>
+        <li>Tríceps pulley</li>
       </ul>
-      <p class="diag__rec-foot"><strong>Objetivo:</strong> manter-se ativa e ganhar aderência à rotina.</p>
+      <p>Nos treinos seguintes, alterne alguns exercícios, acrescentando mais um exercício para posteriores de coxa e aumentando gradualmente o volume semanal desse grupo muscular.</p>
+      <p class="diag__rec-sub">Parâmetros sugeridos</p>
+      <ul>
+        <li>2 a 3 séries por exercício</li>
+        <li>8 a 12 repetições</li>
+      </ul>
+      <p class="diag__rec-sub">Cardio</p>
+      <p>Procure acumular entre 120 e 180 minutos de atividade aeróbica por semana. Você pode dividir esse tempo da forma que melhor se encaixar na sua rotina.</p>
+      <p class="diag__rec-sub">Atividade diária</p>
+      <p>Além dos treinos, procure permanecer ativa. Pequenas mudanças fazem diferença:</p>
+      <ul>
+        <li>Caminhar mais</li>
+        <li>Utilizar escadas</li>
+        <li>Passear no parque</li>
+        <li>Reduzir o tempo sentada</li>
+      </ul>
+      <p class="diag__rec-foot">O melhor treino é aquele que você consegue manter durante meses.</p>
     `,
   },
   gasto: {
     title: "Gasto energético insuficiente",
     // TODO: foto definitiva desta aluna (placeholder mostra "Foto da aluna" até existir o arquivo)
     photos: ["assets/img/photos_diagnosticos/gasto_energetico_insuficiente.jpg"],
-    profile:
-      "Você já possui uma boa rotina de musculação. Agora o principal ajuste é aumentar seu gasto energético semanal.",
+    profile: `
+      <p>Você já mantém uma boa frequência de musculação.</p>
+      <p>Agora o principal ajuste é aumentar seu gasto energético semanal.</p>
+    `,
     rec: `
-      <p class="diag__rec-lead">Aumente seu gasto energético semanal.</p>
+      <p class="diag__rec-sub">O que isso significa</p>
+      <p>Provavelmente seu corpo já está adaptado ao nível atual de atividade física. Aumentar o gasto energético semanal pode acelerar significativamente o emagrecimento.</p>
+      <p class="diag__rec-sub">O que recomendamos</p>
+      <p class="diag__rec-lead">Mantenha um treino Full Body três vezes por semana.</p>
+      <h4>Estrutura sugerida</h4>
+      <p>Em cada treino, procure incluir os seguintes exercícios:</p>
       <ul>
-        <li>Mais de 180 minutos de cardio por semana</li>
-        <li>Registrar as cargas</li>
-        <li>Treinar pesado</li>
-        <li>Aplicar dupla progressão</li>
-        <li>Treinar próximo da falha</li>
+        <li>Cadeira flexora</li>
+        <li>Leg Press</li>
+        <li>Cadeira extensora</li>
+        <li>Abdutora</li>
+        <li>Remada</li>
+        <li>Desenvolvimento</li>
+        <li>Tríceps pulley</li>
       </ul>
+      <p>Nos treinos seguintes, alterne alguns exercícios, acrescentando mais um exercício para posteriores de coxa e aumentando gradualmente o volume semanal desse grupo muscular.</p>
+      <p class="diag__rec-sub">Parâmetros sugeridos</p>
+      <ul>
+        <li>2 a 3 séries por exercício</li>
+        <li>8 a 12 repetições</li>
+      </ul>
+      <p class="diag__rec-sub">Cardio</p>
+      <p>Procure acumular mais de 180 minutos de atividade aeróbica por semana. Esse tempo pode ser dividido da forma que melhor se encaixar na sua rotina.</p>
+      <p class="diag__rec-sub">Treine pesado</p>
+      <p>Mesmo durante o emagrecimento, continue priorizando a musculação. Registre suas cargas e procure evoluir constantemente.</p>
+      <p class="diag__rec-sub">Como aplicar a dupla progressão</p>
+      <p>Utilize uma faixa de repetições — por exemplo, de 8 a 12. Quando atingir 12 repetições com boa execução, aumente a carga e retorne para 8.</p>
+      <p class="diag__rec-sub">Intensidade</p>
+      <p>Treine próximo da falha muscular. Isso ajuda a preservar massa muscular durante o processo de emagrecimento.</p>
     `,
   },
   evolucao_emag: {
     title: "Treina, mas não evolui",
     photos: ["assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg"],
-    profile:
-      "Você já construiu hábitos importantes. Agora sua evolução depende principalmente de ajustes estratégicos.",
+    profile: `
+      <p>Você já construiu hábitos importantes.</p>
+      <p>Agora sua evolução depende principalmente de ajustes estratégicos.</p>
+    `,
     rec: `
-      <p class="diag__rec-lead">Ajustes estratégicos para destravar a evolução.</p>
-      <h4>Estrutura sugerida: Upper / Lower</h4>
+      <p class="diag__rec-sub">O que isso significa</p>
+      <p>Seu nível de atividade já é bom. Neste momento, simplesmente treinar mais dificilmente será a solução — o foco deve estar na qualidade do estímulo.</p>
+      <p class="diag__rec-sub">O que recomendamos</p>
+      <p class="diag__rec-lead">Migre para uma divisão Upper / Lower, aumentando a qualidade da musculação.</p>
+      <h4>Estrutura sugerida</h4>
+      <p class="diag__rec-sub">Upper</p>
       <ul>
-        <li>Aplicar progressão</li>
-        <li>Treinar próximo da falha</li>
-        <li>Revisar a dieta</li>
-        <li>Avaliar o sono</li>
-        <li>Avaliar a ingestão de água</li>
+        <li>Remada pronada na máquina</li>
+        <li>Remada supinada</li>
+        <li>Remada baixa com triângulo</li>
+        <li>Desenvolvimento com halteres</li>
+        <li>Elevação lateral</li>
+        <li>Tríceps pulley</li>
+        <li>Rosca neutra</li>
       </ul>
-      <p class="diag__rec-foot">Recomendado: acompanhamento profissional.</p>
+      <p class="diag__rec-sub">Lower</p>
+      <ul>
+        <li>Cadeira flexora</li>
+        <li>Mesa flexora</li>
+        <li>Leg Press</li>
+        <li>Cadeira extensora</li>
+        <li>Hack squat</li>
+        <li>Elevação pélvica</li>
+      </ul>
+      <p class="diag__rec-sub">Como aplicar a dupla progressão</p>
+      <p>Utilize uma faixa de repetições entre 8 e 12. Quando atingir o limite superior da faixa, aumente a carga e reinicie a progressão.</p>
+      <p class="diag__rec-sub">Intensidade</p>
+      <p>Finalize suas séries próximo da falha muscular.</p>
+      <p class="diag__rec-sub">Também vale revisar</p>
+      <ul>
+        <li>Alimentação</li>
+        <li>Sono</li>
+        <li>Hidratação</li>
+        <li>Recuperação</li>
+      </ul>
+      <p class="diag__rec-foot">Esses fatores costumam fazer grande diferença para quem já possui uma boa rotina de treinos.</p>
     `,
   },
 };
@@ -536,7 +653,7 @@ function buildWaMessage() {
 function renderResult(diagKey) {
   const d = DIAGNOSES[diagKey];
   document.getElementById("diagTitle").textContent = d.title;
-  document.getElementById("diagProfile").textContent = d.profile;
+  document.getElementById("diagProfile").innerHTML = d.profile;
 
   const cards = d.photos
     .map(
