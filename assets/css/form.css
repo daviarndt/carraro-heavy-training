@@ -222,6 +222,15 @@
 .diag__rec-foot { margin-top: 18px; }
 .diag__rec-foot strong { color: var(--cream); font-weight: 700; }
 
+.diag__closing {
+  margin-top: 28px; padding: 22px 24px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: rgba(244,241,236,0.03);
+}
+.diag__closing p { color: var(--cream-dim); font-weight: 300; line-height: 1.55; }
+.diag__closing p + p { margin-top: 12px; }
+.diag__closing strong { color: var(--cream); font-weight: 700; }
+
 .diag__cta {
   margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--line);
   text-align: center;

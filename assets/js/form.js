@@ -65,7 +65,7 @@ const DIAGNOSES = {
       <p class="diag__rec-sub">Segunda-feira — Upper</p>
       <ul>
         <li>Remada pronada na máquina</li>
-        <li>Remada supinada</li>
+        <li>Remada supinada na máquina</li>
         <li>Remada baixa com triângulo</li>
         <li>Desenvolvimento com halteres</li>
         <li>Elevação lateral</li>
@@ -78,8 +78,12 @@ const DIAGNOSES = {
         <li>Mesa flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
-        <li>Hack squat</li>
+        <li>Adutora</li>
         <li>Elevação pélvica</li>
+      </ul>
+      <p class="diag__rec-sub">Quarta-feira - Cardio</p>
+      <ul>
+        <li>Cardio</li>
       </ul>
       <p class="diag__rec-sub">Quinta-feira</p>
       <p>Repetir Upper.</p>
@@ -160,12 +164,11 @@ const DIAGNOSES = {
         <li>Cadeira flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
-        <li>Abdutora</li>
         <li>Remada</li>
         <li>Desenvolvimento</li>
         <li>Tríceps pulley</li>
       </ul>
-      <p>Nos treinos seguintes, alterne alguns exercícios, acrescentando mais um exercício para posteriores de coxa e aumentando gradualmente o volume semanal desse grupo muscular.</p>
+      <p>Nos treinos seguintes, você pode substituir alguns exercícios que trabalhem os mesmos grupos musculares.</p>
       <p class="diag__rec-sub">Parâmetros sugeridos</p>
       <ul>
         <li>2 a 3 séries por exercício</li>
@@ -203,12 +206,11 @@ const DIAGNOSES = {
         <li>Cadeira flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
-        <li>Abdutora</li>
         <li>Remada</li>
         <li>Desenvolvimento</li>
         <li>Tríceps pulley</li>
       </ul>
-      <p>Nos treinos seguintes, alterne alguns exercícios, acrescentando mais um exercício para posteriores de coxa e aumentando gradualmente o volume semanal desse grupo muscular.</p>
+      <p>Nos treinos seguintes, você pode substituir alguns exercícios que trabalhem os mesmos grupos musculares.</p>
       <p class="diag__rec-sub">Parâmetros sugeridos</p>
       <ul>
         <li>2 a 3 séries por exercício</li>
@@ -240,7 +242,7 @@ const DIAGNOSES = {
       <p class="diag__rec-sub">Upper</p>
       <ul>
         <li>Remada pronada na máquina</li>
-        <li>Remada supinada</li>
+        <li>Remada supinada na máquina</li>
         <li>Remada baixa com triângulo</li>
         <li>Desenvolvimento com halteres</li>
         <li>Elevação lateral</li>
@@ -253,7 +255,7 @@ const DIAGNOSES = {
         <li>Mesa flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
-        <li>Hack squat</li>
+        <li>Adutora</li>
         <li>Elevação pélvica</li>
       </ul>
       <p class="diag__rec-sub">Como aplicar a dupla progressão</p>
@@ -353,8 +355,10 @@ function diagnoseEmagrecimento(v) {
     case "3 dias": bc += 3; break;
     case "4 dias": bc += 1; break;
     case "5 dias": gei += 1; tne += 1; break;
-    case "6 dias": gei += 2; tne += 2; break;
-    case "7 dias": gei += 2; tne += 2; break;
+    // Alta frequência é incompatível com "baixa constância":
+    // reforça Gasto energético / Treina-mas-não-evolui e penaliza a Baixa constância.
+    case "6 dias": gei += 3; tne += 2; bc -= 4; break;
+    case "7 dias": gei += 3; tne += 2; bc -= 4; break;
   }
   switch (v("tempo")) {
     case "Menos de 6 meses": bc += 1; break;
