@@ -98,7 +98,10 @@ const DIAGNOSES = {
   },
   evolucao_hiper: {
     title: "Treina, mas não evolui",
-    photos: ["assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg"],
+    photos: [
+      "assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg",
+      "assets/img/photos_diagnosticos/treina_mas_nao_evolui_2.jpg",
+    ],
     profile: `
       <p>Você já possui um bom hábito de treino.</p>
       <p>Seu próximo nível de resultado depende menos de treinar mais e muito mais da qualidade do estímulo que está aplicando.</p>
@@ -228,7 +231,10 @@ const DIAGNOSES = {
   },
   evolucao_emag: {
     title: "Treina, mas não evolui",
-    photos: ["assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg"],
+    photos: [
+      "assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg",
+      "assets/img/photos_diagnosticos/treina_mas_nao_evolui_2.jpg",
+    ],
     profile: `
       <p>Você já construiu hábitos importantes.</p>
       <p>Agora sua evolução depende principalmente de ajustes estratégicos.</p>
