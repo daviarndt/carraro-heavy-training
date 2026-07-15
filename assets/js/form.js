@@ -75,16 +75,14 @@ const DIAGNOSES = {
       <p class="diag__rec-sub">Terça-feira — Lower</p>
       <ul>
         <li>Cadeira flexora</li>
-        <li>Mesa flexora</li>
+        <li>Elevação pélvica</li>
         <li>Leg Press</li>
+        <li>Mesa flexora</li>
         <li>Cadeira extensora</li>
         <li>Adutora</li>
-        <li>Elevação pélvica</li>
       </ul>
-      <p class="diag__rec-sub">Quarta-feira - Cardio</p>
-      <ul>
-        <li>Cardio</li>
-      </ul>
+      <p class="diag__rec-sub">Quarta-feira — Cardio</p>
+      <p>Procure acumular pelo menos 120 minutos de cardio por semana. Você pode distribuir esse tempo da forma que melhor se encaixar na sua rotina, seja realizando sessões mais curtas ao longo da semana ou treinos mais longos em dias específicos. Durante o cardio, procure manter uma intensidade moderada, mantendo sua frequência cardíaca acima de aproximadamente 115 bpm (esse valor pode variar conforme sua idade e condicionamento físico).</p>
       <p class="diag__rec-sub">Quinta-feira</p>
       <p>Repetir Upper.</p>
       <p class="diag__rec-sub">Sexta-feira</p>
@@ -98,10 +96,7 @@ const DIAGNOSES = {
   },
   evolucao_hiper: {
     title: "Treina, mas não evolui",
-    photos: [
-      "assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg",
-      "assets/img/photos_diagnosticos/treina_mas_nao_evolui_2.jpg",
-    ],
+    photos: ["assets/img/photos_diagnosticos/treina_mas_nao_evolui_hipertrofia.jpg"],
     profile: `
       <p>Você já possui um bom hábito de treino.</p>
       <p>Seu próximo nível de resultado depende menos de treinar mais e muito mais da qualidade do estímulo que está aplicando.</p>
@@ -131,6 +126,8 @@ const DIAGNOSES = {
       <p>Esse processo permite evoluir continuamente sem perder qualidade.</p>
       <p class="diag__rec-sub">Intensidade</p>
       <p>Procure finalizar a maior parte das séries muito próxima da falha muscular, mantendo sempre uma boa execução. Treinar pesado é um dos fatores mais importantes para estimular hipertrofia.</p>
+      <p class="diag__rec-sub">Cardio</p>
+      <p>Procure acumular pelo menos 120 minutos de cardio por semana. Você pode distribuir esse tempo da forma que melhor se encaixar na sua rotina, seja realizando sessões mais curtas ao longo da semana ou treinos mais longos em dias específicos. Durante o cardio, procure manter uma intensidade moderada, mantendo sua frequência cardíaca acima de aproximadamente 115 bpm (esse valor pode variar conforme sua idade e condicionamento físico).</p>
       <p class="diag__rec-sub">Outros fatores importantes</p>
       <p>Também vale revisar:</p>
       <ul>
@@ -148,8 +145,8 @@ const DIAGNOSES = {
   constancia: {
     title: "Baixa constância",
     photos: [
-      "assets/img/photos_diagnosticos/baixa_constancia.jpg",
-      "assets/img/photos_diagnosticos/baixa_constancia_2.jpg",
+      "assets/img/photos_diagnosticos/baixa_constancia_emagrecimento.jpg",
+      "assets/img/photos_diagnosticos/baixa_constancia_2_emagrecimento.jpg",
     ],
     profile: `
       <p>Seu principal desafio hoje não é encontrar o treino perfeito.</p>
@@ -167,25 +164,26 @@ const DIAGNOSES = {
         <li>Cadeira flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
+        <li>Abdutora</li>
         <li>Remada</li>
         <li>Desenvolvimento</li>
         <li>Tríceps pulley</li>
       </ul>
-      <p>Nos treinos seguintes, você pode substituir alguns exercícios que trabalhem os mesmos grupos musculares.</p>
+      <p>Nos treinos seguintes, alterne alguns exercícios, acrescentando mais um exercício para posteriores de coxa, aumentando gradualmente o volume semanal desse grupo muscular.</p>
       <p class="diag__rec-sub">Parâmetros sugeridos</p>
       <ul>
         <li>2 a 3 séries por exercício</li>
         <li>8 a 12 repetições</li>
       </ul>
       <p class="diag__rec-sub">Cardio</p>
-      <p>Procure acumular entre 120 e 180 minutos de atividade aeróbica por semana. Você pode dividir esse tempo da forma que melhor se encaixar na sua rotina.</p>
+      <p>Procure acumular pelo menos 150 minutos de cardio por semana. Você pode distribuir esse tempo da forma que melhor se encaixar na sua rotina, seja realizando sessões mais curtas ao longo da semana ou treinos mais longos em dias específicos. Durante o cardio, procure manter uma intensidade moderada, mantendo sua frequência cardíaca acima de 115 bpm (esse valor pode variar conforme sua idade e condicionamento físico). Além disso, procure permanecer ativa ao longo do dia. Caminhar mais, utilizar escadas e reduzir o tempo sentada são estratégias simples que aumentam seu gasto energético diário e contribuem para a criação de uma rotina mais consistente.</p>
       <p class="diag__rec-sub">Atividade diária</p>
       <p>Além dos treinos, procure permanecer ativa. Pequenas mudanças fazem diferença:</p>
       <ul>
         <li>Caminhar mais</li>
         <li>Utilizar escadas</li>
         <li>Passear no parque</li>
-        <li>Reduzir o tempo sentada</li>
+        <li>Reduzir o tempo sentado</li>
       </ul>
       <p class="diag__rec-foot">O melhor treino é aquele que você consegue manter durante meses.</p>
     `,
@@ -209,18 +207,19 @@ const DIAGNOSES = {
         <li>Cadeira flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
+        <li>Abdutora</li>
         <li>Remada</li>
         <li>Desenvolvimento</li>
         <li>Tríceps pulley</li>
       </ul>
-      <p>Nos treinos seguintes, você pode substituir alguns exercícios que trabalhem os mesmos grupos musculares.</p>
+      <p>Nos treinos seguintes, alterne alguns exercícios, acrescentando mais um exercício para posteriores de coxa, aumentando gradualmente o volume semanal desse grupo muscular.</p>
       <p class="diag__rec-sub">Parâmetros sugeridos</p>
       <ul>
         <li>2 a 3 séries por exercício</li>
         <li>8 a 12 repetições</li>
       </ul>
       <p class="diag__rec-sub">Cardio</p>
-      <p>Procure acumular mais de 180 minutos de atividade aeróbica por semana. Esse tempo pode ser dividido da forma que melhor se encaixar na sua rotina.</p>
+      <p>Procure acumular pelo menos 180 minutos de cardio por semana.</p>
       <p class="diag__rec-sub">Treine pesado</p>
       <p>Mesmo durante o emagrecimento, continue priorizando a musculação. Registre suas cargas e procure evoluir constantemente.</p>
       <p class="diag__rec-sub">Como aplicar a dupla progressão</p>
@@ -232,8 +231,8 @@ const DIAGNOSES = {
   evolucao_emag: {
     title: "Treina, mas não evolui",
     photos: [
-      "assets/img/photos_diagnosticos/treina_mas_nao_evolui.jpg",
-      "assets/img/photos_diagnosticos/treina_mas_nao_evolui_2.jpg",
+      "assets/img/photos_diagnosticos/treina_mas_nao_evolui_emagrecimento.jpg",
+      "assets/img/photos_diagnosticos/treina_mas_nao_evolui_2_emagrecimento.jpg",
     ],
     profile: `
       <p>Você já construiu hábitos importantes.</p>
@@ -248,7 +247,7 @@ const DIAGNOSES = {
       <p class="diag__rec-sub">Upper</p>
       <ul>
         <li>Remada pronada na máquina</li>
-        <li>Remada supinada na máquina</li>
+        <li>Remada supinada</li>
         <li>Remada baixa com triângulo</li>
         <li>Desenvolvimento com halteres</li>
         <li>Elevação lateral</li>
@@ -261,13 +260,15 @@ const DIAGNOSES = {
         <li>Mesa flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
-        <li>Adutora</li>
+        <li>Hack squat</li>
         <li>Elevação pélvica</li>
       </ul>
       <p class="diag__rec-sub">Como aplicar a dupla progressão</p>
       <p>Utilize uma faixa de repetições entre 8 e 12. Quando atingir o limite superior da faixa, aumente a carga e reinicie a progressão.</p>
       <p class="diag__rec-sub">Intensidade</p>
       <p>Finalize suas séries próximo da falha muscular.</p>
+      <p class="diag__rec-sub">Cardio</p>
+      <p>Mesmo que seu foco agora seja otimizar a qualidade da musculação, manter um bom volume de cardio continua sendo fundamental para o emagrecimento. Procure acumular pelo menos 180 minutos de cardio por semana, mantendo uma intensidade moderada, com frequência cardíaca acima de aproximadamente 115 bpm (esse valor pode variar conforme sua idade e condicionamento físico).</p>
       <p class="diag__rec-sub">Também vale revisar</p>
       <ul>
         <li>Alimentação</li>
@@ -357,14 +358,16 @@ function diagnoseHipertrofia(v) {
 function diagnoseEmagrecimento(v) {
   let bc = 0, gei = 0, tne = 0;
 
+  // Alta frequência (6-7 dias) é incompatível com "Baixa constância":
+  // além de reforçar os outros perfis, exclui BC da disputa.
+  const altaFrequencia = v("dias") === "6 dias" || v("dias") === "7 dias";
+
   switch (v("dias")) {
     case "3 dias": bc += 3; break;
     case "4 dias": bc += 1; break;
     case "5 dias": gei += 1; tne += 1; break;
-    // Alta frequência é incompatível com "baixa constância":
-    // reforça Gasto energético / Treina-mas-não-evolui e penaliza a Baixa constância.
-    case "6 dias": gei += 3; tne += 2; bc -= 4; break;
-    case "7 dias": gei += 3; tne += 2; bc -= 4; break;
+    case "6 dias": gei += 3; tne += 2; break;
+    case "7 dias": gei += 3; tne += 2; break;
   }
   switch (v("tempo")) {
     case "Menos de 6 meses": bc += 1; break;
@@ -408,14 +411,15 @@ function diagnoseEmagrecimento(v) {
     case "Insatisfeita": tne += 2; break;
   }
 
-  return pickMax(
-    [
-      { key: "constancia", score: bc },
-      { key: "gasto", score: gei },
-      { key: "evolucao_emag", score: tne },
-    ],
-    { constancia: bc, gasto: gei, evolucao: tne }
-  );
+  const candidatos = [
+    { key: "constancia", score: bc },
+    { key: "gasto", score: gei },
+    { key: "evolucao_emag", score: tne },
+  ];
+  // Com 6-7 dias de treino, "Baixa constância" nunca pode ser o diagnóstico.
+  const elegiveis = altaFrequencia ? candidatos.filter((c) => c.key !== "constancia") : candidatos;
+
+  return pickMax(elegiveis, { constancia: bc, gasto: gei, evolucao: tne });
 }
 
 /* ============================================================
