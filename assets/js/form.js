@@ -164,7 +164,6 @@ const DIAGNOSES = {
         <li>Cadeira flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
-        <li>Abdutora</li>
         <li>Remada</li>
         <li>Desenvolvimento</li>
         <li>Tríceps pulley</li>
@@ -207,7 +206,6 @@ const DIAGNOSES = {
         <li>Cadeira flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
-        <li>Abdutora</li>
         <li>Remada</li>
         <li>Desenvolvimento</li>
         <li>Tríceps pulley</li>
@@ -247,7 +245,7 @@ const DIAGNOSES = {
       <p class="diag__rec-sub">Upper</p>
       <ul>
         <li>Remada pronada na máquina</li>
-        <li>Remada supinada</li>
+        <li>Remada supinada na máquina</li>
         <li>Remada baixa com triângulo</li>
         <li>Desenvolvimento com halteres</li>
         <li>Elevação lateral</li>
@@ -260,7 +258,7 @@ const DIAGNOSES = {
         <li>Mesa flexora</li>
         <li>Leg Press</li>
         <li>Cadeira extensora</li>
-        <li>Hack squat</li>
+        <li>Adutora</li>
         <li>Elevação pélvica</li>
       </ul>
       <p class="diag__rec-sub">Como aplicar a dupla progressão</p>
