@@ -24,6 +24,10 @@ por **e-mail** (EmailJS) e o contato ativo acontece pelo **WhatsApp**.
     prática (estrutura de treino + cardio), foto(s) de aluna e um fechamento padrão.
 - **Baralho de fotos:** diagnósticos com mais de uma foto viram um "deck" clicável
   (fotos quadradas, P&B, efeito glass).
+- **PT/EN sem recarregar:** toggle com ícone de globo no topo troca o idioma do site
+  inteiro dinamicamente (inclusive o diagnóstico já exibido), sem alterar a URL;
+  a escolha persiste em `localStorage`. Dicionário em `assets/js/i18n.js` +
+  `DIAGNOSES_EN` em `assets/js/form.js`.
 - **WhatsApp (CTA "Fale com a nossa equipe"):** o botão final abre o WhatsApp da closer com uma
   mensagem curta de interesse (sem as respostas) — a lead que quer acompanhamento profissional.
 - **E-mail (EmailJS):** ao concluir, diagnóstico + dados + respostas são enviados para a equipe

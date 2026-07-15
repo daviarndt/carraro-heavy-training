@@ -107,6 +107,13 @@ O conteúdo (textos, exercícios, metas de cardio) segue a **especificação fin
 - `setupDeck()` em `form.js`: quando um diagnóstico tem +1 foto, vira um **baralho** — clicar joga a foto do topo pro fundo com animação. Fotos ficam quadradas, P&B (grayscale), com moldura estilo "liquid glass". Ciclo concluído por `setTimeout` (não depende de `transitionend`).
 - Pastas de originais (ex.: material bruto de fotos) **não são versionadas** — ver `.gitignore`.
 
+## 6.1 Idiomas (PT/EN)
+- Toggle (globo + código) no topo das duas páginas; troca **sem reload e sem mudar a URL**; escolha salva em `localStorage` (`carraro_lang`).
+- Estáticos: `assets/js/i18n.js` (dicionário `STRINGS` + `[data-i18n]`/`[data-i18n-placeholder]`; API `window.i18n`).
+- Dinâmicos: `DIAGNOSES_EN` em `form.js` (`getDiag()` escolhe o idioma); evento `langchange` re-renderiza o resultado exibido e o link do WhatsApp.
+- **Os `value` dos radios ficam SEMPRE em PT** (score e e-mail intactos); só o rótulo visível traduz. O e-mail pro time sai sempre em PT.
+- Bloco TEMP comentado já tem `data-i18n` — ao reativar os campos, a tradução funciona.
+
 ## 7. Integrações e entrega
 - **WhatsApp:** constante `WHATSAPP_NUMBER` em `form.js` (formato internacional, só dígitos). É o número da **closer** do Renan (vendas). **Hoje é um número de TESTE** (`4915259100748`). O CTA abre o WhatsApp com uma **mensagem curta** de interesse ("Oi, meu nome é {nome}! ..."), sem as respostas.
 - **E-mail (EmailJS):** ao concluir, envia o lead (contato + respostas + diagnóstico) por e-mail para Renan + closer. IDs no `form.js` (`EMAILJS_PUBLIC_KEY`, `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`). Destinatários (To=closer, Cc=Renan) são **fixos no template do EmailJS** (não no cliente). Tem **resiliência**: retry com backoff (3x) + fila local em `localStorage` que reenvia numa próxima visita (`flushPending`).

@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://wa.me" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body>
+<body data-page="index">
 
   <!-- NAV -->
   <header class="nav">
@@ -24,21 +24,34 @@
       <span class="logo__name">Carraro</span>
       <span class="logo__tag">Heavy Training</span>
     </a>
-    <a href="avaliacao.html" class="btn btn--wine nav__cta">Fazer diagnóstico</a>
+    <div class="nav__right">
+      <div class="lang-switch">
+        <button type="button" class="lang-switch__btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Idioma / Language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-switch__code">PT</span>
+          <svg class="lang-switch__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <ul class="lang-switch__menu" role="listbox">
+          <li><button type="button" data-lang="pt" role="option">PT — Português</button></li>
+          <li><button type="button" data-lang="en" role="option">EN — English</button></li>
+        </ul>
+      </div>
+      <a href="avaliacao.html" class="btn btn--wine nav__cta" data-i18n="nav_cta">Fazer diagnóstico</a>
+    </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
     <div class="container hero__inner">
-      <span class="hero__eyebrow">Treinamento feminino</span>
-      <h1 class="hero__title">Descubra o que<br>está <em>travando</em><br>a sua evolução</h1>
-      <p class="hero__sub">
+      <span class="hero__eyebrow" data-i18n="hero_eyebrow">Treinamento feminino</span>
+      <h1 class="hero__title" data-i18n="hero_title">Descubra o que<br>está <em>travando</em><br>a sua evolução</h1>
+      <p class="hero__sub" data-i18n="hero_sub">
         Responda algumas perguntas e receba um <strong>diagnóstico gratuito</strong> do seu
         treino — com o principal ponto a ajustar e uma recomendação prática pra começar.
       </p>
       <div class="hero__cta-row">
-        <a href="avaliacao.html" class="btn btn--primary btn--lg">Fazer meu diagnóstico</a>
-        <span class="hero__note">Leva ~3 minutos · grátis e sem compromisso</span>
+        <a href="avaliacao.html" class="btn btn--primary btn--lg" data-i18n="hero_cta">Fazer meu diagnóstico</a>
+        <span class="hero__note" data-i18n="hero_note">Leva ~3 minutos · grátis e sem compromisso</span>
       </div>
     </div>
   </section>
@@ -47,24 +60,24 @@
   <section class="section steps">
     <div class="container">
       <div class="head reveal">
-        <p class="head__kicker">Como funciona</p>
-        <h2 class="head__title">Do primeiro contato ao treino</h2>
+        <p class="head__kicker" data-i18n="steps_kicker">Como funciona</p>
+        <h2 class="head__title" data-i18n="steps_title">Do primeiro contato ao treino</h2>
       </div>
       <div class="steps__grid">
         <div class="step reveal">
           <div class="step__num">01</div>
-          <h3 class="step__title">Você responde</h3>
-          <p class="step__txt">Responde algumas perguntas sobre seu treino, sua rotina e seus resultados. Leva poucos minutos.</p>
+          <h3 class="step__title" data-i18n="step1_title">Você responde</h3>
+          <p class="step__txt" data-i18n="step1_txt">Responde algumas perguntas sobre seu treino, sua rotina e seus resultados. Leva poucos minutos.</p>
         </div>
         <div class="step reveal">
           <div class="step__num">02</div>
-          <h3 class="step__title">Recebe o diagnóstico</h3>
-          <p class="step__txt">Na hora, você vê o principal ponto a ajustar no seu treino e uma recomendação prática pra começar.</p>
+          <h3 class="step__title" data-i18n="step2_title">Recebe o diagnóstico</h3>
+          <p class="step__txt" data-i18n="step2_txt">Na hora, você vê o principal ponto a ajustar no seu treino e uma recomendação prática pra começar.</p>
         </div>
         <div class="step reveal">
           <div class="step__num">03</div>
-          <h3 class="step__title">Análise personalizada</h3>
-          <p class="step__txt">Quer ir além? Recebo suas respostas no WhatsApp e te envio uma análise sob medida — presencial ou online.</p>
+          <h3 class="step__title" data-i18n="step3_title">Análise personalizada</h3>
+          <p class="step__txt" data-i18n="step3_txt">Quer ir além? Recebo suas respostas no WhatsApp e te envio uma análise sob medida — presencial ou online.</p>
         </div>
       </div>
     </div>
@@ -73,11 +86,11 @@
   <!-- FINAL CTA -->
   <section class="section cta-final" id="comecar">
     <div class="container">
-      <h2 class="cta-final__title reveal">Bora começar?</h2>
-      <p class="cta-final__sub reveal">
+      <h2 class="cta-final__title reveal" data-i18n="ctaf_title">Bora começar?</h2>
+      <p class="cta-final__sub reveal" data-i18n="ctaf_sub">
         Faça seu diagnóstico gratuito agora. É o primeiro passo pro seu treino personalizado.
       </p>
-      <a href="avaliacao.html" class="btn btn--primary btn--lg reveal">Fazer meu diagnóstico</a>
+      <a href="avaliacao.html" class="btn btn--primary btn--lg reveal" data-i18n="hero_cta">Fazer meu diagnóstico</a>
     </div>
   </section>
 
@@ -89,13 +102,14 @@
         <span class="logo__tag">Heavy Training</span>
       </div>
       <div class="footer__links">
-        <a href="avaliacao.html">Diagnóstico</a>
+        <a href="avaliacao.html" data-i18n="footer_diag">Diagnóstico</a>
         <a href="https://www.instagram.com/renancarrarotreinador/" target="_blank" rel="noopener">Instagram</a>
       </div>
-      <p class="footer__copy">© <span id="year"></span> Renan Carraro · Heavy Training. Todos os direitos reservados.</p>
+      <p class="footer__copy">© <span id="year"></span> Renan Carraro · Heavy Training. <span data-i18n="footer_rights">Todos os direitos reservados.</span></p>
     </div>
   </footer>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

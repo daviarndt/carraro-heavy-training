@@ -12,7 +12,7 @@
   <!-- EmailJS SDK (envio do lead por e-mail para Renan + closer) -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
-<body>
+<body data-page="form">
   <main class="form-page">
 
     <div class="form-top">
@@ -20,7 +20,20 @@
         <span class="logo__name">Carraro</span>
         <span class="logo__tag">Heavy Training</span>
       </a>
-      <a href="index.html" class="form-top__back">← Voltar</a>
+      <div class="nav__right">
+        <div class="lang-switch">
+          <button type="button" class="lang-switch__btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Idioma / Language">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-switch__code">PT</span>
+            <svg class="lang-switch__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="lang-switch__menu" role="listbox">
+            <li><button type="button" data-lang="pt" role="option">PT — Português</button></li>
+            <li><button type="button" data-lang="en" role="option">EN — English</button></li>
+          </ul>
+        </div>
+        <a href="index.html" class="form-top__back" data-i18n="form_back">← Voltar</a>
+      </div>
     </div>
 
     <div class="progress"><div class="progress__bar" id="progressBar"></div></div>
@@ -31,70 +44,70 @@
         <!-- ETAPA 1 — Contato -->
         <section class="step-screen is-active" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Vamos nos conhecer</h2>
-          <p class="step-hint">Só pra personalizar o seu diagnóstico.</p>
+          <h2 class="step-q" data-i18n="c_title">Vamos nos conhecer</h2>
+          <p class="step-hint" data-i18n="c_hint">Só pra personalizar o seu diagnóstico.</p>
 
           <div class="field">
-            <label for="nome">Seu nome completo</label>
-            <input class="input" type="text" id="nome" name="nome" placeholder="Ex.: Maria Silva" required />
-            <span class="field-error">Por favor, preencha seu nome.</span>
+            <label for="nome" data-i18n="c_nome">Seu nome completo</label>
+            <input class="input" type="text" id="nome" name="nome" placeholder="Ex.: Maria Silva" data-i18n-placeholder="c_nome_ph" required />
+            <span class="field-error" data-i18n="c_nome_err">Por favor, preencha seu nome.</span>
           </div>
 
           <!-- ===== TEMP (fase de testes): dados pessoais + consentimento desativados.
                REATIVAR: apagar esta linha de abertura e a linha "FIM TEMP" lá embaixo.
                (Também voltar EMAIL_ENABLED para true em assets/js/form.js.) =====
           <div class="field">
-            <label for="idade">Idade</label>
-            <input class="input" type="number" id="idade" name="idade" min="12" max="99" placeholder="Ex.: 28" required />
-            <span class="field-error">Informe sua idade.</span>
+            <label for="idade" data-i18n="c_idade">Idade</label>
+            <input class="input" type="number" id="idade" name="idade" min="12" max="99" placeholder="Ex.: 28" data-i18n-placeholder="c_idade_ph" required />
+            <span class="field-error" data-i18n="c_idade_err">Informe sua idade.</span>
           </div>
           <div class="field">
-            <label for="email">E-mail</label>
-            <input class="input" type="email" id="email" name="email" placeholder="Ex.: maria@email.com" autocomplete="email" required />
-            <span class="field-error">Informe um e-mail válido.</span>
+            <label for="email" data-i18n="c_email">E-mail</label>
+            <input class="input" type="email" id="email" name="email" placeholder="Ex.: maria@email.com" data-i18n-placeholder="c_email_ph" autocomplete="email" required />
+            <span class="field-error" data-i18n="c_email_err">Informe um e-mail válido.</span>
           </div>
           <div class="field">
-            <label for="whatsapp">WhatsApp (com DDD)</label>
-            <input class="input" type="tel" id="whatsapp" name="whatsapp" placeholder="Ex.: (51) 99999-9999" required />
-            <span class="field-error">Informe um número de contato.</span>
+            <label for="whatsapp" data-i18n="c_whats">WhatsApp (com DDD)</label>
+            <input class="input" type="tel" id="whatsapp" name="whatsapp" placeholder="Ex.: (51) 99999-9999" data-i18n-placeholder="c_whats_ph" required />
+            <span class="field-error" data-i18n="c_whats_err">Informe um número de contato.</span>
           </div>
           <div class="field">
-            <label for="instagram">Instagram (@ ou link)</label>
-            <input class="input" type="text" id="instagram" name="instagram" placeholder="Ex.: @maria.silva" autocomplete="off" />
+            <label for="instagram" data-i18n="c_insta">Instagram (@ ou link)</label>
+            <input class="input" type="text" id="instagram" name="instagram" placeholder="Ex.: @maria.silva" data-i18n-placeholder="c_insta_ph" autocomplete="off" />
           </div>
           <div class="field">
-            <label for="pais">País onde mora</label>
+            <label for="pais" data-i18n="c_pais">País onde mora</label>
             <select class="input" id="pais" name="pais" required>
-              <option value="" selected disabled>Selecione…</option>
+              <option value="" selected disabled data-i18n="select_ph">Selecione…</option>
             </select>
-            <span class="field-error">Selecione seu país.</span>
+            <span class="field-error" data-i18n="c_pais_err">Selecione seu país.</span>
           </div>
           <div class="field" id="fieldEstado">
-            <label for="estado">Estado</label>
+            <label for="estado" data-i18n="c_estado">Estado</label>
             <select class="input" id="estado" name="estado" required>
-              <option value="" selected disabled>Selecione…</option>
+              <option value="" selected disabled data-i18n="select_ph">Selecione…</option>
             </select>
-            <span class="field-error">Selecione seu estado.</span>
+            <span class="field-error" data-i18n="c_estado_err">Selecione seu estado.</span>
           </div>
           <div class="field" id="fieldCidadeBr">
-            <label for="cidade">Cidade</label>
+            <label for="cidade" data-i18n="c_cidade">Cidade</label>
             <select class="input" id="cidade" name="cidade" required disabled>
-              <option value="" selected disabled>Selecione o estado primeiro…</option>
+              <option value="" selected disabled data-i18n="c_cidade_first">Selecione o estado primeiro…</option>
             </select>
-            <span class="field-error">Selecione sua cidade.</span>
+            <span class="field-error" data-i18n="c_cidade_err">Selecione sua cidade.</span>
           </div>
           <div class="field" id="fieldCidadeEx" style="display:none">
-            <label for="cidadeEx">Cidade</label>
-            <input class="input" type="text" id="cidadeEx" name="cidadeEx" placeholder="Digite sua cidade" required disabled />
-            <span class="field-error">Informe sua cidade.</span>
+            <label for="cidadeEx" data-i18n="c_cidade">Cidade</label>
+            <input class="input" type="text" id="cidadeEx" name="cidadeEx" placeholder="Digite sua cidade" data-i18n-placeholder="c_cidade_ph" required disabled />
+            <span class="field-error" data-i18n="c_cidade_ex_err">Informe sua cidade.</span>
           </div>
           <div class="field">
             <label class="consent">
               <input type="checkbox" id="consent" name="consent" required />
               <span class="consent__box"></span>
-              <span class="consent__text">Concordo em compartilhar meus dados para receber meu diagnóstico e ser contatada pela equipe do Renan Carraro.</span>
+              <span class="consent__text" data-i18n="consent_txt">Concordo em compartilhar meus dados para receber meu diagnóstico e ser contatada pela equipe do Renan Carraro.</span>
             </label>
-            <span class="field-error">É preciso aceitar para continuar.</span>
+            <span class="field-error" data-i18n="consent_err">É preciso aceitar para continuar.</span>
           </div>
           ===== FIM TEMP ===== -->
         </section>
@@ -102,160 +115,160 @@
         <!-- P1 — Objetivo -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Qual é o seu principal objetivo?</h2>
+          <h2 class="step-q" data-i18n="q1">Qual é o seu principal objetivo?</h2>
           <div class="field">
             <div class="options" data-required>
-              <label class="option"><input type="radio" name="objetivo" value="Hipertrofia e definição" /><span class="option__mark"></span><span class="option__label">Hipertrofia e definição</span></label>
-              <label class="option"><input type="radio" name="objetivo" value="Emagrecimento" /><span class="option__mark"></span><span class="option__label">Emagrecimento</span></label>
+              <label class="option"><input type="radio" name="objetivo" value="Hipertrofia e definição" /><span class="option__mark"></span><span class="option__label" data-i18n="q1_o1">Hipertrofia e definição</span></label>
+              <label class="option"><input type="radio" name="objetivo" value="Emagrecimento" /><span class="option__mark"></span><span class="option__label" data-i18n="q1_o2">Emagrecimento</span></label>
             </div>
-            <span class="field-error">Selecione uma opção.</span>
+            <span class="field-error" data-i18n="opt_err">Selecione uma opção.</span>
           </div>
         </section>
 
         <!-- P2 — Dias por semana -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Quantos dias por semana você treina atualmente?</h2>
+          <h2 class="step-q" data-i18n="q2">Quantos dias por semana você treina atualmente?</h2>
           <div class="field">
             <div class="options" data-required>
-              <label class="option"><input type="radio" name="dias" value="3 dias" /><span class="option__mark"></span><span class="option__label">3 dias</span></label>
-              <label class="option"><input type="radio" name="dias" value="4 dias" /><span class="option__mark"></span><span class="option__label">4 dias</span></label>
-              <label class="option"><input type="radio" name="dias" value="5 dias" /><span class="option__mark"></span><span class="option__label">5 dias</span></label>
-              <label class="option"><input type="radio" name="dias" value="6 dias" /><span class="option__mark"></span><span class="option__label">6 dias</span></label>
-              <label class="option"><input type="radio" name="dias" value="7 dias" /><span class="option__mark"></span><span class="option__label">7 dias</span></label>
+              <label class="option"><input type="radio" name="dias" value="3 dias" /><span class="option__mark"></span><span class="option__label" data-i18n="q2_o1">3 dias</span></label>
+              <label class="option"><input type="radio" name="dias" value="4 dias" /><span class="option__mark"></span><span class="option__label" data-i18n="q2_o2">4 dias</span></label>
+              <label class="option"><input type="radio" name="dias" value="5 dias" /><span class="option__mark"></span><span class="option__label" data-i18n="q2_o3">5 dias</span></label>
+              <label class="option"><input type="radio" name="dias" value="6 dias" /><span class="option__mark"></span><span class="option__label" data-i18n="q2_o4">6 dias</span></label>
+              <label class="option"><input type="radio" name="dias" value="7 dias" /><span class="option__mark"></span><span class="option__label" data-i18n="q2_o5">7 dias</span></label>
             </div>
-            <span class="field-error">Selecione uma opção.</span>
+            <span class="field-error" data-i18n="opt_err">Selecione uma opção.</span>
           </div>
         </section>
 
         <!-- P3 — Tempo de treino -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Há quanto tempo você treina regularmente?</h2>
+          <h2 class="step-q" data-i18n="q3">Há quanto tempo você treina regularmente?</h2>
           <div class="field">
             <div class="options" data-required>
-              <label class="option"><input type="radio" name="tempo" value="Menos de 6 meses" /><span class="option__mark"></span><span class="option__label">Menos de 6 meses</span></label>
-              <label class="option"><input type="radio" name="tempo" value="Entre 6 meses e 1 ano" /><span class="option__mark"></span><span class="option__label">Entre 6 meses e 1 ano</span></label>
-              <label class="option"><input type="radio" name="tempo" value="Entre 1 e 2 anos" /><span class="option__mark"></span><span class="option__label">Entre 1 e 2 anos</span></label>
-              <label class="option"><input type="radio" name="tempo" value="Mais de 2 anos" /><span class="option__mark"></span><span class="option__label">Mais de 2 anos</span></label>
+              <label class="option"><input type="radio" name="tempo" value="Menos de 6 meses" /><span class="option__mark"></span><span class="option__label" data-i18n="q3_o1">Menos de 6 meses</span></label>
+              <label class="option"><input type="radio" name="tempo" value="Entre 6 meses e 1 ano" /><span class="option__mark"></span><span class="option__label" data-i18n="q3_o2">Entre 6 meses e 1 ano</span></label>
+              <label class="option"><input type="radio" name="tempo" value="Entre 1 e 2 anos" /><span class="option__mark"></span><span class="option__label" data-i18n="q3_o3">Entre 1 e 2 anos</span></label>
+              <label class="option"><input type="radio" name="tempo" value="Mais de 2 anos" /><span class="option__mark"></span><span class="option__label" data-i18n="q3_o4">Mais de 2 anos</span></label>
             </div>
-            <span class="field-error">Selecione uma opção.</span>
+            <span class="field-error" data-i18n="opt_err">Selecione uma opção.</span>
           </div>
         </section>
 
         <!-- P4 — Interrupções -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Nos últimos 3 meses, quantas vezes você interrompeu seus treinos por mais de duas semanas?</h2>
+          <h2 class="step-q" data-i18n="q4">Nos últimos 3 meses, quantas vezes você interrompeu seus treinos por mais de duas semanas?</h2>
           <div class="field">
             <div class="options" data-required>
-              <label class="option"><input type="radio" name="interrupcoes" value="Nenhuma" /><span class="option__mark"></span><span class="option__label">Nenhuma</span></label>
-              <label class="option"><input type="radio" name="interrupcoes" value="1 vez" /><span class="option__mark"></span><span class="option__label">1 vez</span></label>
-              <label class="option"><input type="radio" name="interrupcoes" value="2 vezes" /><span class="option__mark"></span><span class="option__label">2 vezes</span></label>
-              <label class="option"><input type="radio" name="interrupcoes" value="3 vezes ou mais" /><span class="option__mark"></span><span class="option__label">3 vezes ou mais</span></label>
+              <label class="option"><input type="radio" name="interrupcoes" value="Nenhuma" /><span class="option__mark"></span><span class="option__label" data-i18n="q4_o1">Nenhuma</span></label>
+              <label class="option"><input type="radio" name="interrupcoes" value="1 vez" /><span class="option__mark"></span><span class="option__label" data-i18n="q4_o2">1 vez</span></label>
+              <label class="option"><input type="radio" name="interrupcoes" value="2 vezes" /><span class="option__mark"></span><span class="option__label" data-i18n="q4_o3">2 vezes</span></label>
+              <label class="option"><input type="radio" name="interrupcoes" value="3 vezes ou mais" /><span class="option__mark"></span><span class="option__label" data-i18n="q4_o4">3 vezes ou mais</span></label>
             </div>
-            <span class="field-error">Selecione uma opção.</span>
+            <span class="field-error" data-i18n="opt_err">Selecione uma opção.</span>
           </div>
         </section>
 
         <!-- P5 — Dificuldade -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Qual é o principal motivo que dificulta sua rotina de treinos?</h2>
+          <h2 class="step-q" data-i18n="q5">Qual é o principal motivo que dificulta sua rotina de treinos?</h2>
           <div class="field">
             <div class="options" data-required>
-              <label class="option"><input type="radio" name="dificuldade" value="Falta de tempo" /><span class="option__mark"></span><span class="option__label">Falta de tempo</span></label>
-              <label class="option"><input type="radio" name="dificuldade" value="Trabalho" /><span class="option__mark"></span><span class="option__label">Trabalho</span></label>
-              <label class="option"><input type="radio" name="dificuldade" value="Filhos/família" /><span class="option__mark"></span><span class="option__label">Filhos/família</span></label>
-              <label class="option"><input type="radio" name="dificuldade" value="Falta de motivação" /><span class="option__mark"></span><span class="option__label">Falta de motivação</span></label>
-              <label class="option"><input type="radio" name="dificuldade" value="Não sei como organizar meu treino" /><span class="option__mark"></span><span class="option__label">Não sei como organizar meu treino</span></label>
+              <label class="option"><input type="radio" name="dificuldade" value="Falta de tempo" /><span class="option__mark"></span><span class="option__label" data-i18n="q5_o1">Falta de tempo</span></label>
+              <label class="option"><input type="radio" name="dificuldade" value="Trabalho" /><span class="option__mark"></span><span class="option__label" data-i18n="q5_o2">Trabalho</span></label>
+              <label class="option"><input type="radio" name="dificuldade" value="Filhos/família" /><span class="option__mark"></span><span class="option__label" data-i18n="q5_o3">Filhos/família</span></label>
+              <label class="option"><input type="radio" name="dificuldade" value="Falta de motivação" /><span class="option__mark"></span><span class="option__label" data-i18n="q5_o4">Falta de motivação</span></label>
+              <label class="option"><input type="radio" name="dificuldade" value="Não sei como organizar meu treino" /><span class="option__mark"></span><span class="option__label" data-i18n="q5_o5">Não sei como organizar meu treino</span></label>
             </div>
-            <span class="field-error">Selecione uma opção.</span>
+            <span class="field-error" data-i18n="opt_err">Selecione uma opção.</span>
           </div>
         </section>
 
         <!-- P6 — Treino estruturado -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Você segue um treino estruturado?</h2>
+          <h2 class="step-q" data-i18n="q6">Você segue um treino estruturado?</h2>
           <div class="field">
             <div class="options" data-required>
-              <label class="option"><input type="radio" name="estruturado" value="Sim, com acompanhamento profissional" /><span class="option__mark"></span><span class="option__label">Sim, com acompanhamento profissional</span></label>
-              <label class="option"><input type="radio" name="estruturado" value="Sim, mas monto sozinha" /><span class="option__mark"></span><span class="option__label">Sim, mas monto sozinha</span></label>
-              <label class="option"><input type="radio" name="estruturado" value="Uso treinos prontos da internet" /><span class="option__mark"></span><span class="option__label">Uso treinos prontos da internet</span></label>
-              <label class="option"><input type="radio" name="estruturado" value="Não tenho planejamento" /><span class="option__mark"></span><span class="option__label">Não tenho planejamento</span></label>
+              <label class="option"><input type="radio" name="estruturado" value="Sim, com acompanhamento profissional" /><span class="option__mark"></span><span class="option__label" data-i18n="q6_o1">Sim, com acompanhamento profissional</span></label>
+              <label class="option"><input type="radio" name="estruturado" value="Sim, mas monto sozinha" /><span class="option__mark"></span><span class="option__label" data-i18n="q6_o2">Sim, mas monto sozinha</span></label>
+              <label class="option"><input type="radio" name="estruturado" value="Uso treinos prontos da internet" /><span class="option__mark"></span><span class="option__label" data-i18n="q6_o3">Uso treinos prontos da internet</span></label>
+              <label class="option"><input type="radio" name="estruturado" value="Não tenho planejamento" /><span class="option__mark"></span><span class="option__label" data-i18n="q6_o4">Não tenho planejamento</span></label>
             </div>
-            <span class="field-error">Selecione uma opção.</span>
+            <span class="field-error" data-i18n="opt_err">Selecione uma opção.</span>
           </div>
         </section>
 
         <!-- P7 — Registro de cargas -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Você registra suas cargas (ou sua evolução) durante os treinos?</h2>
+          <h2 class="step-q" data-i18n="q7">Você registra suas cargas (ou sua evolução) durante os treinos?</h2>
           <div class="field">
             <div class="options" data-required>
-              <label class="option"><input type="radio" name="registro" value="Sempre" /><span class="option__mark"></span><span class="option__label">Sempre</span></label>
-              <label class="option"><input type="radio" name="registro" value="Às vezes" /><span class="option__mark"></span><span class="option__label">Às vezes</span></label>
-              <label class="option"><input type="radio" name="registro" value="Nunca" /><span class="option__mark"></span><span class="option__label">Nunca</span></label>
+              <label class="option"><input type="radio" name="registro" value="Sempre" /><span class="option__mark"></span><span class="option__label" data-i18n="q7_o1">Sempre</span></label>
+              <label class="option"><input type="radio" name="registro" value="Às vezes" /><span class="option__mark"></span><span class="option__label" data-i18n="q7_o2">Às vezes</span></label>
+              <label class="option"><input type="radio" name="registro" value="Nunca" /><span class="option__mark"></span><span class="option__label" data-i18n="q7_o3">Nunca</span></label>
             </div>
-            <span class="field-error">Selecione uma opção.</span>
+            <span class="field-error" data-i18n="opt_err">Selecione uma opção.</span>
           </div>
         </section>
 
         <!-- P8 — Aeróbico -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Quantos minutos de atividade aeróbica você faz por semana?</h2>
+          <h2 class="step-q" data-i18n="q8">Quantos minutos de atividade aeróbica você faz por semana?</h2>
           <div class="field">
             <div class="options" data-required>
-              <label class="option"><input type="radio" name="aerobico" value="Nenhum" /><span class="option__mark"></span><span class="option__label">Nenhum</span></label>
-              <label class="option"><input type="radio" name="aerobico" value="Menos de 60 minutos" /><span class="option__mark"></span><span class="option__label">Menos de 60 minutos</span></label>
-              <label class="option"><input type="radio" name="aerobico" value="Entre 60 e 120 minutos" /><span class="option__mark"></span><span class="option__label">Entre 60 e 120 minutos</span></label>
-              <label class="option"><input type="radio" name="aerobico" value="Mais de 120 minutos" /><span class="option__mark"></span><span class="option__label">Mais de 120 minutos</span></label>
+              <label class="option"><input type="radio" name="aerobico" value="Nenhum" /><span class="option__mark"></span><span class="option__label" data-i18n="q8_o1">Nenhum</span></label>
+              <label class="option"><input type="radio" name="aerobico" value="Menos de 60 minutos" /><span class="option__mark"></span><span class="option__label" data-i18n="q8_o2">Menos de 60 minutos</span></label>
+              <label class="option"><input type="radio" name="aerobico" value="Entre 60 e 120 minutos" /><span class="option__mark"></span><span class="option__label" data-i18n="q8_o3">Entre 60 e 120 minutos</span></label>
+              <label class="option"><input type="radio" name="aerobico" value="Mais de 120 minutos" /><span class="option__mark"></span><span class="option__label" data-i18n="q8_o4">Mais de 120 minutos</span></label>
             </div>
-            <span class="field-error">Selecione uma opção.</span>
+            <span class="field-error" data-i18n="opt_err">Selecione uma opção.</span>
           </div>
         </section>
 
         <!-- P9 — Satisfação -->
         <section class="step-screen" data-step>
           <p class="step-count"></p>
-          <h2 class="step-q">Você está satisfeita com seus resultados atuais?</h2>
+          <h2 class="step-q" data-i18n="q9">Você está satisfeita com seus resultados atuais?</h2>
           <div class="field">
             <div class="options" data-required>
-              <label class="option"><input type="radio" name="satisfacao" value="Muito satisfeita" /><span class="option__mark"></span><span class="option__label">Muito satisfeita</span></label>
-              <label class="option"><input type="radio" name="satisfacao" value="Parcialmente satisfeita" /><span class="option__mark"></span><span class="option__label">Parcialmente satisfeita</span></label>
-              <label class="option"><input type="radio" name="satisfacao" value="Insatisfeita" /><span class="option__mark"></span><span class="option__label">Insatisfeita</span></label>
+              <label class="option"><input type="radio" name="satisfacao" value="Muito satisfeita" /><span class="option__mark"></span><span class="option__label" data-i18n="q9_o1">Muito satisfeita</span></label>
+              <label class="option"><input type="radio" name="satisfacao" value="Parcialmente satisfeita" /><span class="option__mark"></span><span class="option__label" data-i18n="q9_o2">Parcialmente satisfeita</span></label>
+              <label class="option"><input type="radio" name="satisfacao" value="Insatisfeita" /><span class="option__mark"></span><span class="option__label" data-i18n="q9_o3">Insatisfeita</span></label>
             </div>
-            <span class="field-error">Selecione uma opção.</span>
+            <span class="field-error" data-i18n="opt_err">Selecione uma opção.</span>
           </div>
         </section>
 
         <!-- NAV -->
         <div class="form-nav">
-          <button type="button" class="btn btn--ghost" id="btnPrev">Voltar</button>
-          <button type="button" class="btn btn--primary" id="btnNext">Próximo</button>
-          <button type="submit" class="btn btn--wine" id="btnSubmit" style="display:none">Ver meu diagnóstico</button>
+          <button type="button" class="btn btn--ghost" id="btnPrev" data-i18n="btn_prev">Voltar</button>
+          <button type="button" class="btn btn--primary" id="btnNext" data-i18n="btn_next">Próximo</button>
+          <button type="submit" class="btn btn--wine" id="btnSubmit" style="display:none" data-i18n="btn_submit">Ver meu diagnóstico</button>
         </div>
 
         <!-- RESULTADO / DIAGNÓSTICO -->
         <section class="step-screen diag" data-done>
-          <p class="diag__kicker">Seu diagnóstico</p>
+          <p class="diag__kicker" data-i18n="diag_kicker">Seu diagnóstico</p>
           <h2 class="diag__title" id="diagTitle"></h2>
           <div class="diag__profile" id="diagProfile"></div>
           <div class="diag__rec" id="diagRec"></div>
 
           <!-- Fechamento padrão (igual para todos os diagnósticos) -->
           <div class="diag__closing">
-            <p><strong>Importante:</strong> Este diagnóstico foi elaborado com base nas respostas fornecidas por você e representa uma orientação inicial. Embora essas recomendações sejam um excelente ponto de partida, fatores individuais como rotina, histórico de treino, limitações, alimentação e recuperação podem exigir ajustes específicos.</p>
-            <p>É justamente esse trabalho de individualização que realizamos na consultoria, acompanhando sua evolução de perto e adaptando o planejamento para que você alcance seus resultados da forma mais eficiente possível.</p>
+            <p data-i18n="closing_1"><strong>Importante:</strong> Este diagnóstico foi elaborado com base nas respostas fornecidas por você e representa uma orientação inicial. Embora essas recomendações sejam um excelente ponto de partida, fatores individuais como rotina, histórico de treino, limitações, alimentação e recuperação podem exigir ajustes específicos.</p>
+            <p data-i18n="closing_2">É justamente esse trabalho de individualização que realizamos na consultoria, acompanhando sua evolução de perto e adaptando o planejamento para que você alcance seus resultados da forma mais eficiente possível.</p>
           </div>
 
           <div class="diag__cta">
-            <h3 class="diag__cta-title">Fale com a nossa equipe</h3>
-            <a href="#" class="btn btn--wine btn--lg" id="waLink" target="_blank" rel="noopener">Receber análise personalizada</a>
-            <p class="done__hint">Se o WhatsApp não abrir sozinho, use o botão acima.</p>
+            <h3 class="diag__cta-title" data-i18n="cta_title">Fale com a nossa equipe</h3>
+            <a href="#" class="btn btn--wine btn--lg" id="waLink" target="_blank" rel="noopener" data-i18n="cta_btn">Receber análise personalizada</a>
+            <p class="done__hint" data-i18n="cta_hint">Se o WhatsApp não abrir sozinho, use o botão acima.</p>
           </div>
         </section>
 
@@ -263,6 +276,7 @@
     </div>
   </main>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/form.js"></script>
 </body>
 </html>

@@ -6,6 +6,9 @@
 // Por enquanto é um número de TESTE; trocar pelo número real da closer antes de publicar.
 const WHATSAPP_NUMBER = "4915259100748";
 
+// Tradução (i18n.js carrega antes deste arquivo)
+const t = (key, vars) => (window.i18n ? window.i18n.t(key, vars) : key);
+
 const form = document.getElementById("evalForm");
 const steps = Array.from(form.querySelectorAll("[data-step]"));
 const doneScreen = form.querySelector("[data-done]");
@@ -279,6 +282,235 @@ const DIAGNOSES = {
   },
 };
 
+/* ---------- Versão em inglês dos diagnósticos (title/profile/rec) ----------
+   As fotos vêm sempre de DIAGNOSES. O e-mail pro time continua usando o
+   título em PT (DIAGNOSES), independente do idioma da tela. */
+const DIAGNOSES_EN = {
+  estimulo: {
+    title: "Insufficient stimulus",
+    profile: `
+      <p>Your main bottleneck today is not a lack of effort.</p>
+      <p>The main factor limiting your progress is that your current training stimulus is not yet enough for the goal you want to reach.</p>
+      <p>This may be related to your weekly frequency, your training plan, load progression, or even the difficulty of keeping a consistent routine.</p>
+      <p>Small adjustments to these variables usually make a big difference in your results over the coming months.</p>
+    `,
+    rec: `
+      <p class="diag__rec-sub">What we recommend</p>
+      <p class="diag__rec-lead">Gradually increase your weekly frequency and distribute your training volume better.</p>
+      <p>An excellent strategy is an Upper / Lower split, which lets you train every muscle group with more frequency and quality.</p>
+      <h4>Suggested structure</h4>
+      <p class="diag__rec-sub">Monday — Upper</p>
+      <ul>
+        <li>Machine row (pronated grip)</li>
+        <li>Machine row (supinated grip)</li>
+        <li>Seated cable row (V-handle)</li>
+        <li>Dumbbell shoulder press</li>
+        <li>Lateral raise</li>
+        <li>Triceps pushdown</li>
+        <li>Hammer curl</li>
+      </ul>
+      <p class="diag__rec-sub">Tuesday — Lower</p>
+      <ul>
+        <li>Seated leg curl</li>
+        <li>Hip thrust</li>
+        <li>Leg press</li>
+        <li>Lying leg curl</li>
+        <li>Leg extension</li>
+        <li>Hip adduction</li>
+      </ul>
+      <p class="diag__rec-sub">Wednesday — Cardio</p>
+      <p>Aim to accumulate at least 120 minutes of cardio per week. You can split this time however fits best into your routine — shorter sessions across the week or longer workouts on specific days. During cardio, keep a moderate intensity, with your heart rate above roughly 115 bpm (this can vary with your age and conditioning).</p>
+      <p class="diag__rec-sub">Thursday</p>
+      <p>Repeat Upper.</p>
+      <p class="diag__rec-sub">Friday</p>
+      <p>Repeat Lower.</p>
+      <p class="diag__rec-sub">Suggested volume</p>
+      <p>Aim to accumulate 10 to 15 weekly sets per muscle group, spread across the week.</p>
+      <p class="diag__rec-sub">How to progress</p>
+      <p>Start by tracking the loads of your main exercises. Even small weekly improvements are an excellent sign of progress.</p>
+      <p class="diag__rec-foot">This is a general structure. Depending on your routine, limitations and experience, individualized adjustments can significantly speed up your results.</p>
+    `,
+  },
+  evolucao_hiper: {
+    title: "You train, but don't progress",
+    profile: `
+      <p>You already have a solid training habit.</p>
+      <p>Your next level of results depends less on training more and much more on the quality of the stimulus you apply.</p>
+    `,
+    rec: `
+      <p class="diag__rec-sub">What this means</p>
+      <p>When frequency and consistency are already in place, results usually come down to details like:</p>
+      <ul>
+        <li>Load progression</li>
+        <li>Intensity</li>
+        <li>Exercise selection</li>
+        <li>Recovery</li>
+        <li>Nutrition</li>
+      </ul>
+      <p class="diag__rec-sub">What we recommend</p>
+      <p class="diag__rec-lead">Before adding even more training volume, optimize what you already do.</p>
+      <p class="diag__rec-sub">How to apply double progression</p>
+      <p>Choose a rep range — for example, 8 to 12 reps.</p>
+      <p>Example of progression:</p>
+      <ul>
+        <li>Week 1 — 60 kg × 8</li>
+        <li>Week 2 — 60 kg × 9</li>
+        <li>Week 3 — 60 kg × 10</li>
+        <li>Week 4 — 60 kg × 12</li>
+        <li>Week 5 — 65 kg × 8</li>
+      </ul>
+      <p>This process lets you keep progressing without losing quality.</p>
+      <p class="diag__rec-sub">Intensity</p>
+      <p>Try to finish most of your sets very close to muscle failure, always keeping good technique. Training hard is one of the most important factors for building muscle.</p>
+      <p class="diag__rec-sub">Cardio</p>
+      <p>Aim to accumulate at least 120 minutes of cardio per week. You can split this time however fits best into your routine — shorter sessions across the week or longer workouts on specific days. During cardio, keep a moderate intensity, with your heart rate above roughly 115 bpm (this can vary with your age and conditioning).</p>
+      <p class="diag__rec-sub">Other important factors</p>
+      <p>It's also worth reviewing:</p>
+      <ul>
+        <li>Nutrition</li>
+        <li>Sleep</li>
+        <li>Hydration</li>
+        <li>Recovery</li>
+      </ul>
+      <p>These factors can limit your results even when your training is well structured.</p>
+      <p class="diag__rec-foot">When you're already doing almost everything right, results usually come down to individualized adjustments.</p>
+    `,
+  },
+  constancia: {
+    title: "Low consistency",
+    profile: `
+      <p>Your main challenge today is not finding the perfect training plan.</p>
+      <p>The biggest challenge is keeping a consistent routine.</p>
+    `,
+    rec: `
+      <p class="diag__rec-sub">What this means</p>
+      <p>Before thinking about advanced strategies, it's important to build a sustainable routine. Consistency will always matter more than a perfect workout done only occasionally.</p>
+      <p class="diag__rec-sub">What we recommend</p>
+      <p class="diag__rec-lead">Start by simplifying your routine.</p>
+      <p>An excellent strategy is a Full Body workout three times a week.</p>
+      <h4>Suggested structure</h4>
+      <p>In each workout, try to include the following exercises:</p>
+      <ul>
+        <li>Seated leg curl</li>
+        <li>Leg press</li>
+        <li>Leg extension</li>
+        <li>Row</li>
+        <li>Shoulder press</li>
+        <li>Triceps pushdown</li>
+      </ul>
+      <p>In the following workouts, alternate some exercises, adding one more hamstring exercise and gradually increasing that muscle group's weekly volume.</p>
+      <p class="diag__rec-sub">Suggested parameters</p>
+      <ul>
+        <li>2 to 3 sets per exercise</li>
+        <li>8 to 12 reps</li>
+      </ul>
+      <p class="diag__rec-sub">Cardio</p>
+      <p>Aim to accumulate at least 150 minutes of cardio per week. You can split this time however fits best into your routine — shorter sessions across the week or longer workouts on specific days. During cardio, keep a moderate intensity, with your heart rate above 115 bpm (this can vary with your age and conditioning). Also, try to stay active throughout the day. Walking more, taking the stairs and reducing your sitting time are simple strategies that increase your daily energy expenditure and help build a more consistent routine.</p>
+      <p class="diag__rec-sub">Daily activity</p>
+      <p>Beyond your workouts, try to stay active. Small changes make a difference:</p>
+      <ul>
+        <li>Walk more</li>
+        <li>Take the stairs</li>
+        <li>Go for walks in the park</li>
+        <li>Reduce sitting time</li>
+      </ul>
+      <p class="diag__rec-foot">The best training plan is the one you can stick to for months.</p>
+    `,
+  },
+  gasto: {
+    title: "Insufficient energy expenditure",
+    profile: `
+      <p>You already keep a good strength-training frequency.</p>
+      <p>Now the main adjustment is to increase your weekly energy expenditure.</p>
+    `,
+    rec: `
+      <p class="diag__rec-sub">What this means</p>
+      <p>Your body has probably adapted to your current level of physical activity. Increasing your weekly energy expenditure can significantly speed up weight loss.</p>
+      <p class="diag__rec-sub">What we recommend</p>
+      <p class="diag__rec-lead">Keep a Full Body workout three times a week.</p>
+      <h4>Suggested structure</h4>
+      <p>In each workout, try to include the following exercises:</p>
+      <ul>
+        <li>Seated leg curl</li>
+        <li>Leg press</li>
+        <li>Leg extension</li>
+        <li>Row</li>
+        <li>Shoulder press</li>
+        <li>Triceps pushdown</li>
+      </ul>
+      <p>In the following workouts, alternate some exercises, adding one more hamstring exercise and gradually increasing that muscle group's weekly volume.</p>
+      <p class="diag__rec-sub">Suggested parameters</p>
+      <ul>
+        <li>2 to 3 sets per exercise</li>
+        <li>8 to 12 reps</li>
+      </ul>
+      <p class="diag__rec-sub">Cardio</p>
+      <p>Aim to accumulate at least 180 minutes of cardio per week.</p>
+      <p class="diag__rec-sub">Train heavy</p>
+      <p>Even while losing weight, keep prioritizing strength training. Track your loads and aim to progress consistently.</p>
+      <p class="diag__rec-sub">How to apply double progression</p>
+      <p>Use a rep range — for example, 8–12. When you reach 12 reps with good technique, increase the load and go back to 8.</p>
+      <p class="diag__rec-sub">Intensity</p>
+      <p>Train close to muscle failure. This helps preserve muscle mass during weight loss.</p>
+    `,
+  },
+  evolucao_emag: {
+    title: "You train, but don't progress",
+    profile: `
+      <p>You've already built important habits.</p>
+      <p>Now your progress depends mainly on strategic adjustments.</p>
+    `,
+    rec: `
+      <p class="diag__rec-sub">What this means</p>
+      <p>Your activity level is already good. At this point, simply training more is unlikely to be the answer — the focus should be on the quality of the stimulus.</p>
+      <p class="diag__rec-sub">What we recommend</p>
+      <p class="diag__rec-lead">Switch to an Upper / Lower split to raise the quality of your strength training.</p>
+      <h4>Suggested structure</h4>
+      <p class="diag__rec-sub">Upper</p>
+      <ul>
+        <li>Machine row (pronated grip)</li>
+        <li>Machine row (supinated grip)</li>
+        <li>Seated cable row (V-handle)</li>
+        <li>Dumbbell shoulder press</li>
+        <li>Lateral raise</li>
+        <li>Triceps pushdown</li>
+        <li>Hammer curl</li>
+      </ul>
+      <p class="diag__rec-sub">Lower</p>
+      <ul>
+        <li>Seated leg curl</li>
+        <li>Lying leg curl</li>
+        <li>Leg press</li>
+        <li>Leg extension</li>
+        <li>Hip adduction</li>
+        <li>Hip thrust</li>
+      </ul>
+      <p class="diag__rec-sub">How to apply double progression</p>
+      <p>Use a rep range between 8 and 12. When you reach the top of the range, increase the load and restart the progression.</p>
+      <p class="diag__rec-sub">Intensity</p>
+      <p>Finish your sets close to muscle failure.</p>
+      <p class="diag__rec-sub">Cardio</p>
+      <p>Even though your focus now is optimizing the quality of your strength training, keeping a good volume of cardio remains essential for weight loss. Aim to accumulate at least 180 minutes of cardio per week, at a moderate intensity, with your heart rate above roughly 115 bpm (this can vary with your age and conditioning).</p>
+      <p class="diag__rec-sub">Also worth reviewing</p>
+      <ul>
+        <li>Nutrition</li>
+        <li>Sleep</li>
+        <li>Hydration</li>
+        <li>Recovery</li>
+      </ul>
+      <p class="diag__rec-foot">These factors usually make a big difference for anyone who already has a solid training routine.</p>
+    `,
+  },
+};
+
+// Diagnóstico no idioma atual (fotos sempre do DIAGNOSES; e-mail continua em PT)
+function getDiag(key) {
+  if (window.i18n && window.i18n.getLang() === "en" && DIAGNOSES_EN[key]) {
+    return Object.assign({}, DIAGNOSES[key], DIAGNOSES_EN[key]);
+  }
+  return DIAGNOSES[key];
+}
+
 // A Pergunta 1 (objetivo) define o conjunto de diagnósticos avaliado.
 // Cada resposta soma pontos; o maior score vence (empate → ordem de listagem).
 function computeDiagnosis(v) {
@@ -426,7 +658,7 @@ function diagnoseEmagrecimento(v) {
 function showStep(i) {
   steps.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
   steps[i].querySelector(".step-count").textContent =
-    `Etapa ${i + 1} de ${steps.length}`;
+    t("step_count", { i: i + 1, n: steps.length });
 
   btnPrev.style.visibility = i === 0 ? "hidden" : "visible";
   const isLast = i === steps.length - 1;
@@ -652,18 +884,17 @@ function sendLeadEmail(payload) {
 /* ---------- Mensagem do WhatsApp (curta — a lead quer falar com a equipe) ---------- */
 function buildWaMessage() {
   const nome = readValue("nome");
-  const saudacao = nome ? `Oi, meu nome é ${nome}! ` : "Oi! ";
-  return (
-    saudacao +
-    "Acabei de fazer o diagnóstico no site e quero conhecer mais sobre os planos de consultoria e acompanhamento com o Renan."
-  );
+  return nome ? t("wa_msg_named", { nome }) : t("wa_msg_anon");
 }
 
 /* ============================================================
    Resultado / diagnóstico
    ============================================================ */
+let lastDiagKey = null; // usado p/ re-renderizar o resultado ao trocar o idioma
+
 function renderResult(diagKey) {
-  const d = DIAGNOSES[diagKey];
+  lastDiagKey = diagKey;
+  const d = getDiag(diagKey);
   document.getElementById("diagTitle").textContent = d.title;
   document.getElementById("diagProfile").innerHTML = d.profile;
 
@@ -671,13 +902,13 @@ function renderResult(diagKey) {
     .map(
       (src) => `
         <figure class="diag__photo diag__card">
-          <img src="${src}" alt="Aluna do Renan Carraro"
+          <img src="${src}" alt="${t("photo_alt")}"
                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <figcaption class="diag__photo-fallback">Foto da aluna</figcaption>
+          <figcaption class="diag__photo-fallback">${t("photo_fallback")}</figcaption>
         </figure>`
     )
     .join("");
-  const hint = d.photos.length > 1 ? `<p class="diag__deck-hint">Toque para ver mais ↻</p>` : "";
+  const hint = d.photos.length > 1 ? `<p class="diag__deck-hint">${t("deck_hint")}</p>` : "";
 
   document.getElementById("diagRec").innerHTML = `
     <div class="diag__rec-grid">
@@ -816,7 +1047,7 @@ function loadBrData() {
 
 // Fill the city dropdown with the cities of the selected state
 function populateCidades(uf) {
-  cidadeSelect.innerHTML = '<option value="" selected disabled>Selecione…</option>';
+  cidadeSelect.innerHTML = `<option value="" selected disabled>${t("select_ph")}</option>`;
   const lista = (cidadesPorEstado && cidadesPorEstado[uf]) || [];
   const frag = document.createDocumentFragment();
   lista.forEach((nome) => {
@@ -858,6 +1089,17 @@ form.querySelectorAll('input[type="radio"]').forEach((r) => {
   r.addEventListener("change", () => {
     if (r.checked) console.debug(`[Carraro] ${r.name} = "${r.value}"`);
   });
+});
+
+// Troca de idioma sem recarregar: atualiza contador da etapa e,
+// se o resultado estiver na tela, re-renderiza o diagnóstico e o link do WhatsApp
+document.addEventListener("langchange", () => {
+  if (doneScreen.classList.contains("is-active") && lastDiagKey) {
+    renderResult(lastDiagKey);
+    waLink.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWaMessage())}`;
+  } else {
+    showStep(current);
+  }
 });
 
 // Init
