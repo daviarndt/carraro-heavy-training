@@ -71,7 +71,8 @@ A P1 (`objetivo`) escolhe a função de pontuação. **Cada resposta soma pontos
 - satisfacao: Muito→tne+1 · Parcial→tne+2 · Insatisfeita→ei+2
 
 **Objetivo "Emagrecimento" — `diagnoseEmagrecimento`** (Baixa constância `bc` vs Gasto energético insuf. `gei` vs Treina-mas-não-evolui `tne`):
-- dias: 3→bc+3 · 4→bc+1 · 5→gei+1,tne+1 · 6→gei+3,tne+2,**bc−4** · 7→gei+3,tne+2,**bc−4**
+- **Regra dura:** com **6 ou 7 dias** de treino, `constancia` é **excluída da disputa** (filtro antes do `pickMax`) — alta frequência nunca pode resultar em "Baixa constância".
+- dias: 3→bc+3 · 4→bc+1 · 5→gei+1,tne+1 · 6→gei+3,tne+2 · 7→gei+3,tne+2
 - tempo: <6m→bc+1 · 6m-1a→0 · 1-2a→tne+1 · >2a→tne+2
 - interrupcoes: Nenhuma→gei+2,tne+2 · 1x→gei+1,tne+1 · 2x→bc+3 · 3x+→bc+4
 - dificuldade: tempo/trabalho/filhos/motivação→bc+2 · não sei→bc+1
@@ -80,24 +81,31 @@ A P1 (`objetivo`) escolhe a função de pontuação. **Cada resposta soma pontos
 - aerobico: Nenhum→gei+3 · <60→gei+2 · 60-120→gei+1 · >120→tne+2
 - satisfacao: Muito→0 · Parcial→tne+1 · Insatisfeita→tne+2
 
-> ⚠️ **Pesos do Emagrecimento são uma PROPOSTA** (o documento do Renan só definiu os "drivers"/maiores pesos, não os números). Podem ser recalibrados — Davi ainda não confirmou os números finais.
-> O `bc−4` em 6-7 dias foi um ajuste porque alta frequência é incompatível com "baixa constância" (bug corrigido: 6-7x caía em BC).
+> ⚠️ **Pesos do Emagrecimento são uma PROPOSTA** (o documento do Renan só definiu os "drivers"/maiores pesos, não os números). Podem ser recalibrados — o Renan ainda não confirmou os números finais.
+> A exclusão de BC em 6-7 dias foi pedida explicitamente pelo Davi/Renan (bug corrigido: 6-7x caía em BC).
 
 ### Diagnósticos (objeto `DIAGNOSES` em `form.js`)
 5 entradas — cada uma com `title`, `photos[]`, `profile` (HTML, vários `<p>`) e `rec` (HTML da recomendação):
-- `estimulo` (hipertrofia → Estímulo insuficiente)
-- `evolucao_hiper` (hipertrofia → Treina, mas não evolui)
-- `constancia` (emagrecimento → Baixa constância)
-- `gasto` (emagrecimento → Gasto energético insuficiente)
-- `evolucao_emag` (emagrecimento → Treina, mas não evolui)
+- `estimulo` (hipertrofia → Estímulo insuficiente) — Upper/Lower Seg-Sex com **Quarta = Cardio 120min**
+- `evolucao_hiper` (hipertrofia → Treina, mas não evolui) — dupla progressão + **Cardio 120min**
+- `constancia` (emagrecimento → Baixa constância) — Full Body 3x + **Cardio 150min** + atividade diária
+- `gasto` (emagrecimento → Gasto energético insuficiente) — Full Body 3x + **Cardio 180min** + treine pesado
+- `evolucao_emag` (emagrecimento → Treina, mas não evolui) — Upper/Lower + **Cardio 180min**
 
-*"Treina, mas não evolui" aparece nas duas branches com TÍTULO igual mas texto/recomendação diferentes.*
+*"Treina, mas não evolui" aparece nas duas branches com TÍTULO igual mas texto/recomendação/foto diferentes.*
+O conteúdo (textos, exercícios, metas de cardio) segue a **especificação final do Renan (jul/2026)** — foi passada como fonte única; qualquer mudança de conteúdo deve vir dele.
 
 **Fechamento padrão** (igual para todos): bloco estático `.diag__closing` em `avaliacao.html` (não fica dentro de cada diagnóstico), com o texto "Importante: ..." + parágrafo sobre individualização/consultoria. Logo abaixo vem o CTA.
 
 ### Fotos / baralho
-- `assets/img/photos_diagnosticos/`: `estimulo_insuficiente.jpeg`, `treina_mas_nao_evolui.jpg`, `baixa_constancia.jpg` + `baixa_constancia_2.jpg`. **Falta** `gasto_energetico_insuficiente.jpg` (mostra placeholder "Foto da aluna").
-- `setupDeck()` em `form.js`: quando um diagnóstico tem +1 foto (só o `constancia` tem 2), vira um **baralho** — clicar joga a foto do topo pro fundo com animação. Fotos ficam quadradas, P&B (grayscale), com moldura estilo "liquid glass". Ciclo concluído por `setTimeout` (não depende de `transitionend`).
+- `assets/img/photos_diagnosticos/` — nomeadas por **diagnóstico + caminho**:
+  - `estimulo_insuficiente.jpeg` (hipertrofia, 1 foto)
+  - `treina_mas_nao_evolui_hipertrofia.jpg` (1 foto)
+  - `baixa_constancia_emagrecimento.jpg` + `baixa_constancia_2_emagrecimento.jpg` (2 fotos → baralho)
+  - `treina_mas_nao_evolui_emagrecimento.jpg` + `treina_mas_nao_evolui_2_emagrecimento.jpg` (2 fotos → baralho)
+  - **Falta** `gasto_energetico_insuficiente.jpg` (mostra placeholder "Foto da aluna").
+- `setupDeck()` em `form.js`: quando um diagnóstico tem +1 foto, vira um **baralho** — clicar joga a foto do topo pro fundo com animação. Fotos ficam quadradas, P&B (grayscale), com moldura estilo "liquid glass". Ciclo concluído por `setTimeout` (não depende de `transitionend`).
+- Pastas de originais (ex.: material bruto de fotos) **não são versionadas** — ver `.gitignore`.
 
 ## 7. Integrações e entrega
 - **WhatsApp:** constante `WHATSAPP_NUMBER` em `form.js` (formato internacional, só dígitos). É o número da **closer** do Renan (vendas). **Hoje é um número de TESTE** (`4915259100748`). O CTA abre o WhatsApp com uma **mensagem curta** de interesse ("Oi, meu nome é {nome}! ..."), sem as respostas.

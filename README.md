@@ -4,7 +4,8 @@ Site institucional e formulário de avaliação do personal trainer **Renan Carr
 (marca *CARRARO — Heavy Training*, foco em treinamento feminino).
 
 Site **100% estático** (HTML, CSS e JavaScript puro), sem back-end e sem custo de
-hospedagem. As respostas do formulário são entregues direto no **WhatsApp** do treinador.
+hospedagem. A lead recebe um diagnóstico na hora; os dados dela chegam à equipe
+por **e-mail** (EmailJS) e o contato ativo acontece pelo **WhatsApp**.
 
 🔗 **Produção:** [renancarrarotreinador.com](https://renancarrarotreinador.com)
 
@@ -13,45 +14,57 @@ hospedagem. As respostas do formulário são entregues direto no **WhatsApp** do
 ## ✨ Funcionalidades
 
 - **Landing page** enxuta, focada na conversão (fazer o diagnóstico).
-- **Formulário de diagnóstico inteligente** em múltiplas etapas (contato + 11 perguntas),
+- **Formulário de diagnóstico inteligente** em múltiplas etapas (contato + 9 perguntas),
   com barra de progresso e validação.
-- **Diagnóstico automático:** as respostas geram uma pontuação por perfil e a lead recebe,
-  na hora, o diagnóstico de maior prioridade (Baixa constância → Estímulo insuficiente →
-  Treina, mas não evolui) com perfil, recomendação prática e foto de uma aluna.
+- **Diagnóstico automático ramificado pelo objetivo** (Pergunta 1):
+  - *Hipertrofia e definição* → **Estímulo insuficiente** ou **Treina, mas não evolui**;
+  - *Emagrecimento* → **Baixa constância**, **Gasto energético insuficiente** ou
+    **Treina, mas não evolui** (com 6-7 dias de treino/semana, Baixa constância é excluída).
+  - Cada resposta soma pontos e **o maior score vence**. A lead vê perfil, recomendação
+    prática (estrutura de treino + cardio), foto(s) de aluna e um fechamento padrão.
+- **Baralho de fotos:** diagnósticos com mais de uma foto viram um "deck" clicável
+  (fotos quadradas, P&B, efeito glass).
 - **WhatsApp (CTA "Fale com a nossa equipe"):** o botão final abre o WhatsApp da closer com uma
   mensagem curta de interesse (sem as respostas) — a lead que quer acompanhamento profissional.
-- **E-mail (Renan + closer):** ao concluir, as perguntas/respostas + dados pessoais são enviados
-  por e-mail. *Pendente de configuração* — ver `LEAD_EMAIL_ENDPOINT` em `assets/js/form.js`.
+- **E-mail (EmailJS):** ao concluir, diagnóstico + dados + respostas são enviados para a equipe
+  (To/Cc fixos no template). Com retry + fila local de reenvio. Liga/desliga em `EMAIL_ENABLED`.
 - **País / estado / cidade inteligentes:** ao escolher Brasil, seleciona-se o estado e a
   cidade é filtrada por UF (municípios do IBGE); para alunas no exterior, cidade em texto livre.
-- **Validação** de campos obrigatórios e de e-mail.
-- **Rastreabilidade:** cada resposta e o diagnóstico final são logados no console do navegador.
+- **Validação** de campos obrigatórios e de e-mail, com consentimento LGPD.
+- **Rastreabilidade:** cada resposta, o diagnóstico e os scores são logados no console do navegador.
 - Identidade visual da marca: tipografia *Anybody* e paleta bordô.
 - Responsivo (desktop e mobile) e acessível (foco de teclado, `prefers-reduced-motion`).
 
-> A lógica de pontuação dos diagnósticos fica em `assets/js/form.js` (`computeDiagnosis` + objeto `DIAGNOSES`).
-> As fotos das alunas vão em `assets/img/aluna-constancia.jpg`, `aluna-estimulo.jpg` e `aluna-evolucao.jpg`
-> (enquanto não existirem, aparece um placeholder "Foto da aluna").
+> A lógica de pontuação fica em `assets/js/form.js` (`computeDiagnosis`, `diagnoseHipertrofia`,
+> `diagnoseEmagrecimento` + objeto `DIAGNOSES`). As fotos das alunas ficam em
+> `assets/img/photos_diagnosticos/`, nomeadas por diagnóstico e caminho
+> (ex.: `treina_mas_nao_evolui_hipertrofia.jpg`, `baixa_constancia_emagrecimento.jpg`).
+> Foto ausente mostra um placeholder "Foto da aluna".
+
+> ⚠️ **Fase de testes:** a 1ª tela do formulário está só com o campo Nome (demais dados pessoais
+> comentados em `avaliacao.html`, bloco `TEMP`) e o envio de e-mail está desativado
+> (`EMAIL_ENABLED = false` em `assets/js/form.js`).
 
 ## 🗂️ Estrutura do projeto
 
 ```
 .
 ├── index.html              # Landing page
-├── avaliacao.html          # Formulário de diagnóstico (contato + 11 perguntas)
+├── avaliacao.html          # Formulário de diagnóstico (contato + 9 perguntas + resultado)
+├── HANDOVER.md             # Contexto completo do projeto (leia antes de mexer)
 ├── assets/
 │   ├── css/
 │   │   ├── styles.css      # Estilos base, tokens e landing
-│   │   └── form.css        # Estilos do formulário
+│   │   └── form.css        # Estilos do formulário e da tela de diagnóstico
 │   ├── js/
 │   │   ├── main.js         # Interações da landing
-│   │   └── form.js         # Lógica do formulário + WhatsApp
+│   │   └── form.js         # Perguntas, score, diagnósticos, WhatsApp, EmailJS
 │   ├── data/
 │   │   ├── paises.json              # Lista de países (pt-BR)
 │   │   ├── estados.json             # Estados do Brasil (UF + nome)
 │   │   └── cidades-por-estado.json  # Municípios do Brasil por UF (IBGE)
 │   ├── fonts/              # Família Anybody (.ttf)
-│   └── img/                # Logos / imagens
+│   └── img/                # Logos / fotos dos diagnósticos (photos_diagnosticos/)
 └── README.md
 ```
 
@@ -75,11 +88,15 @@ Alternativas: extensão *Live Server* no VS Code, ou `npx serve`.
 
 | O quê | Onde |
 |------|------|
-| Número de WhatsApp que recebe as respostas | `assets/js/form.js` → constante `WHATSAPP_NUMBER` (formato internacional, só dígitos) |
+| Número de WhatsApp do CTA (closer) | `assets/js/form.js` → `WHATSAPP_NUMBER` (formato internacional, só dígitos) |
+| Envio de e-mail liga/desliga | `assets/js/form.js` → `EMAIL_ENABLED` |
+| Credenciais EmailJS | `assets/js/form.js` → `EMAILJS_PUBLIC_KEY` / `EMAILJS_SERVICE_ID` / `EMAILJS_TEMPLATE_ID` |
 | Perguntas do formulário | `avaliacao.html` |
+| Textos/recomendações dos diagnósticos | `assets/js/form.js` → objeto `DIAGNOSES` |
+| Pesos do score | `assets/js/form.js` → `diagnoseHipertrofia` / `diagnoseEmagrecimento` |
 | Cores e tipografia | `assets/css/styles.css` (`:root`) |
 
-> ⚠️ O `WHATSAPP_NUMBER` atual é um número de **teste**. Trocar pelo número do Renan antes de publicar.
+> ⚠️ O `WHATSAPP_NUMBER` atual é um número de **teste**. Trocar pelo número real da closer antes do lançamento.
 
 ## 📡 Deploy (GitHub Pages)
 
@@ -88,11 +105,12 @@ Alternativas: extensão *Live Server* no VS Code, ou `npx serve`.
 3. Domínio próprio (`renancarrarotreinador.com`): adicionar arquivo `CNAME`
    e apontar o DNS na GoDaddy para os IPs do GitHub Pages.
 
-## 📊 Armazenamento dos dados
+## 📊 Dados da lead
 
-Hoje as respostas vão apenas para o WhatsApp. Uma evolução planejada (sem custo) é
-gravar também numa **Google Sheet** via Google Apps Script, mantendo o histórico das
-alunas organizado para a anamnese.
+Ao concluir o formulário, o diagnóstico + dados de contato + respostas são enviados por
+**e-mail** (EmailJS; To = closer, Cc = Renan, fixos no template). O CTA do WhatsApp envia
+apenas uma mensagem curta de interesse. Uma evolução possível (sem custo) é gravar também
+numa **Google Sheet** via Google Apps Script como backup permanente.
 
 ---
 
