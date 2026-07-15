@@ -1004,21 +1004,47 @@ const fieldCidadeEx = document.getElementById("fieldCidadeEx");
 
 let cidadesPorEstado = null;
 
-// Populate country dropdown (guard: o campo país pode estar desativado na fase de testes)
-if (paisSelect) fetch("assets/data/paises.json")
-  .then((r) => r.json())
-  .then((paises) => {
-    const frag = document.createDocumentFragment();
-    paises.forEach((nome) => {
-      const opt = document.createElement("option");
-      opt.value = nome;
-      opt.textContent = nome;
-      frag.appendChild(opt);
-    });
-    paisSelect.appendChild(frag);
+// Países bilíngues: o VALUE é sempre o nome em PT (o score/e-mail dependem disso);
+// só o rótulo visível muda de idioma. paises-en.json é alinhado por índice ao paises.json.
+let paisesData = null; // [{ value: nomePT, labels: { pt, en } }]
+
+function renderPaises() {
+  if (!paisSelect || !paisesData) return;
+  const lang = window.i18n ? window.i18n.getLang() : "pt";
+  const selecionado = paisSelect.value;
+
+  // Brasil fixo no topo, "Outro" no fim; o meio é ordenado no idioma ativo
+  const primeiro = paisesData[0];
+  const ultimo = paisesData[paisesData.length - 1];
+  const meio = paisesData
+    .slice(1, -1)
+    .sort((a, b) => a.labels[lang].localeCompare(b.labels[lang], lang));
+
+  paisSelect.innerHTML = `<option value="" disabled>${t("select_ph")}</option>`;
+  const frag = document.createDocumentFragment();
+  [primeiro, ...meio, ultimo].forEach((p) => {
+    const opt = document.createElement("option");
+    opt.value = p.value;
+    opt.textContent = p.labels[lang];
+    frag.appendChild(opt);
+  });
+  paisSelect.appendChild(frag);
+
+  // preserva a seleção da lead ao trocar de idioma
+  if (selecionado) paisSelect.value = selecionado;
+  else paisSelect.selectedIndex = 0;
+}
+
+if (paisSelect) Promise.all([
+  fetch("assets/data/paises.json").then((r) => r.json()),
+  fetch("assets/data/paises-en.json").then((r) => r.json()),
+])
+  .then(([pt, en]) => {
+    paisesData = pt.map((nome, i) => ({ value: nome, labels: { pt: nome, en: en[i] || nome } }));
+    renderPaises();
   })
   .catch(() => {
-    // Fallback so the form still works if the list fails to load
+    // Fallback so the form still works if the lists fail to load
     paisSelect.insertAdjacentHTML("beforeend", '<option value="Brasil">Brasil</option><option value="Outro">Outro</option>');
   });
 
@@ -1094,6 +1120,7 @@ form.querySelectorAll('input[type="radio"]').forEach((r) => {
 // Troca de idioma sem recarregar: atualiza contador da etapa e,
 // se o resultado estiver na tela, re-renderiza o diagnóstico e o link do WhatsApp
 document.addEventListener("langchange", () => {
+  renderPaises(); // re-rotula o dropdown de países no idioma novo (mantém a seleção)
   if (doneScreen.classList.contains("is-active") && lastDiagKey) {
     renderResult(lastDiagKey);
     waLink.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWaMessage())}`;

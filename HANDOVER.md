@@ -112,6 +112,7 @@ O conteúdo (textos, exercícios, metas de cardio) segue a **especificação fin
 - Estáticos: `assets/js/i18n.js` (dicionário `STRINGS` + `[data-i18n]`/`[data-i18n-placeholder]`; API `window.i18n`).
 - Dinâmicos: `DIAGNOSES_EN` em `form.js` (`getDiag()` escolhe o idioma); evento `langchange` re-renderiza o resultado exibido e o link do WhatsApp.
 - **Os `value` dos radios ficam SEMPRE em PT** (score e e-mail intactos); só o rótulo visível traduz. O e-mail pro time sai sempre em PT.
+- **Países bilíngues:** `assets/data/paises-en.json` é alinhado por índice ao `paises.json`; `renderPaises()` em `form.js` mostra o rótulo no idioma ativo (reordenado alfabeticamente por idioma, Brasil no topo e Outro no fim), mas o `value` da option é sempre o nome em PT (a checagem `pais === "Brasil"` e o e-mail dependem disso). A seleção sobrevive à troca de idioma.
 - Bloco TEMP comentado já tem `data-i18n` — ao reativar os campos, a tradução funciona.
 
 ## 7. Integrações e entrega
