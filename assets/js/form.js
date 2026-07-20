@@ -64,8 +64,8 @@ const DIAGNOSES = {
       <p class="diag__rec-sub">O que recomendamos</p>
       <p class="diag__rec-lead">Aumente gradualmente a frequência semanal e distribua melhor o volume de treino.</p>
       <p>Uma excelente estratégia é utilizar uma divisão Upper / Lower, permitindo trabalhar todos os grupos musculares com maior frequência e qualidade.</p>
-      <h4>Estrutura sugerida</h4>
-      <p class="diag__rec-sub">Segunda-feira — Upper</p>
+      <p class="diag__rec-sub">Estrutura sugerida</p>
+      <p class="diag__rec-sub2">Segunda-feira — Upper</p>
       <ul>
         <li>Remada pronada na máquina</li>
         <li>Remada supinada na máquina</li>
@@ -75,7 +75,7 @@ const DIAGNOSES = {
         <li>Tríceps pulley</li>
         <li>Rosca neutra</li>
       </ul>
-      <p class="diag__rec-sub">Terça-feira — Lower</p>
+      <p class="diag__rec-sub2">Terça-feira — Lower</p>
       <ul>
         <li>Cadeira flexora</li>
         <li>Elevação pélvica</li>
@@ -84,11 +84,11 @@ const DIAGNOSES = {
         <li>Cadeira extensora</li>
         <li>Adutora</li>
       </ul>
-      <p class="diag__rec-sub">Quarta-feira — Cardio</p>
+      <p class="diag__rec-sub2">Quarta-feira — Cardio</p>
       <p>Procure acumular pelo menos 120 minutos de cardio por semana. Você pode distribuir esse tempo da forma que melhor se encaixar na sua rotina, seja realizando sessões mais curtas ao longo da semana ou treinos mais longos em dias específicos. Durante o cardio, procure manter uma intensidade moderada, mantendo sua frequência cardíaca acima de aproximadamente 115 bpm (esse valor pode variar conforme sua idade e condicionamento físico).</p>
-      <p class="diag__rec-sub">Quinta-feira</p>
+      <p class="diag__rec-sub2">Quinta-feira</p>
       <p>Repetir Upper.</p>
-      <p class="diag__rec-sub">Sexta-feira</p>
+      <p class="diag__rec-sub2">Sexta-feira</p>
       <p>Repetir Lower.</p>
       <p class="diag__rec-sub">Volume sugerido</p>
       <p>Procure acumular entre 10 e 15 séries semanais por grupo muscular, distribuídas ao longo da semana.</p>
@@ -161,7 +161,7 @@ const DIAGNOSES = {
       <p class="diag__rec-sub">O que recomendamos</p>
       <p class="diag__rec-lead">Comece simplificando sua rotina.</p>
       <p>Uma excelente estratégia é utilizar um treino Full Body três vezes por semana.</p>
-      <h4>Estrutura sugerida</h4>
+      <p class="diag__rec-sub">Estrutura sugerida</p>
       <p>Em cada treino, procure incluir os seguintes exercícios:</p>
       <ul>
         <li>Cadeira flexora</li>
@@ -203,7 +203,7 @@ const DIAGNOSES = {
       <p>Provavelmente seu corpo já está adaptado ao nível atual de atividade física. Aumentar o gasto energético semanal pode acelerar significativamente o emagrecimento.</p>
       <p class="diag__rec-sub">O que recomendamos</p>
       <p class="diag__rec-lead">Mantenha um treino Full Body três vezes por semana.</p>
-      <h4>Estrutura sugerida</h4>
+      <p class="diag__rec-sub">Estrutura sugerida</p>
       <p>Em cada treino, procure incluir os seguintes exercícios:</p>
       <ul>
         <li>Cadeira flexora</li>
@@ -244,8 +244,8 @@ const DIAGNOSES = {
       <p>Seu nível de atividade já é bom. Neste momento, simplesmente treinar mais dificilmente será a solução — o foco deve estar na qualidade do estímulo.</p>
       <p class="diag__rec-sub">O que recomendamos</p>
       <p class="diag__rec-lead">Migre para uma divisão Upper / Lower, aumentando a qualidade da musculação.</p>
-      <h4>Estrutura sugerida</h4>
-      <p class="diag__rec-sub">Upper</p>
+      <p class="diag__rec-sub">Estrutura sugerida</p>
+      <p class="diag__rec-sub2">Upper</p>
       <ul>
         <li>Remada pronada na máquina</li>
         <li>Remada supinada na máquina</li>
@@ -255,7 +255,7 @@ const DIAGNOSES = {
         <li>Tríceps pulley</li>
         <li>Rosca neutra</li>
       </ul>
-      <p class="diag__rec-sub">Lower</p>
+      <p class="diag__rec-sub2">Lower</p>
       <ul>
         <li>Cadeira flexora</li>
         <li>Mesa flexora</li>
@@ -298,8 +298,8 @@ const DIAGNOSES_EN = {
       <p class="diag__rec-sub">What we recommend</p>
       <p class="diag__rec-lead">Gradually increase your weekly frequency and distribute your training volume better.</p>
       <p>An excellent strategy is an Upper / Lower split, which lets you train every muscle group with more frequency and quality.</p>
-      <h4>Suggested structure</h4>
-      <p class="diag__rec-sub">Monday — Upper</p>
+      <p class="diag__rec-sub">Suggested structure</p>
+      <p class="diag__rec-sub2">Monday — Upper</p>
       <ul>
         <li>Machine row (pronated grip)</li>
         <li>Machine row (supinated grip)</li>
@@ -309,7 +309,7 @@ const DIAGNOSES_EN = {
         <li>Triceps pushdown</li>
         <li>Hammer curl</li>
       </ul>
-      <p class="diag__rec-sub">Tuesday — Lower</p>
+      <p class="diag__rec-sub2">Tuesday — Lower</p>
       <ul>
         <li>Seated leg curl</li>
         <li>Hip thrust</li>
@@ -318,11 +318,11 @@ const DIAGNOSES_EN = {
         <li>Leg extension</li>
         <li>Hip adduction</li>
       </ul>
-      <p class="diag__rec-sub">Wednesday — Cardio</p>
+      <p class="diag__rec-sub2">Wednesday — Cardio</p>
       <p>Aim to accumulate at least 120 minutes of cardio per week. You can split this time however fits best into your routine — shorter sessions across the week or longer workouts on specific days. During cardio, keep a moderate intensity, with your heart rate above roughly 115 bpm (this can vary with your age and conditioning).</p>
-      <p class="diag__rec-sub">Thursday</p>
+      <p class="diag__rec-sub2">Thursday</p>
       <p>Repeat Upper.</p>
-      <p class="diag__rec-sub">Friday</p>
+      <p class="diag__rec-sub2">Friday</p>
       <p>Repeat Lower.</p>
       <p class="diag__rec-sub">Suggested volume</p>
       <p>Aim to accumulate 10 to 15 weekly sets per muscle group, spread across the week.</p>
@@ -388,7 +388,7 @@ const DIAGNOSES_EN = {
       <p class="diag__rec-sub">What we recommend</p>
       <p class="diag__rec-lead">Start by simplifying your routine.</p>
       <p>An excellent strategy is a Full Body workout three times a week.</p>
-      <h4>Suggested structure</h4>
+      <p class="diag__rec-sub">Suggested structure</p>
       <p>In each workout, try to include the following exercises:</p>
       <ul>
         <li>Seated leg curl</li>
@@ -428,7 +428,7 @@ const DIAGNOSES_EN = {
       <p>Your body has probably adapted to your current level of physical activity. Increasing your weekly energy expenditure can significantly speed up weight loss.</p>
       <p class="diag__rec-sub">What we recommend</p>
       <p class="diag__rec-lead">Keep a Full Body workout three times a week.</p>
-      <h4>Suggested structure</h4>
+      <p class="diag__rec-sub">Suggested structure</p>
       <p>In each workout, try to include the following exercises:</p>
       <ul>
         <li>Seated leg curl</li>
@@ -465,8 +465,8 @@ const DIAGNOSES_EN = {
       <p>Your activity level is already good. At this point, simply training more is unlikely to be the answer — the focus should be on the quality of the stimulus.</p>
       <p class="diag__rec-sub">What we recommend</p>
       <p class="diag__rec-lead">Switch to an Upper / Lower split to raise the quality of your strength training.</p>
-      <h4>Suggested structure</h4>
-      <p class="diag__rec-sub">Upper</p>
+      <p class="diag__rec-sub">Suggested structure</p>
+      <p class="diag__rec-sub2">Upper</p>
       <ul>
         <li>Machine row (pronated grip)</li>
         <li>Machine row (supinated grip)</li>
@@ -476,7 +476,7 @@ const DIAGNOSES_EN = {
         <li>Triceps pushdown</li>
         <li>Hammer curl</li>
       </ul>
-      <p class="diag__rec-sub">Lower</p>
+      <p class="diag__rec-sub2">Lower</p>
       <ul>
         <li>Seated leg curl</li>
         <li>Lying leg curl</li>

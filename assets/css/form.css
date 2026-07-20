@@ -201,20 +201,25 @@
   text-transform: uppercase; padding: 16px;
 }
 .diag__rec-lead { font-weight: 700; font-size: 1.1rem; margin-bottom: 18px; }
-.diag__rec h4 {
-  font-family: var(--font-display); font-weight: 900; text-transform: uppercase;
-  font-size: 1.25rem; letter-spacing: 0.01em; margin: 20px 0 8px;
-}
+/* Nível 1 — seções da recomendação (O que recomendamos, Estrutura sugerida, Cardio…) */
 .diag__rec-sub,
 .diag__rec p.diag__rec-sub {
   display: flex; align-items: center; gap: 10px;
   font-family: var(--font-display);
   font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em;
-  font-size: 1.1rem; color: var(--cream); margin: 26px 0 10px;
+  font-size: 1.15rem; color: var(--cream); margin: 28px 0 10px;
 }
 .diag__rec-sub::before {
   content: ""; flex: 0 0 auto; width: 5px; height: 1.05em;
   border-radius: 3px; background: var(--wine-bright);
+}
+
+/* Nível 2 — subdivisões dentro de uma seção (Upper, Lower, dias da semana) */
+.diag__rec-sub2,
+.diag__rec p.diag__rec-sub2 {
+  font-family: var(--font-display);
+  font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em;
+  font-size: 0.92rem; color: var(--wine-bright); margin: 18px 0 8px;
 }
 .diag__rec p { color: var(--cream-dim); font-weight: 300; }
 .diag__rec ul { list-style: none; display: grid; gap: 8px; margin: 4px 0 4px; }
