@@ -205,9 +205,16 @@
   font-family: var(--font-display); font-weight: 900; text-transform: uppercase;
   font-size: 1.25rem; letter-spacing: 0.01em; margin: 20px 0 8px;
 }
-.diag__rec-sub {
-  font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
-  font-size: 0.78rem; color: var(--wine-bright); margin: 20px 0 10px;
+.diag__rec-sub,
+.diag__rec p.diag__rec-sub {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em;
+  font-size: 1.1rem; color: var(--cream); margin: 26px 0 10px;
+}
+.diag__rec-sub::before {
+  content: ""; flex: 0 0 auto; width: 5px; height: 1.05em;
+  border-radius: 3px; background: var(--wine-bright);
 }
 .diag__rec p { color: var(--cream-dim); font-weight: 300; }
 .diag__rec ul { list-style: none; display: grid; gap: 8px; margin: 4px 0 4px; }
