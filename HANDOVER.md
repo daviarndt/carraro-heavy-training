@@ -116,28 +116,26 @@ O conteúdo (textos, exercícios, metas de cardio) segue a **especificação fin
 - Bloco TEMP comentado já tem `data-i18n` — ao reativar os campos, a tradução funciona.
 
 ## 7. Integrações e entrega
-- **WhatsApp:** constante `WHATSAPP_NUMBER` em `form.js` (formato internacional, só dígitos). É o número da **closer** do Renan (vendas). **Hoje é um número de TESTE** (`4915259100748`). O CTA abre o WhatsApp com uma **mensagem curta** de interesse ("Oi, meu nome é {nome}! ..."), sem as respostas.
-- **E-mail (EmailJS):** ao concluir, envia o lead (contato + respostas + diagnóstico) por e-mail para Renan + closer. IDs no `form.js` (`EMAILJS_PUBLIC_KEY`, `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`). Destinatários (To=closer, Cc=Renan) são **fixos no template do EmailJS** (não no cliente). Tem **resiliência**: retry com backoff (3x) + fila local em `localStorage` que reenvia numa próxima visita (`flushPending`).
+- **WhatsApp:** constante `WHATSAPP_NUMBER` em `form.js` (formato internacional, só dígitos). **Atualmente é o número do próprio Renan** (`5543996903949` = +55 43 99690-3949); a intenção é passar para o número da **closer** (vendas) mais adiante. O CTA abre o WhatsApp com uma **mensagem curta** de interesse ("Oi, meu nome é {nome}! ..."), sem as respostas.
+- **E-mail (EmailJS):** **ligado** (`EMAIL_ENABLED = true`). Ao concluir, envia o lead (contato + respostas + diagnóstico) por e-mail. IDs no `form.js` (`EMAILJS_PUBLIC_KEY`, `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`). Destinatários (To/Cc) são **fixos no template do EmailJS** (não no cliente). Tem **resiliência**: retry com backoff (3x) + fila local em `localStorage` que reenvia numa próxima visita (`flushPending`).
   - Segurança configurada no painel EmailJS: Allowed Origins = domínio de produção (por isso o envio **só funciona no site publicado**, não em localhost), captcha, rate limit.
   - No template use `{{conteudo}}` (bloco com tudo) e/ou `{{nome}}`,`{{email}}`,`{{whatsapp}}`,`{{instagram}}`,`{{diagnostico}}` etc.
-- **Consentimento LGPD:** checkbox obrigatório na 1ª tela (hoje comentado — ver §8).
+- **Consentimento LGPD:** checkbox obrigatório na 1ª tela.
 - **Rastreabilidade:** respostas, diagnóstico e scores são logados no console do navegador (`logLead`, e um `console.debug` por escolha).
 
-## 8. ⚠️ ESTADO ATUAL — "fase de testes" (temporário)
-Para agilizar os testes com o cliente, foram desativados temporariamente:
-1. **Dados pessoais:** a 1ª tela mostra **só o campo Nome**. Idade, e-mail, WhatsApp, Instagram, país/estado/cidade e o consentimento estão **comentados** em `avaliacao.html` (bloco marcado `===== TEMP ... FIM TEMP =====`). O `form.js` tem guards para tolerar a ausência desses campos.
-2. **E-mail:** `EMAIL_ENABLED = false` em `form.js` desativa o envio (e o flush da fila).
+## 8. Estado atual — EM PRODUÇÃO
+O site está no ar para **testes em produção** com o formulário completo:
+- **Dados pessoais ATIVOS:** nome, idade, e-mail, WhatsApp, Instagram, país/estado/cidade e consentimento (o bloco `TEMP` foi removido).
+- **E-mail ATIVO** (`EMAIL_ENABLED = true`).
+- **WhatsApp:** número do Renan (ver §7).
 
-**Para reativar tudo (produção):**
-- Em `avaliacao.html`: apagar a linha de abertura `<!-- ===== TEMP ...` e a linha `===== FIM TEMP ===== -->`.
-- Em `form.js`: `EMAIL_ENABLED = true`.
+> Se um dia precisar desligar o e-mail para testes, basta `EMAIL_ENABLED = false` em `form.js`.
 
 ## 9. Pendências
-- [ ] Número **real da closer** no WhatsApp (`WHATSAPP_NUMBER`).
-- [ ] Foto da aluna do **Gasto energético insuficiente** (`assets/img/photos_diagnosticos/gasto_energetico_insuficiente.jpg`).
-- [ ] Ajustar **To/Cc + service** do template EmailJS para produção (closer + Renan / e-mail do Renan como remetente).
-- [ ] Reativar dados pessoais + e-mail quando o cliente aprovar (§8).
-- [ ] Confirmar/recalibrar os **pesos do Emagrecimento** com o Renan.
+- [ ] Trocar o WhatsApp do Renan pelo número **da closer** quando ela entrar (`WHATSAPP_NUMBER`).
+- [ ] Foto da aluna do **Gasto energético insuficiente** (`assets/img/photos_diagnosticos/gasto_energetico_insuficiente.jpg`) — hoje mostra placeholder.
+- [ ] Conferir no painel do EmailJS se o **To/Cc + service** do template estão nos e-mails de produção (Renan / closer).
+- [ ] Confirmar/recalibrar os **pesos do Emagrecimento** com o Renan (números foram propostos).
 
 ## 10. Convenções
 - Commits em nome de **Davi Arndt** (`git user.name`/`user.email` do projeto). Mensagens em português, descritivas.

@@ -2,9 +2,9 @@
    CARRARO — Diagnóstico Inteligente (multi-step → score → WhatsApp)
    ============================================================ */
 
-// WhatsApp da closer do Renan (a responsável por vendas) — formato internacional, só dígitos.
-// Por enquanto é um número de TESTE; trocar pelo número real da closer antes de publicar.
-const WHATSAPP_NUMBER = "4915259100748";
+// WhatsApp que recebe o contato do CTA — formato internacional, só dígitos.
+// Por ora é o número do próprio Renan (+55 43 99690-3949); depois passa a ser o da closer.
+const WHATSAPP_NUMBER = "5543996903949";
 
 // Tradução (i18n.js carrega antes deste arquivo)
 const t = (key, vars) => (window.i18n ? window.i18n.t(key, vars) : key);
@@ -783,8 +783,8 @@ function logLead(payload) {
 /* ---------- Envio de e-mail (Renan + closer) via EmailJS ----------
    Os destinatários (To = closer, Cc = Renan) são FIXOS no template do EmailJS,
    não passam pelo cliente. Aqui só vão os dados do lead. */
-// TEMP (fase de testes): envio de e-mail desativado. Voltar para true para reativar.
-const EMAIL_ENABLED = false;
+// Envio de e-mail do lead (EmailJS). Ligado para produção.
+const EMAIL_ENABLED = true;
 const EMAILJS_PUBLIC_KEY = "scWfk5MKjN7Td35Rw";
 const EMAILJS_SERVICE_ID = "service_sadmvso";
 const EMAILJS_TEMPLATE_ID = "template_g2v75xm";

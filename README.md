@@ -28,7 +28,7 @@ por **e-mail** (EmailJS) e o contato ativo acontece pelo **WhatsApp**.
   inteiro dinamicamente (inclusive o diagnóstico já exibido), sem alterar a URL;
   a escolha persiste em `localStorage`. Dicionário em `assets/js/i18n.js` +
   `DIAGNOSES_EN` em `assets/js/form.js`.
-- **WhatsApp (CTA "Fale com a nossa equipe"):** o botão final abre o WhatsApp da closer com uma
+- **WhatsApp (CTA "Fale com a nossa equipe"):** o botão final abre o WhatsApp da equipe com uma
   mensagem curta de interesse (sem as respostas) — a lead que quer acompanhamento profissional.
 - **E-mail (EmailJS):** ao concluir, diagnóstico + dados + respostas são enviados para a equipe
   (To/Cc fixos no template). Com retry + fila local de reenvio. Liga/desliga em `EMAIL_ENABLED`.
@@ -44,10 +44,6 @@ por **e-mail** (EmailJS) e o contato ativo acontece pelo **WhatsApp**.
 > `assets/img/photos_diagnosticos/`, nomeadas por diagnóstico e caminho
 > (ex.: `treina_mas_nao_evolui_hipertrofia.jpg`, `baixa_constancia_emagrecimento.jpg`).
 > Foto ausente mostra um placeholder "Foto da aluna".
-
-> ⚠️ **Fase de testes:** a 1ª tela do formulário está só com o campo Nome (demais dados pessoais
-> comentados em `avaliacao.html`, bloco `TEMP`) e o envio de e-mail está desativado
-> (`EMAIL_ENABLED = false` em `assets/js/form.js`).
 
 ## 🗂️ Estrutura do projeto
 
@@ -92,7 +88,7 @@ Alternativas: extensão *Live Server* no VS Code, ou `npx serve`.
 
 | O quê | Onde |
 |------|------|
-| Número de WhatsApp do CTA (closer) | `assets/js/form.js` → `WHATSAPP_NUMBER` (formato internacional, só dígitos) |
+| Número de WhatsApp do CTA | `assets/js/form.js` → `WHATSAPP_NUMBER` (formato internacional, só dígitos) — hoje o do Renan |
 | Envio de e-mail liga/desliga | `assets/js/form.js` → `EMAIL_ENABLED` |
 | Credenciais EmailJS | `assets/js/form.js` → `EMAILJS_PUBLIC_KEY` / `EMAILJS_SERVICE_ID` / `EMAILJS_TEMPLATE_ID` |
 | Perguntas do formulário | `avaliacao.html` |
@@ -100,7 +96,7 @@ Alternativas: extensão *Live Server* no VS Code, ou `npx serve`.
 | Pesos do score | `assets/js/form.js` → `diagnoseHipertrofia` / `diagnoseEmagrecimento` |
 | Cores e tipografia | `assets/css/styles.css` (`:root`) |
 
-> ⚠️ O `WHATSAPP_NUMBER` atual é um número de **teste**. Trocar pelo número real da closer antes do lançamento.
+> ℹ️ O `WHATSAPP_NUMBER` atual é o número do **Renan**. Quando a closer entrar, trocar por ela.
 
 ## 📡 Deploy (GitHub Pages)
 
